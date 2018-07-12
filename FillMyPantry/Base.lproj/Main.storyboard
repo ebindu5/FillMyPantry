@@ -183,6 +183,7 @@
                                                     </subviews>
                                                 </tableViewCellContentView>
                                                 <connections>
+                                                    <outlet property="checkBox" destination="zCW-Gp-1wb" id="vwK-8q-oyp"/>
                                                     <outlet property="itemLabel" destination="D3i-Uf-Uhx" id="UpZ-w5-2W7"/>
                                                 </connections>
                                             </tableViewCell>
@@ -263,11 +264,13 @@
                                                             <rect key="frame" x="20" y="11" width="20" height="20"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <state key="normal" title="Button" image="CheckedBox"/>
+                                                            <state key="disabled" image="CheckedBox"/>
                                                             <state key="selected" image="CheckBox"/>
                                                         </button>
                                                     </subviews>
                                                 </tableViewCellContentView>
                                                 <connections>
+                                                    <outlet property="checkBox" destination="PMg-Jb-mUR" id="9NK-gF-v8C"/>
                                                     <outlet property="itemLabel" destination="oTS-ap-Clq" id="rfX-gh-PZE"/>
                                                 </connections>
                                             </tableViewCell>

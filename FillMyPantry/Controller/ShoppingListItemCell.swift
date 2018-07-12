@@ -11,6 +11,8 @@ import UIKit
 class ShoppingListItemCell: UITableViewCell {
 
     @IBOutlet weak var itemLabel: UILabel!
+    @IBOutlet weak var checkBox: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

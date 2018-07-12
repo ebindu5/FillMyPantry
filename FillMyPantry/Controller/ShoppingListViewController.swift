@@ -56,6 +56,7 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
         }else {
             let cell =  tableView.dequeueReusableCell(withIdentifier: "completedItemCell", for: indexPath) as! ShoppingListItemCell
             cell.itemLabel?.text = completedItems[indexPath.row - completedItems.count - 1].name
+            cell.checkBox.isEnabled = false
             return cell
         }
 
