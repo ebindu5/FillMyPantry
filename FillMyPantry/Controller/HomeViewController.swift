@@ -54,6 +54,13 @@ class HomeViewController : UITableViewController {
         } else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "ShoppingCell", for: indexPath) as! ShoppingCell
             cell.listName.text = shoppingLists[indexPath.row].name
+            if let items = shoppingLists[indexPath.row].items {
+             cell.count.text = String(items.count)
+            } else{
+                cell.count.text = "0"
+            }
+            
+            
             return cell
         }
         
@@ -65,7 +72,7 @@ class HomeViewController : UITableViewController {
       if indexPath.row ==  shoppingLists?.count ?? 0 {
         FirebaseDAO.createShoppingList().subscribe()
        }
-       let ShoppingListViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShoppingListViewController") 
+       let ShoppingListViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShoppingListViewController")
         self.navigationController?.pushViewController(ShoppingListViewController!, animated: true)
 
     }
