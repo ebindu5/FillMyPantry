@@ -19,6 +19,8 @@ struct ShoppingList {
         
         if let items = items {
             self.items = items
+        } else{
+            self.items = []
         }
     }
 }

@@ -15,17 +15,22 @@ import RxCocoa
 class HomeViewController : UITableViewController {
     var users:[NSDictionary] = []
     var disposeBag = DisposeBag()
-    
-    
+    var shoppingLists : [ShoppingList]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-       super.viewWillAppear(animated)
-//        FirebaseDAO.getShoppingLists()
-        tableView.reloadData()
+        super.viewWillAppear(animated)
+        
+        FirebaseDAO.getShoppingListsForUser().subscribe(){ event in
+            if let element = event.element {
+                self.shoppingLists = element
+                self.tableView.reloadData()
+            }
+        }
+        
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -33,38 +38,32 @@ class HomeViewController : UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let count = UserData.userShoppingList {
-            print("....", count)
-            return count.count + 1
+        if let shoppingLists = shoppingLists {
+            print("rows:..",shoppingLists.count)
+            return shoppingLists.count + 1
         }else{
-            print("....1")
-            return 3
+            return 1
         }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       
-        if indexPath.row == indexPath.count - 2 {
+        
+        
+        if tableView.numberOfRows(inSection: indexPath.section) == 1 || (indexPath.row ==  shoppingLists.count) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CreateListCell", for: indexPath)
-            
             return cell
         } else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "ShoppingCell", for: indexPath) as! ShoppingCell
-            cell.listName.text = "X"
-            
-            
+            cell.listName.text = shoppingLists[indexPath.row].name
             return cell
         }
         
-       
     }
     
     
-
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        FirebaseDAO.createShoppingList()
+        FirebaseDAO.createShoppingList().subscribe()
         
     }
     

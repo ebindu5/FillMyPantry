@@ -19,7 +19,6 @@
 		907F78E420E427590060A809 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 907F78E320E427590060A809 /* Assets.xcassets */; };
 		907F78E720E427590060A809 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 907F78E520E427590060A809 /* LaunchScreen.storyboard */; };
 		907F78EF20E42B380060A809 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 907F78EE20E42B370060A809 /* GoogleService-Info.plist */; };
-		90D6615520F56F69002E805C /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D6615420F56F69002E805C /* UserData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +35,6 @@
 		907F78E620E427590060A809 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		907F78E820E427590060A809 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		907F78EE20E42B370060A809 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		90D6615420F56F69002E805C /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		BFEA66B541FCEC938DCAB037 /* Pods-Fill My Pantry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fill My Pantry.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fill My Pantry/Pods-Fill My Pantry.debug.xcconfig"; sourceTree = "<group>"; };
 		C132519C4EA6024A76A8BE95 /* libPods-Fill My Pantry.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Fill My Pantry.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3D18A5E2175F21E147FF888 /* Pods-Fill My Pantry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fill My Pantry.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fill My Pantry/Pods-Fill My Pantry.release.xcconfig"; sourceTree = "<group>"; };
@@ -70,7 +68,6 @@
 				905A559C20E750CB001878F6 /* FirebaseDAO.swift */,
 				905A559E20E75358001878F6 /* Struct.swift */,
 				9020FF7820F429C800CEC6B4 /* FirebaseAuthDAO.swift */,
-				90D6615420F56F69002E805C /* UserData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -259,7 +256,6 @@
 				905A559D20E750CB001878F6 /* FirebaseDAO.swift in Sources */,
 				9020FF7920F429C800CEC6B4 /* FirebaseAuthDAO.swift in Sources */,
 				9004F45920E59A7B00B5358D /* HomeViewController.swift in Sources */,
-				90D6615520F56F69002E805C /* UserData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
