@@ -47,9 +47,8 @@ class HomeViewController : UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        
-        if tableView.numberOfRows(inSection: indexPath.section) == 1 || (indexPath.row ==  shoppingLists.count) {
+
+        if (indexPath.row ==  shoppingLists?.count ?? 0) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CreateListCell", for: indexPath)
             return cell
         } else{
