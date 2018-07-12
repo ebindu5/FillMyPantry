@@ -13,7 +13,7 @@ import RxCocoa
 
 
 class HomeViewController : UITableViewController {
-    var users:[NSDictionary] = []
+    
     var disposeBag = DisposeBag()
     var shoppingLists : [ShoppingList]!
     
@@ -39,7 +39,6 @@ class HomeViewController : UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let shoppingLists = shoppingLists {
-            print("rows:..",shoppingLists.count)
             return shoppingLists.count + 1
         }else{
             return 1
@@ -72,8 +71,10 @@ class HomeViewController : UITableViewController {
       if indexPath.row ==  shoppingLists?.count ?? 0 {
         FirebaseDAO.createShoppingList().subscribe()
        }
-       let ShoppingListViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShoppingListViewController")
-        self.navigationController?.pushViewController(ShoppingListViewController!, animated: true)
+       let shoppingListViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShoppingListViewController") as! ShoppingListViewController
+        
+        shoppingListViewController.shoppingList = shoppingLists[indexPath.row]
+        self.navigationController?.pushViewController(shoppingListViewController, animated: true)
 
     }
     
