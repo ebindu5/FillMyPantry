@@ -125,10 +125,10 @@
             </objects>
             <point key="canvasLocation" x="821.60000000000002" y="143.47826086956522"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Shopping List View Controller-->
         <scene sceneID="E9Q-V6-AUC">
             <objects>
-                <tableViewController id="xX6-9V-GzI" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ShoppingListViewController" id="xX6-9V-GzI" customClass="ShoppingListViewController" customModule="Fill_My_Pantry" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="mJ7-cK-7Ey">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
