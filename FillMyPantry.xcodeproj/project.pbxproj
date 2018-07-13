@@ -21,16 +21,20 @@
 		907F78EF20E42B380060A809 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 907F78EE20E42B370060A809 /* GoogleService-Info.plist */; };
 		90D2162020F7D420008FCC7B /* ShoppingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D2161F20F7D420008FCC7B /* ShoppingListViewController.swift */; };
 		90D2162620F80AEC008FCC7B /* ShoppingListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D2162520F80AEC008FCC7B /* ShoppingListItemCell.swift */; };
+		FC2D0D42645F68F38201C172 /* libPods-FillMyPantry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48478639A32FBD80604AF22B /* libPods-FillMyPantry.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		24FADCA54D5627AC837F9AB7 /* Pods-FillMyPantry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FillMyPantry.release.xcconfig"; path = "Pods/Target Support Files/Pods-FillMyPantry/Pods-FillMyPantry.release.xcconfig"; sourceTree = "<group>"; };
+		48478639A32FBD80604AF22B /* libPods-FillMyPantry.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FillMyPantry.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		89FAE15742D291E87C5670DF /* Pods-FillMyPantry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FillMyPantry.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FillMyPantry/Pods-FillMyPantry.debug.xcconfig"; sourceTree = "<group>"; };
 		9004F45820E59A7B00B5358D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		9020FF7820F429C800CEC6B4 /* FirebaseAuthDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthDAO.swift; sourceTree = "<group>"; };
 		902F50EC20E440C000BFDF3D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		905A559A20E6FCFB001878F6 /* ShoppingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCell.swift; sourceTree = "<group>"; };
 		905A559C20E750CB001878F6 /* FirebaseDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDAO.swift; sourceTree = "<group>"; };
 		905A559E20E75358001878F6 /* Struct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Struct.swift; sourceTree = "<group>"; };
-		907F78D920E427580060A809 /* Fill My Pantry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fill My Pantry.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		907F78D920E427580060A809 /* FillMyPantry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FillMyPantry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		907F78DC20E427580060A809 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		907F78E120E427580060A809 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		907F78E320E427590060A809 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -39,9 +43,9 @@
 		907F78EE20E42B370060A809 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		90D2161F20F7D420008FCC7B /* ShoppingListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewController.swift; sourceTree = "<group>"; };
 		90D2162520F80AEC008FCC7B /* ShoppingListItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListItemCell.swift; sourceTree = "<group>"; };
-		BFEA66B541FCEC938DCAB037 /* Pods-Fill My Pantry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fill My Pantry.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fill My Pantry/Pods-Fill My Pantry.debug.xcconfig"; sourceTree = "<group>"; };
+		BFEA66B541FCEC938DCAB037 /* Pods-FillMyPantry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FillMyPantry.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fill My Pantry/Pods-FillMyPantry.debug.xcconfig"; sourceTree = "<group>"; };
 		C132519C4EA6024A76A8BE95 /* libPods-Fill My Pantry.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Fill My Pantry.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E3D18A5E2175F21E147FF888 /* Pods-Fill My Pantry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fill My Pantry.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fill My Pantry/Pods-Fill My Pantry.release.xcconfig"; sourceTree = "<group>"; };
+		E3D18A5E2175F21E147FF888 /* Pods-FillMyPantry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FillMyPantry.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fill My Pantry/Pods-FillMyPantry.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +54,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				238365FDA39A2211494852BB /* libPods-Fill My Pantry.a in Frameworks */,
+				FC2D0D42645F68F38201C172 /* libPods-FillMyPantry.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,7 +96,7 @@
 		907F78DA20E427580060A809 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				907F78D920E427580060A809 /* Fill My Pantry.app */,
+				907F78D920E427580060A809 /* FillMyPantry.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -115,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				C132519C4EA6024A76A8BE95 /* libPods-Fill My Pantry.a */,
+				48478639A32FBD80604AF22B /* libPods-FillMyPantry.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -122,8 +128,10 @@
 		C630FB5AC40CB8CABCCB3385 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				BFEA66B541FCEC938DCAB037 /* Pods-Fill My Pantry.debug.xcconfig */,
-				E3D18A5E2175F21E147FF888 /* Pods-Fill My Pantry.release.xcconfig */,
+				BFEA66B541FCEC938DCAB037 /* Pods-FillMyPantry.debug.xcconfig */,
+				E3D18A5E2175F21E147FF888 /* Pods-FillMyPantry.release.xcconfig */,
+				89FAE15742D291E87C5670DF /* Pods-FillMyPantry.debug.xcconfig */,
+				24FADCA54D5627AC837F9AB7 /* Pods-FillMyPantry.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -131,9 +139,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		907F78D820E427580060A809 /* Fill My Pantry */ = {
+		907F78D820E427580060A809 /* FillMyPantry */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 907F78EB20E427590060A809 /* Build configuration list for PBXNativeTarget "Fill My Pantry" */;
+			buildConfigurationList = 907F78EB20E427590060A809 /* Build configuration list for PBXNativeTarget "FillMyPantry" */;
 			buildPhases = (
 				18B61D00CC885F538CFE02D0 /* [CP] Check Pods Manifest.lock */,
 				907F78D520E427580060A809 /* Sources */,
@@ -146,9 +154,9 @@
 			);
 			dependencies = (
 			);
-			name = "Fill My Pantry";
+			name = FillMyPantry;
 			productName = "Fill My Pantry";
-			productReference = 907F78D920E427580060A809 /* Fill My Pantry.app */;
+			productReference = 907F78D920E427580060A809 /* FillMyPantry.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -179,7 +187,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				907F78D820E427580060A809 /* Fill My Pantry */,
+				907F78D820E427580060A809 /* FillMyPantry */,
 			);
 		};
 /* End PBXProject section */
@@ -210,7 +218,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Fill My Pantry-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-FillMyPantry-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -223,7 +231,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Fill My Pantry/Pods-Fill My Pantry-resources.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-FillMyPantry/Pods-FillMyPantry-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/gRPC/gRPCCertificates.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -232,7 +240,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Fill My Pantry/Pods-Fill My Pantry-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FillMyPantry/Pods-FillMyPantry-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		902F50EB20E4317A00BFDF3D /* ShellScript */ = {
@@ -405,7 +413,7 @@
 		};
 		907F78EC20E427590060A809 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BFEA66B541FCEC938DCAB037 /* Pods-Fill My Pantry.debug.xcconfig */;
+			baseConfigurationReference = 89FAE15742D291E87C5670DF /* Pods-FillMyPantry.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TLC9XD328V;
@@ -423,7 +431,7 @@
 		};
 		907F78ED20E427590060A809 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E3D18A5E2175F21E147FF888 /* Pods-Fill My Pantry.release.xcconfig */;
+			baseConfigurationReference = 24FADCA54D5627AC837F9AB7 /* Pods-FillMyPantry.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TLC9XD328V;
@@ -451,7 +459,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		907F78EB20E427590060A809 /* Build configuration list for PBXNativeTarget "Fill My Pantry" */ = {
+		907F78EB20E427590060A809 /* Build configuration list for PBXNativeTarget "FillMyPantry" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				907F78EC20E427590060A809 /* Debug */,

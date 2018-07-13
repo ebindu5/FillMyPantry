@@ -1,6 +1,6 @@
 //
 //  FirebaseData.swift
-//  Fill My Pantry
+//  FillMyPantry
 //
 //  Created by NISHANTH NAGELLA on 6/29/18.
 //  Copyright © 2018 Udacity. All rights reserved.

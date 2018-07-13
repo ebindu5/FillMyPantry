@@ -1,6 +1,6 @@
 //
 //  FirebaseAuthDAO.swift
-//  Fill My Pantry
+//  FillMyPantry
 //
 //  Created by NISHANTH NAGELLA on 7/9/18.
 //  Copyright © 2018 Udacity. All rights reserved.

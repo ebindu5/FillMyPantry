@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  Fill My Pantry
+//  FillMyPantry
 //
 //  Created by NISHANTH NAGELLA on 6/27/18.
 //  Copyright © 2018 Udacity. All rights reserved.
