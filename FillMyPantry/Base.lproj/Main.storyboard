@@ -301,16 +301,6 @@
         <!--Shopping Controller-->
         <scene sceneID="5P1-1L-mqJ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gPH-MD-8BH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="1dt-Rl-gdg">
-                    <connections>
-                        <outlet property="delegate" destination="iWr-So-cEW" id="tJw-pS-Cqi"/>
-                        <outlet property="searchBar" destination="9lj-i4-50z" id="RNx-dd-iBC"/>
-                        <outlet property="searchContentsController" destination="iWr-So-cEW" id="ay0-kh-DCP"/>
-                        <outlet property="searchResultsDataSource" destination="iWr-So-cEW" id="t9q-g5-hic"/>
-                        <outlet property="searchResultsDelegate" destination="iWr-So-cEW" id="Axs-9g-aiQ"/>
-                    </connections>
-                </searchDisplayController>
                 <viewController storyboardIdentifier="ShoppingListViewController1" id="iWr-So-cEW" customClass="ShoppingController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fdp-Vi-7Rf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -432,6 +422,16 @@
                         <outlet property="searchDisplayController" destination="Rqf-w2-Td5" id="Z2z-BZ-a6b"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gPH-MD-8BH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="1dt-Rl-gdg">
+                    <connections>
+                        <outlet property="delegate" destination="iWr-So-cEW" id="tJw-pS-Cqi"/>
+                        <outlet property="searchBar" destination="9lj-i4-50z" id="RNx-dd-iBC"/>
+                        <outlet property="searchContentsController" destination="iWr-So-cEW" id="ay0-kh-DCP"/>
+                        <outlet property="searchResultsDataSource" destination="iWr-So-cEW" id="t9q-g5-hic"/>
+                        <outlet property="searchResultsDelegate" destination="iWr-So-cEW" id="Axs-9g-aiQ"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="3313" y="115"/>
         </scene>
