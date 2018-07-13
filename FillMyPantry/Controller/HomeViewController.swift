@@ -70,11 +70,15 @@ class HomeViewController : UITableViewController {
         
       if indexPath.row ==  shoppingLists?.count ?? 0 {
         FirebaseDAO.createShoppingList().subscribe()
-       }
-       let shoppingListViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShoppingListViewController") as! ShoppingListViewController
+        let shoppingListViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShoppingListViewController") as! ShoppingListViewController
+        self.navigationController?.pushViewController(shoppingListViewController, animated: true)
+      } else{
+        let shoppingListViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShoppingListViewController") as! ShoppingListViewController
         
         shoppingListViewController.shoppingList = shoppingLists[indexPath.row]
         self.navigationController?.pushViewController(shoppingListViewController, animated: true)
+        }
+       
 
     }
     

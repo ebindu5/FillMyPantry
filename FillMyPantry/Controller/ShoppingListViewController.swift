@@ -29,6 +29,11 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -51,7 +56,7 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
             cell.itemLabel?.text = uncompletedItems[indexPath.row].name
             return cell
         } else if indexPath.row == uncompletedItems.count + 1 {
-            let cell =  tableView.dequeueReusableCell(withIdentifier: "showHideButtonCell", for: indexPath)
+            let cell =  tableView.dequeueReusableCell(withIdentifier: "showHideButtonCell", for: indexPath) as! ShoppingListItemCell
             return cell
         }else {
             let cell =  tableView.dequeueReusableCell(withIdentifier: "completedItemCell", for: indexPath) as! ShoppingListItemCell
@@ -61,6 +66,28 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
         }
 
     }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.row == uncompletedItems.count + 1 {
+            let cell = tableView.cellForRow(at: indexPath) as! ShoppingListItemCell
+            
+            let completeCell = tableView.dequeueReusableCell(withIdentifier: "completedItemCell")
+            if (cell.labeltoShowHide.text?.contains("Show"))! {
+                cell.labeltoShowHide.text =  "Hide Completed Items"
+                completeCell?.isHidden = false
+                
+            }else{
+                cell.labeltoShowHide.text =  "Show Completed Items"
+                completeCell?.isHidden = true
+                
+            }
+        }
+      
+    }
+    
+    
     
     
 }

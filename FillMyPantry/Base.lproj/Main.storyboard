@@ -210,43 +210,27 @@
                                                     </subviews>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="showHideButtonCell" id="i7V-aj-G2y" userLabel="showHideButtonCell">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="showHideButtonCell" id="i7V-aj-G2y" userLabel="showHideButtonCell" customClass="ShoppingListItemCell" customModule="Fill_My_Pantry" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="116" width="375" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="i7V-aj-G2y" id="oZC-GA-dhJ">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kcW-Y6-RMY">
-                                                            <rect key="frame" x="0.0" y="6" width="375" height="30"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="30" id="OKv-Te-Nub"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                            <state key="normal" title="Show Completed Items"/>
-                                                        </button>
-                                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JGv-mf-Bs1">
-                                                            <rect key="frame" x="0.0" y="6" width="375" height="30"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="30" id="wAg-tL-3zf"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                            <state key="normal" title="Hide Completed Items"/>
-                                                        </button>
+                                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Show Completed Items" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R07-qw-c5F" userLabel="Show Completed Items">
+                                                            <rect key="frame" x="15" y="11" width="345" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.43892628030772385" green="0.97680455450000003" blue="0.25447968412196814" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                 </tableViewCellContentView>
-                                                <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="JGv-mf-Bs1" secondAttribute="trailing" id="5af-xc-DRP"/>
-                                                    <constraint firstItem="JGv-mf-Bs1" firstAttribute="leading" secondItem="i7V-aj-G2y" secondAttribute="leading" id="Ci0-Hm-wZJ"/>
-                                                    <constraint firstItem="kcW-Y6-RMY" firstAttribute="leading" secondItem="i7V-aj-G2y" secondAttribute="leading" id="KXN-Zj-sKa"/>
-                                                    <constraint firstAttribute="bottom" secondItem="JGv-mf-Bs1" secondAttribute="bottom" constant="8" id="cMK-RF-GDd"/>
-                                                    <constraint firstItem="JGv-mf-Bs1" firstAttribute="top" secondItem="i7V-aj-G2y" secondAttribute="top" constant="6" id="g0E-Uu-nlc"/>
-                                                    <constraint firstAttribute="bottom" secondItem="kcW-Y6-RMY" secondAttribute="bottom" constant="8" id="kYI-gu-qzG"/>
-                                                    <constraint firstAttribute="trailing" secondItem="kcW-Y6-RMY" secondAttribute="trailing" id="tgA-ea-bzM"/>
-                                                    <constraint firstItem="kcW-Y6-RMY" firstAttribute="top" secondItem="i7V-aj-G2y" secondAttribute="top" constant="6" id="uWT-yt-Qbh"/>
-                                                </constraints>
+                                                <connections>
+                                                    <outlet property="labeltoShowHide" destination="R07-qw-c5F" id="A74-GX-Zdj"/>
+                                                </connections>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="completedItemCell" id="pQi-56-75E" customClass="ShoppingListItemCell" customModule="Fill_My_Pantry" customModuleProvider="target">
+                                            <tableViewCell hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="completedItemCell" id="pQi-56-75E" customClass="ShoppingListItemCell" customModule="Fill_My_Pantry" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="160" width="375" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pQi-56-75E" id="csK-xM-dxV">
