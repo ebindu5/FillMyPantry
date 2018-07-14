@@ -27,7 +27,10 @@ class HomeViewController : UITableViewController {
         FirebaseDAO.getShoppingListsForUser().subscribe(){ event in
             if let element = event.element {
                 self.shoppingLists = element
-                self.tableView.reloadData()
+                
+                DispatchQueue.main.async {
+                     self.tableView.reloadData()
+                }
             }
         }
         

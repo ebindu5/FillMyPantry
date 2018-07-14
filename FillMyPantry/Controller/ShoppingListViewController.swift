@@ -13,15 +13,17 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+
+    
     var shoppingList : ShoppingList!
-    var completedItems : [Item]!
-    var uncompletedItems: [Item]!
+    var completedItems = [Item]()
+    var uncompletedItems =  [Item]()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.allowsSelection = true
         if let shoppingListItems = shoppingList?.items{
             completedItems = shoppingListItems.filter (){ $0.completed == true }
             uncompletedItems = shoppingListItems.filter (){ $0.completed == false }
@@ -40,7 +42,7 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let shoppingListValue = shoppingList {
-            return (shoppingListValue.items?.count)! + 2 ?? 2
+            return (shoppingListValue.items?.count)! + 2
         }else{
             return 2
         }
@@ -51,74 +53,43 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
         if indexPath.row == uncompletedItems.count {
             let cell =  tableView.dequeueReusableCell(withIdentifier: "createShoppingListCell", for: indexPath)
             return cell
-        } else if indexPath.row < uncompletedItems.count{
+        } else if indexPath.row < uncompletedItems.count {
             let cell =  tableView.dequeueReusableCell(withIdentifier: "shoppingItemCell", for: indexPath) as! ShoppingListItemCell
             cell.itemLabel?.text = uncompletedItems[indexPath.row].name
             return cell
-        } else if indexPath.row == uncompletedItems.count + 1 {
+        } else if indexPath.row == uncompletedItems.count  + 1 {
             let cell =  tableView.dequeueReusableCell(withIdentifier: "showHideButtonCell", for: indexPath) as! ShoppingListItemCell
-            
-            if cell.isSelected {
-                tableView.deselectRow(at: indexPath, animated: true)
-                print("selected")
-                let completeCell = tableView.dequeueReusableCell(withIdentifier: "completedItemCell") as! ShoppingListItemCell
-
-                if (cell.labeltoShowHide.text?.contains("Show"))! {
-                    completeCell.frame.size.height = 0;
-                    self.view.layoutSubviews()
-
-                    cell.labeltoShowHide.text =  "Hide Completed Items"
-                    //                completeCell?.isHidden = false
-
-                }else{
-                    cell.labeltoShowHide.text =  "Show Completed Items"
-                    completeCell.isHidden = true
-
-                }
-
-            }
-            
             return cell
         }else {
             let cell =  tableView.dequeueReusableCell(withIdentifier: "completedItemCell", for: indexPath) as! ShoppingListItemCell
             cell.itemLabel?.text = completedItems[indexPath.row - completedItems.count - 1].name
             cell.checkBox.isEnabled = false
+            if Constants.showCompletedItems {
+                cell.isHidden = false
+            }else{
+                cell.isHidden = true
+            }
             return cell
         }
 
     }
     
 
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row == uncompletedItems.count + 1 {
-//            let cell = tableView.cellForRow(at: indexPath) as! ShoppingListItemCell
-//            tableView.beginUpdates()
-            tableView.cellForRow(at: indexPath)
-//
-//            let completeCell = tableView.dequeueReusableCell(withIdentifier: "completedItemCell")
-//
-//            if (cell.labeltoShowHide.text?.contains("Show"))! {
-//                print("show")
-////                completeCell.frame.size.height = 30;
-////                self.view.layoutSubviews()
-//
-//                cell.labeltoShowHide.text =  "Hide Completed Items"
-//                completeCell?.isHidden = false
-//
-//            }else{
-//                print("hide")
-//                cell.labeltoShowHide.text =  "Show Completed Items"
-//////                completeCell.frame.size.height = 0
-////                self.view.layoutSubviews()
-//                completeCell?.isHidden = true
-//
-//            }
-//            tableView.endUpdates()
-//            tableView.reloadData()
+            let cell = tableView.cellForRow(at: indexPath) as! ShoppingListItemCell
+            if (cell.labeltoShowHide.text?.contains("Show"))! {
+                print("show")
+                cell.labeltoShowHide.text =  "Hide Completed Items"
+                Constants.showCompletedItems = true
+            }else{
+                print("hide")
+                cell.labeltoShowHide.text =  "Show Completed Items"
+                Constants.showCompletedItems = false
+            }
+            tableView.reloadData()
         }
-      
     }
     
     

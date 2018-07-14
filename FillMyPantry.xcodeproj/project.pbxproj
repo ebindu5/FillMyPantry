@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		238365FDA39A2211494852BB /* libPods-Fill My Pantry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C132519C4EA6024A76A8BE95 /* libPods-Fill My Pantry.a */; };
 		9004F45920E59A7B00B5358D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9004F45820E59A7B00B5358D /* HomeViewController.swift */; };
 		9020FF7920F429C800CEC6B4 /* FirebaseAuthDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9020FF7820F429C800CEC6B4 /* FirebaseAuthDAO.swift */; };
 		902F50ED20E440C000BFDF3D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902F50EC20E440C000BFDF3D /* Constants.swift */; };
@@ -53,7 +52,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				238365FDA39A2211494852BB /* libPods-Fill My Pantry.a in Frameworks */,
 				FC2D0D42645F68F38201C172 /* libPods-FillMyPantry.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
