@@ -59,6 +59,12 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
             return cell
         } else if indexPath.row == uncompletedItems.count  + 1 {
             let cell =  tableView.dequeueReusableCell(withIdentifier: "showHideButtonCell", for: indexPath) as! ShoppingListItemCell
+            if Constants.showCompletedItems {
+                 cell.labeltoShowHide.text =  "Hide Completed Items"
+            }else{
+                 cell.labeltoShowHide.text =  "Show Completed Items"
+            }
+            
             return cell
         }else {
             let cell =  tableView.dequeueReusableCell(withIdentifier: "completedItemCell", for: indexPath) as! ShoppingListItemCell
@@ -80,11 +86,9 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
         if indexPath.row == uncompletedItems.count + 1 {
             let cell = tableView.cellForRow(at: indexPath) as! ShoppingListItemCell
             if (cell.labeltoShowHide.text?.contains("Show"))! {
-                print("show")
                 cell.labeltoShowHide.text =  "Hide Completed Items"
                 Constants.showCompletedItems = true
             }else{
-                print("hide")
                 cell.labeltoShowHide.text =  "Show Completed Items"
                 Constants.showCompletedItems = false
             }
