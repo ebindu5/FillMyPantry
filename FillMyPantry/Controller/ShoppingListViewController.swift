@@ -24,6 +24,7 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,7 +73,7 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
             return cell
         }else {
             let cell =  tableView.dequeueReusableCell(withIdentifier: "completedItemCell", for: indexPath) as! ShoppingListItemCell
-            cell.itemLabel?.text = completedItems[indexPath.row - completedItems.count - 1].name
+            cell.itemLabel?.text = completedItems[indexPath.row - uncompletedItems.count - 2].name
             cell.checkBox.isEnabled = false
             if Constants.showCompletedItems {
                 cell.isHidden = false
