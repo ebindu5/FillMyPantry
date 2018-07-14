@@ -32,12 +32,13 @@ class FirebaseDAO {
     
     
     
-    static func createShoppingList()->Observable<Void> {
+    static func createShoppingList()->Observable<String> {
         
-        return Observable.zip(createNewShoppingListDocument(), getShoppingListRefsForUser()){ (newDocumentReference, exisitingDocumentReference) in
-            var existingDoc = exisitingDocumentReference
-            existingDoc.append(newDocumentReference)
-            db?.collection("users").document(Constants.UID).setData(["shoppingLists" : existingDoc], merge: true)
+        return Observable.zip(createNewShoppingListDocument(), getShoppingListRefsForUser()){ (newDocumentReference, exisitingDocumentReferences) in
+            var existingDocs = exisitingDocumentReferences
+            existingDocs.append(newDocumentReference)
+            db?.collection("users").document(Constants.UID).setData(["shoppingLists" : existingDocs], merge: true)
+            return newDocumentReference.documentID
         }
         
         
@@ -177,15 +178,21 @@ class FirebaseDAO {
             }else{
                 timestampDate = nil
             }
-            return ShoppingList(name,timestampDate,items)
+            return ShoppingList(documentSnapShot.documentID, name,timestampDate,items)
         }
         return nil
+    }
+    
+    static func getShoppingListFromId(_ documentID : String)->Observable<ShoppingList>{
+        
+        let documentReference = (db?.document("/ShoppingLists/\((documentID))"))!
+        return getShoppingListFromDocRef(documentReference)
     }
     
     private static func getShoppingListFromDocRef(_ documentReference : DocumentReference)-> Observable<ShoppingList>{
         
         return Observable.create{ observer in
-            documentReference.getDocument(source: FirestoreSource.cache, completion: { (documentSnapShot, error) in
+            documentReference.getDocument(source: FirestoreSource.default, completion: { (documentSnapShot, error) in
                 if let error = error {
                     observer.onError(error)
                 } else if let documentSnapShot = documentSnapShot, documentSnapShot.exists {

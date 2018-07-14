@@ -14,7 +14,7 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
 
-    
+    var shoppingListId : String!
     var shoppingList : ShoppingList!
     var completedItems = [Item]()
     var uncompletedItems =  [Item]()
@@ -24,16 +24,20 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        if let shoppingListItems = shoppingList?.items{
-            completedItems = shoppingListItems.filter (){ $0.completed == true }
-            uncompletedItems = shoppingListItems.filter (){ $0.completed == false }
-        }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tableView.reloadData()
+        FirebaseDAO.getShoppingListFromId(shoppingListId).subscribe{ event in
+            if let shoppingListElement = event.element{
+                self.shoppingList = shoppingListElement
+                if let shoppingListItems = self.shoppingList.items{
+                    self.completedItems = shoppingListItems.filter (){ $0.completed == true }
+                    self.uncompletedItems = shoppingListItems.filter (){ $0.completed == false }
+                }
+                self.tableView.reloadData()
+            }
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

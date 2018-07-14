@@ -9,11 +9,13 @@
 import Foundation
 
 struct ShoppingList {
+    var id : String
     var name : String
     var creationDate : NSDate
     var items : [Item]?
     
-    init(_ name : String, _ creationDate : NSDate, _ items : [Item]?) {
+    init(_ id : String, _ name : String, _ creationDate : NSDate, _ items : [Item]?) {
+        self.id = id
         self.name = name
         self.creationDate = creationDate
         

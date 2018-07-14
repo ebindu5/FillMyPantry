@@ -72,13 +72,18 @@ class HomeViewController : UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
       if indexPath.row ==  shoppingLists?.count ?? 0 {
-        FirebaseDAO.createShoppingList().subscribe()
-        let shoppingListViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShoppingListViewController") as! ShoppingListViewController
-        self.navigationController?.pushViewController(shoppingListViewController, animated: true)
+
+       FirebaseDAO.createShoppingList().subscribe { event in
+            if let id = event.element {
+                let shoppingListViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShoppingListViewController") as! ShoppingListViewController
+                shoppingListViewController.shoppingListId = id
+                self.navigationController?.pushViewController(shoppingListViewController, animated: true)
+            }
+        }
       } else{
         let shoppingListViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShoppingListViewController") as! ShoppingListViewController
         
-        shoppingListViewController.shoppingList = shoppingLists[indexPath.row]
+        shoppingListViewController.shoppingListId = shoppingLists[indexPath.row].id
         self.navigationController?.pushViewController(shoppingListViewController, animated: true)
         }
        
