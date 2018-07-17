@@ -34,15 +34,31 @@ class FirebaseDAO {
     
     static func createShoppingList()->Observable<String> {
         
+        //        return Observable.zip(createNewShoppingListDocument(), getShoppingListRefsForUser()){ (newDocumentReference, exisitingDocumentReferences) in
+        //            var existingDocs = exisitingDocumentReferences
+        //            existingDocs.append(newDocumentReference)
+        //            db?.collection("users").document(Constants.UID).setData(["shoppingLists" : existingDocs], merge: true)
+        //            return newDocumentReference.documentID
+        //        }
+        //
+        
         return Observable.zip(createNewShoppingListDocument(), getShoppingListRefsForUser()){ (newDocumentReference, exisitingDocumentReferences) in
             var existingDocs = exisitingDocumentReferences
             existingDocs.append(newDocumentReference)
-            db?.collection("users").document(Constants.UID).setData(["shoppingLists" : existingDocs], merge: true)
+//            db?.collection("users").document(Constants.UID).setData(["shoppingLists" : existingDocs], merge: true)
+            db?.collection("users").document(Constants.UID).updateData([
+                "shoppingLists.\(newDocumentReference.documentID)": true
+            ]) { err in
+                if let err = err {
+                    print("Error updating document: \(err)")
+                } else {
+                    print("Document successfully updated")
+                }
+            }
+
+            
             return newDocumentReference.documentID
         }
-        
-        
-        
         
         //
         //
@@ -101,7 +117,16 @@ class FirebaseDAO {
                     observer.onError(error)
                 } else if let documentSnapShot = documentSnapShot, documentSnapShot.exists {
                     if let data = documentSnapShot.data() {
-                        let shoppingLists = data["shoppingLists"] as! [DocumentReference]
+                        var shoppingLists: [DocumentReference]!
+                        let shoppingListsObject = data["shoppingLists"] as! [String:Any]
+                        
+                        for list in shoppingListsObject {
+                            if shoppingLists != nil {
+                                shoppingLists.append((db?.document(list.key))!)
+                            }else{
+                                shoppingLists = [(db?.document(list.key))!]
+                            }
+                        }
                         observer.onNext(shoppingLists)
                     }else{
                         observer.onNext([])
@@ -232,7 +257,7 @@ class FirebaseDAO {
                     observer.onNext(true)
                 }
             }
-             return Disposables.create()
+            return Disposables.create()
         }
     }
     
