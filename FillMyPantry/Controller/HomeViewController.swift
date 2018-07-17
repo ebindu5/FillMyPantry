@@ -82,7 +82,6 @@ class HomeViewController : UITableViewController {
         }
       } else{
         let shoppingListViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShoppingListViewController") as! ShoppingListViewController
-        
         shoppingListViewController.shoppingListId = shoppingLists[indexPath.row].id
         self.navigationController?.pushViewController(shoppingListViewController, animated: true)
         }

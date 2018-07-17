@@ -9,21 +9,25 @@
 import Foundation
 import UIKit
 
-class ShoppingListViewController : UIViewController, UITableViewDelegate,UITableViewDataSource{
+class ShoppingListViewController : UIViewController, UITableViewDelegate,UITableViewDataSource {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
+    var isActive = false
     var shoppingListId : String!
     var shoppingList : ShoppingList!
     var completedItems = [Item]()
     var uncompletedItems =  [Item]()
     
+    var data = ["San Francisco","New York","San Jose","Chicago","Los Angeles","Austin","Seattle"]
+    var filtered:[String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        searchBar.delegate = self
         tableView.reloadData()
     }
     
@@ -46,14 +50,24 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isActive{
+          return filtered.count
+        } else{
         if let shoppingListValue = shoppingList {
             return (shoppingListValue.items?.count)! + 2
         }else{
             return 2
         }
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if isActive {
+            let cell =  tableView.dequeueReusableCell(withIdentifier: "shoppingItemCell", for: indexPath) as! ShoppingListItemCell
+            cell.itemLabel?.text = filtered[indexPath.row]
+            return cell
+        } else{
         
         if indexPath.row == uncompletedItems.count { // Add an Item
             let cell =  tableView.dequeueReusableCell(withIdentifier: "createShoppingListCell", for: indexPath)
@@ -81,6 +95,7 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
                 cell.isHidden = true
             }
             return cell
+        }
         }
         
     }
@@ -113,8 +128,43 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
         }
         tableView.reloadData()
     }
+}
+
+
+extension ShoppingListViewController : UISearchBarDelegate {
+  
+
     
     
     
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        isActive = true
+    }
     
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        isActive = false
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        isActive = false;
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        isActive = false;
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+         filtered = data.filter({ (text) -> Bool in
+            let tmp: NSString = text as NSString
+            let range = tmp.range(of: searchText, options: .caseInsensitive)
+            return range.location != NSNotFound
+        })
+        if(filtered.count == 0){
+            isActive = false;
+        } else {
+            isActive = true;
+        }
+        tableView.reloadData()
+    }
 }
