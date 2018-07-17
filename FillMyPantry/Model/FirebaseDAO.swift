@@ -30,8 +30,6 @@ class FirebaseDAO {
         }
     }
     
-    
-    
     static func createShoppingList()->Observable<String> {
         
         return Observable.zip(createNewShoppingListDocument(), getShoppingListRefsForUser()){ (newDocumentReference, exisitingDocumentReferences) in
@@ -40,10 +38,7 @@ class FirebaseDAO {
             db?.collection("users").document(Constants.UID).setData(["shoppingLists" : existingDocs], merge: true)
             return newDocumentReference.documentID
         }
-        
-        
-        
-        
+
         //
         //
         //        var ref: DocumentReference? = nil
@@ -221,7 +216,7 @@ class FirebaseDAO {
         }
     }
     
-    static  func deleteShoppingList(_ documentID : String)->Observable<Bool>{
+    private static  func deleteShoppingList(_ documentID : String)->Observable<DocumentReference>{
         let documentReference = (db?.document("/ShoppingLists/\((documentID))"))!
         
         return Observable.create{ observer in
@@ -229,12 +224,25 @@ class FirebaseDAO {
                 if let error = error {
                     observer.onError("Error removing document: \(error)" as! Error)
                 } else {
-                    observer.onNext(true)
+                    observer.onNext(documentReference)
                 }
             }
              return Disposables.create()
         }
     }
+    
+    
+    static func updateShoppingList(_ documentID : String)->Observable<Bool> {
+        return Observable.zip(deleteShoppingList(documentID), getShoppingListRefsForUser()){ (deletableDocumentReference, exisitingDocumentReferences) in
+            var existingDocs = exisitingDocumentReferences
+            if let index = existingDocs.index(of: deletableDocumentReference) {
+                existingDocs.remove(at: index)
+            }
+            db?.collection("users").document(Constants.UID).setData(["shoppingLists" : existingDocs], merge: true)
+            return true
+        }
+    }
+    
     
     private static func listen(includeMetadataChanges: Bool) -> Observable<DocumentSnapshot> {
         return Observable<DocumentSnapshot>.create { observer in

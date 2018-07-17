@@ -29,7 +29,7 @@ class HomeViewController : UITableViewController {
                 self.shoppingLists = element
                 
                 DispatchQueue.main.async {
-                     self.tableView.reloadData()
+                    self.tableView.reloadData()
                 }
             }
         }
@@ -49,7 +49,7 @@ class HomeViewController : UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         if (indexPath.row ==  shoppingLists?.count ?? 0) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CreateListCell", for: indexPath)
             return cell
@@ -57,7 +57,7 @@ class HomeViewController : UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ShoppingCell", for: indexPath) as! ShoppingCell
             cell.listName.text = shoppingLists[indexPath.row].name
             if let items = shoppingLists[indexPath.row].items {
-             cell.count.text = String(items.count)
+                cell.count.text = String(items.count)
             } else{
                 cell.count.text = "0"
             }
@@ -71,23 +71,23 @@ class HomeViewController : UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-      if indexPath.row ==  shoppingLists?.count ?? 0 {
-
-       FirebaseDAO.createShoppingList().subscribe { event in
-            if let id = event.element {
-                let shoppingListViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShoppingListViewController") as! ShoppingListViewController
-                shoppingListViewController.shoppingListId = id
-                self.navigationController?.pushViewController(shoppingListViewController, animated: true)
+        if indexPath.row ==  shoppingLists?.count ?? 0 {
+            
+            FirebaseDAO.createShoppingList().subscribe { event in
+                if let id = event.element {
+                    let shoppingListViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShoppingListViewController") as! ShoppingListViewController
+                    shoppingListViewController.shoppingListId = id
+                    self.navigationController?.pushViewController(shoppingListViewController, animated: true)
+                }
             }
+        } else{
+            let shoppingListViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShoppingListViewController") as! ShoppingListViewController
+            
+            shoppingListViewController.shoppingListId = shoppingLists[indexPath.row].id
+            self.navigationController?.pushViewController(shoppingListViewController, animated: true)
         }
-      } else{
-        let shoppingListViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShoppingListViewController") as! ShoppingListViewController
         
-        shoppingListViewController.shoppingListId = shoppingLists[indexPath.row].id
-        self.navigationController?.pushViewController(shoppingListViewController, animated: true)
-        }
-       
-
+        
     }
     
     
@@ -102,12 +102,13 @@ class HomeViewController : UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
             print(shoppingLists[indexPath.row].id,"{{{{{}}}}}}")
-            FirebaseDAO.deleteShoppingList(shoppingLists[indexPath.row].id).subscribe(){ event in
-                if let success = event.element, success == true{
+            FirebaseDAO.updateShoppingList(shoppingLists[indexPath.row].id).subscribe(){ event in
+                if let success = event.element, success == true {
                     self.shoppingLists.remove(at: indexPath.row)
                     tableView.reloadData()
                 }
             }
+            
         }
     }
 }
