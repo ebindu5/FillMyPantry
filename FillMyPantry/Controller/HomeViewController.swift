@@ -93,10 +93,21 @@ class HomeViewController : UITableViewController {
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         if indexPath.row ==  shoppingLists?.count ?? 0 {
-            return true
-        } else{
             return false
+        } else{
+            return true
         }
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+            print(shoppingLists[indexPath.row].id,"{{{{{}}}}}}")
+            FirebaseDAO.deleteShoppingList(shoppingLists[indexPath.row].id).subscribe(){ event in
+                if let success = event.element, success == true{
+                    self.shoppingLists.remove(at: indexPath.row)
+                    tableView.reloadData()
+                }
+            }
+        }
+    }
 }

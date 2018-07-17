@@ -221,6 +221,20 @@ class FirebaseDAO {
         }
     }
     
+    static  func deleteShoppingList(_ documentID : String)->Observable<Bool>{
+        let documentReference = (db?.document("/ShoppingLists/\((documentID))"))!
+        
+        return Observable.create{ observer in
+            documentReference.delete() { error in
+                if let error = error {
+                    observer.onError("Error removing document: \(error)" as! Error)
+                } else {
+                    observer.onNext(true)
+                }
+            }
+             return Disposables.create()
+        }
+    }
     
     private static func listen(includeMetadataChanges: Bool) -> Observable<DocumentSnapshot> {
         return Observable<DocumentSnapshot>.create { observer in
