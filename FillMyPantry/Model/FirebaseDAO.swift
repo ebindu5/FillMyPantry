@@ -15,6 +15,8 @@ class FirebaseDAO {
     
     static var db = Constants.dbRef
     
+
+    
     private static func createNewShoppingListDocument()->Observable<DocumentReference>{
         return Observable.create { observer in
             var ref: DocumentReference? = nil
@@ -35,7 +37,7 @@ class FirebaseDAO {
         return Observable.zip(createNewShoppingListDocument(), getShoppingListRefsForUser()){ (newDocumentReference, exisitingDocumentReferences) in
             var existingDocs = exisitingDocumentReferences
             existingDocs.append(newDocumentReference)
-            db?.collection("users").document(Constants.UID).setData(["shoppingLists" : existingDocs], merge: true)
+            db?.collection("Users").document(Constants.UID).setData(["shoppingLists" : existingDocs], merge: true)
             return newDocumentReference.documentID
         }
     }
@@ -58,7 +60,7 @@ class FirebaseDAO {
     }
     
     private static func getShoppingListRefsForUser()->Observable<[DocumentReference]>{
-        let docRef = db?.collection("users").document(Constants.UID)
+        let docRef = db?.collection("Users").document(Constants.UID)
         return Observable.create { observer in
             docRef?.getDocument { documentSnapShot, error in
                 if let error = error {
@@ -245,7 +247,7 @@ class FirebaseDAO {
             if let index = existingDocs.index(of: deletableDocumentReference) {
                 existingDocs.remove(at: index)
             }
-            db?.collection("users").document(Constants.UID).setData(["shoppingLists" : existingDocs], merge: true)
+            db?.collection("Users").document(Constants.UID).setData(["shoppingLists" : existingDocs], merge: true)
             return true
         }
     }
@@ -268,7 +270,7 @@ class FirebaseDAO {
     
     private static func listen(includeMetadataChanges: Bool) -> Observable<DocumentSnapshot> {
         return Observable<DocumentSnapshot>.create { observer in
-            let listener = db?.collection("users").document(Constants.UID).addSnapshotListener(includeMetadataChanges: includeMetadataChanges) { snapshot, error in
+            let listener = db?.collection("Users").document(Constants.UID).addSnapshotListener(includeMetadataChanges: includeMetadataChanges) { snapshot, error in
                 if let error = error {
                     observer.onError(error)
                 } else if let snapshot = snapshot {

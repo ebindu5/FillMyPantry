@@ -24,10 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
 
-        Constants.dbRef = Firestore.firestore()
-        let settings = Constants.dbRef.settings
-        settings.areTimestampsInSnapshotsEnabled = true
-        Constants.dbRef.settings = settings
+       
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -35,21 +32,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
         FirebaseApp.configure()
         FirebaseAuthDAO.logOutUserOnFreshInstall()
+        Constants.dbRef = Firestore.firestore()
+        let settings = Constants.dbRef.settings
+        settings.areTimestampsInSnapshotsEnabled = true
+        Constants.dbRef.settings = settings
         
         if let currentUser = Auth.auth().currentUser {
             Constants.UID = currentUser.uid
             setRootViewController()
         } else {
            
-            FirebaseAuthDAO.anonymousUserInstantiation().subscribe { event in
+            FirebaseAuthDAO.anonymousAuthentication().subscribe{ event in
                 switch event {
                 case .success(let uid) : Constants.UID = uid
-
                 self.setRootViewController()
                 case .error(let error): print(error)
                 }
-                }
-            
+            }
+//
+//
+//
+//            FirebaseAuthDAO.anonymousUserInstantiation().subscribe {
+//
         }
 
         return true
