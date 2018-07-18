@@ -38,37 +38,6 @@ class FirebaseDAO {
             db?.collection("users").document(Constants.UID).setData(["shoppingLists" : existingDocs], merge: true)
             return newDocumentReference.documentID
         }
-
-        //
-        //
-        //        var ref: DocumentReference? = nil
-        //
-        //
-        //        ref = db?.collection("ShoppingLists").addDocument(data:[ "name": "My Shopping List","creationDate": FieldValue.serverTimestamp(),"items": []]) { err in
-        //            if let err = err {
-        //                print("Error adding document: \(err)")
-        //            } else {
-        //
-        //                var userShoppingLists : [DocumentReference]!
-        //
-        //                if var shoppingLists = UserData.userShoppingList{
-        //                   shoppingLists.append((db?.document("/ShoppingLists/\((ref?.documentID)!)"))!)
-        //                   userShoppingLists = shoppingLists
-        //                } else{
-        //                    userShoppingLists = [(db?.document("/ShoppingLists/\((ref?.documentID)!)"))!]
-        //                }
-        //
-        //                db?.collection("users").document(Constants.UID).setData(["shoppingLists" : userShoppingLists!], merge: true) { err in
-        //                    if let err = err {
-        //                        print("Error writing document: \(err)")
-        //                    } else {
-        //                        UserData.userShoppingList = userShoppingLists
-        //                        print("Document successfully written!")
-        //                    }
-        //                }
-        //                print("Document added with ID: \(ref!.documentID)")
-        //            }
-        //        }
     }
     
     private static func testGetShoppingList(){
@@ -109,87 +78,109 @@ class FirebaseDAO {
             return Disposables.create()
         }
     }
+
     
-    private static func getItemsforShoppingList(_ documentID : String){
-        var items :[Item]!
-        db?.collection("ShoppingLists/\(documentID)/items").getDocuments(){ (querySnapshot, error) in
-            if let error = error {
-                items = []
-                print("Error getting documents: \(error)")
-            } else {
-                for document in querySnapshot!.documents {
-                    let item = document.data()
-                    
-                    let itemName : String!
-                    let itemOrder : Int!
-                    let completionDate : NSDate!
-                    let creationDate: NSDate!
-                    let completed : Bool!
-                    if let name = item["name"] as? String{
-                        itemName = name
-                    } else{
-                        itemName = ""
-                    }
-                    
-                    if let order = item["order"] as? Int{
-                        itemOrder = order
-                    } else{
-                        itemOrder = 0
-                    }
-                    
-                    if let completionD = item["completionDate"] as? Timestamp{
-                        completionDate = completionD.dateValue() as NSDate
-                    } else{
-                        completionDate = nil
-                    }
-                    
-                    if let creationD = item["creationDate"] as? Timestamp{
-                        creationDate = creationD.dateValue() as NSDate
-                    } else{
-                        creationDate = nil
-                    }
-                    
-                    if let completedValue = item["completed"] as? Bool{
-                        completed = completedValue
-                    } else{
-                        completed = false
-                    }
-                    
-                    if items != nil {
-                        items.append(Item(itemName,creationDate, completionDate, completed,itemOrder))
-                    }else{
-                        items = [Item(itemName,creationDate, completionDate, completed,itemOrder)]
+    private static func getShoppingListFromDocumentSnapShot(_ documentSnapShot: DocumentSnapshot)->Observable<ShoppingList>{
+        
+        return Observable.create{ observer in
+            
+            if let data = documentSnapShot.data() {
+                var name : String!
+                var items :[Item]!
+                var timestampDate : NSDate!
+                
+                
+                db?.collection("ShoppingLists/\(documentSnapShot.documentID)/items").getDocuments(){ (querySnapshot, error) in
+                    if let error = error {
+                        items = []
+                        observer.onError("Error getting documents: \(error)" as! Error)
+                        
+                    } else {
+                        
+                        if let names = data["name"] as? String {
+                            name = names
+                        }else{
+                            name = ""
+                        }
+                        
+                        if let date =  data["creationDate"] as? Timestamp{
+                            timestampDate =  date.dateValue() as NSDate
+                        }else{
+                            timestampDate = nil
+                        }
+                        
+                        if let snap = querySnapshot {
+                            items =  getDataFromDocuments(snap.documents)
+                        } else{
+                            items = []
+                        }
+                        
+                        
+                        if let documents = querySnapshot?.documents {
+                           items =  getDataFromDocuments(documents)
+                        } else{
+                            items = []
+                        }
+                        
+                        let shoppinglist = ShoppingList(documentSnapShot.documentID, name,timestampDate,items)
+                        observer.onNext(shoppinglist)
+                        observer.onCompleted()
                     }
                 }
             }
-            
+            return Disposables.create()
         }
-        
     }
     
-    private static func getShoppingListFromDocumentSnapShot(_ documentSnapShot: DocumentSnapshot)-> ShoppingList? {
-        if let data = documentSnapShot.data() {
-            let name : String!
-            var items :[Item]!
-            let timestampDate : NSDate!
-            if let names = data["name"] as? String {
-                name = names
-            }else{
-                name = ""
-            }
-       
-            if let date =  data["creationDate"] as? Timestamp{
-                timestampDate =  date.dateValue() as NSDate
-            }else{
-                timestampDate = nil
-            }
-           
-         
+    private static func getDataFromDocuments(_ documents : [QueryDocumentSnapshot])->[Item]?{
+       var items :[Item]!
+        for document in documents {
+            let item = document.data()
             
-           
-            return ShoppingList(documentSnapShot.documentID, name,timestampDate,items)
+            let itemName : String!
+            let itemOrder : Int!
+            let completionDate : NSDate!
+            let creationDate: NSDate!
+            let completed : Bool!
+            
+            
+            if let name = item["name"] as? String{
+                itemName = name
+            } else{
+                itemName = ""
+            }
+            
+            if let order = item["order"] as? Int{
+                itemOrder = order
+            } else{
+                itemOrder = 0
+            }
+            
+            if let completionD = item["completionDate"] as? Timestamp{
+                completionDate = completionD.dateValue() as NSDate
+            } else{
+                completionDate = nil
+            }
+            
+            if let creationD = item["creationDate"] as? Timestamp{
+                creationDate = creationD.dateValue() as NSDate
+            } else{
+                creationDate = nil
+            }
+            
+            if let completedValue = item["completed"] as? Bool{
+                completed = completedValue
+            } else{
+                completed = false
+            }
+            
+            if items != nil {
+                items.append(Item(document.reference,itemName,creationDate, completionDate, completed,itemOrder))
+            }else{
+                items = [Item(document.reference,itemName,creationDate, completionDate, completed,itemOrder)]
+            }
         }
-        return nil
+        return items
     }
     
     static func getShoppingListFromId(_ documentID : String)->Observable<ShoppingList>{
@@ -199,18 +190,19 @@ class FirebaseDAO {
     }
     
     private static func getShoppingListFromDocRef(_ documentReference : DocumentReference)-> Observable<ShoppingList>{
+        return getSnapshotFromDocRef(documentReference).flatMap({ documentSnapShot in
+            return getShoppingListFromDocumentSnapShot(documentSnapShot)
+        })
+    }
+    
+    private static func getSnapshotFromDocRef(_ documentReference : DocumentReference) -> Observable<DocumentSnapshot>{
         
         return Observable.create{ observer in
             documentReference.getDocument(source: FirestoreSource.default, completion: { (documentSnapShot, error) in
                 if let error = error {
                     observer.onError(error)
                 } else if let documentSnapShot = documentSnapShot, documentSnapShot.exists {
-                    if let shoppingList = getShoppingListFromDocumentSnapShot(documentSnapShot){
-                        observer.onNext(shoppingList)
-                        observer.onCompleted()
-                    } else{
-                        observer.onError("Shopping List is empty for \(documentReference.path)" as! Error)
-                    }
+                  observer.onNext(documentSnapShot)
                 }else {
                     observer.onError(NSError(domain: FirestoreErrorDomain, code: FirestoreErrorCode.notFound.rawValue, userInfo: nil))
                 }
@@ -219,6 +211,7 @@ class FirebaseDAO {
         }
     }
     
+
     private static func getShoppingListsFromDocRefArray(_ documentReferences : [DocumentReference])->Observable<[ShoppingList]>{
         var shoppingListObservableList = [Observable<ShoppingList>]()
         for documentReference in documentReferences{
@@ -241,7 +234,7 @@ class FirebaseDAO {
                     observer.onNext(documentReference)
                 }
             }
-             return Disposables.create()
+            return Disposables.create()
         }
     }
     
@@ -255,6 +248,21 @@ class FirebaseDAO {
             db?.collection("users").document(Constants.UID).setData(["shoppingLists" : existingDocs], merge: true)
             return true
         }
+    }
+    
+    static func updateShoppingListItem(_ documentReference : DocumentReference, _ isCompleted : Bool){
+        
+        documentReference.updateData([
+            "completed": isCompleted
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+        
+        
     }
     
     

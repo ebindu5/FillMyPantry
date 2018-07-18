@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 struct ShoppingList {
     var id : String
@@ -28,6 +29,7 @@ struct ShoppingList {
 }
 
 struct Item {
+    let id : DocumentReference
     var name : String
     var creationDate : NSDate
     var completionDate : NSDate?
@@ -35,7 +37,8 @@ struct Item {
     var order : Int
     
     
-    init(_ name : String, _ creationDate : NSDate, _ completionDate : NSDate?,_ completed : Bool, _ order : Int) {
+    init(_ id : DocumentReference, _ name : String, _ creationDate : NSDate, _ completionDate : NSDate?,_ completed : Bool, _ order : Int) {
+        self.id = id
         self.name = name
         self.creationDate = creationDate
         self.completed = completed

@@ -72,7 +72,7 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
             }
             
             return cell
-        }else { // Completed List Items
+        }else {               // Completed List Items
             let cell =  tableView.dequeueReusableCell(withIdentifier: "completedItemCell", for: indexPath) as! ShoppingListItemCell
             cell.itemLabel?.text = completedItems[indexPath.row - uncompletedItems.count - 2].name
             cell.checkBox.isEnabled = false
@@ -90,7 +90,7 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
       
-        if indexPath.row == uncompletedItems.count + 1 {
+        if indexPath.row == uncompletedItems.count + 1 { // Show Hide button
             
             let cell = tableView.cellForRow(at: indexPath) as! ShoppingListItemCell
             if (cell.labeltoShowHide.text?.contains("Show"))! {
@@ -100,22 +100,20 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
                 cell.labeltoShowHide.text =  "Show Completed Items"
                 Constants.showCompletedItems = false
             }
-            
-        } else if indexPath.row == uncompletedItems.count {
-            
-            
-        } else if indexPath.row < uncompletedItems.count {
+        } else if indexPath.row == uncompletedItems.count { // Add an Item
             
             
-        } else {
-            
-            
-            
+        } else if indexPath.row < uncompletedItems.count { // Uncompleted List Items
+                FirebaseDAO.updateShoppingListItem(uncompletedItems[indexPath.row].id, true)
+            completedItems.append(uncompletedItems[indexPath.row])
+            uncompletedItems.remove(at: indexPath.row)
+        } else {      // Completed List Items
+                FirebaseDAO.updateShoppingListItem(completedItems[indexPath.row - uncompletedItems.count - 2].id, false)
+            uncompletedItems.append(completedItems[indexPath.row - uncompletedItems.count - 2])
+            completedItems.remove(at: indexPath.row - uncompletedItems.count - 1)
         }
         tableView.reloadData()
     }
     
-    
-    
-    
+  
 }
