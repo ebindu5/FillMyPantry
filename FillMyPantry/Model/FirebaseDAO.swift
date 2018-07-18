@@ -110,19 +110,15 @@ class FirebaseDAO {
         }
     }
     
-    private static func getShoppingListFromDocumentSnapShot(_ documentSnapShot: DocumentSnapshot)-> ShoppingList? {
-        if let data = documentSnapShot.data() {
-            let name : String!
-            var items :[Item]!
-            let timestampDate : NSDate!
-            if let names = data["name"] as? String {
-                name = names
-            }else{
-                name = ""
-            }
-            
-            if let itemValues =  data["items"] as? [[String:Any]]{
-                for item in itemValues {
+    private static func getItemsforShoppingList(_ documentID : String){
+        var items :[Item]!
+        db?.collection("ShoppingLists/\(documentID)/items").getDocuments(){ (querySnapshot, error) in
+            if let error = error {
+                items = []
+                print("Error getting documents: \(error)")
+            } else {
+                for document in querySnapshot!.documents {
+                    let item = document.data()
                     
                     let itemName : String!
                     let itemOrder : Int!
@@ -165,14 +161,32 @@ class FirebaseDAO {
                         items = [Item(itemName,creationDate, completionDate, completed,itemOrder)]
                     }
                 }
-            }else{
-                items = []
             }
+            
+        }
+        
+    }
+    
+    private static func getShoppingListFromDocumentSnapShot(_ documentSnapShot: DocumentSnapshot)-> ShoppingList? {
+        if let data = documentSnapShot.data() {
+            let name : String!
+            var items :[Item]!
+            let timestampDate : NSDate!
+            if let names = data["name"] as? String {
+                name = names
+            }else{
+                name = ""
+            }
+       
             if let date =  data["creationDate"] as? Timestamp{
                 timestampDate =  date.dateValue() as NSDate
             }else{
                 timestampDate = nil
             }
+           
+         
+            
+           
             return ShoppingList(documentSnapShot.documentID, name,timestampDate,items)
         }
         return nil

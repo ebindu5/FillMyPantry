@@ -31,6 +31,7 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
         super.viewWillAppear(animated)
         FirebaseDAO.getShoppingListFromId(shoppingListId).subscribe{ event in
             if let shoppingListElement = event.element{
+               
                 self.shoppingList = shoppingListElement
                 if let shoppingListItems = self.shoppingList.items{
                     self.completedItems = shoppingListItems.filter (){ $0.completed == true }
