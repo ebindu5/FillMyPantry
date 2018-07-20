@@ -284,20 +284,10 @@
                     </view>
                     <connections>
                         <outlet property="searchBar" destination="Q1E-gh-TZF" id="CiL-Q0-zNY"/>
-                        <outlet property="searchDisplayController" destination="Rqf-w2-Td5" id="Mbd-L2-BSb"/>
                         <outlet property="tableView" destination="Ouw-wP-IqJ" id="Jpg-kM-fqo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ShB-mQ-W3P" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="Rqf-w2-Td5">
-                    <connections>
-                        <outlet property="delegate" destination="5L7-GS-Vod" id="OH5-DP-fH6"/>
-                        <outlet property="searchBar" destination="Q1E-gh-TZF" id="Cah-Pe-cH3"/>
-                        <outlet property="searchContentsController" destination="5L7-GS-Vod" id="cYe-c0-odg"/>
-                        <outlet property="searchResultsDataSource" destination="5L7-GS-Vod" id="1BN-wR-MgI"/>
-                        <outlet property="searchResultsDelegate" destination="5L7-GS-Vod" id="h9m-61-eYv"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1943.2" y="128.18590704647679"/>
         </scene>
@@ -309,7 +299,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2H-0L-tmR" userLabel="Search Stack View">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="d2H-0L-tmR" userLabel="Search Stack View">
                                 <rect key="frame" x="0.0" y="29" width="375" height="40"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" text="Add an item..." showsBookmarkButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9lj-i4-50z">
@@ -421,9 +411,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="91o-4R-ulU"/>
                     </view>
-                    <connections>
-                        <outlet property="searchDisplayController" destination="Rqf-w2-Td5" id="Z2z-BZ-a6b"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gPH-MD-8BH" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <searchDisplayController id="1dt-Rl-gdg">
@@ -436,7 +423,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="3313" y="115"/>
+            <point key="canvasLocation" x="3312.8000000000002" y="114.69265367316342"/>
         </scene>
     </scenes>
     <resources>

@@ -13,11 +13,11 @@ import Firebase
 
 class GroceryCatalog {
     
-    private static var groceryCatalog : [Grocery]!
+    private static var groceryCatalog = [Grocery]()
     static var db = Constants.dbRef
     
     static func getGroceryCatalog()-> Observable<[Grocery]>{
-        if groceryCatalog != nil {
+        if groceryCatalog.count != 0 {
             return Observable.deferred{
                 return  Observable.just(groceryCatalog)
             }
@@ -25,15 +25,14 @@ class GroceryCatalog {
             return Observable.create{ observer in
                 db?.collection("GroceryCatalog").addSnapshotListener{ documentSnapshot, error in
                     
-                        if error != nil {
-                            observer.onError(error!)
-                        }
-                    
-                    print(documentSnapshot?.metadata.isFromCache,"--->DataIsFromCache", documentSnapshot?.documents.count)
-                        if let documents = documentSnapshot?.documents {
-                            getDataFromDocuments(documents)
-                            observer.onNext(groceryCatalog)
-                        }
+                    if error != nil {
+                        observer.onError(error!)
+                    }
+//                    print(documentSnapshot?.metadata.isFromCache,"--->DataIsFromCache", documentSnapshot?.documents.count)
+                    if let documents = documentSnapshot?.documents {
+                        getDataFromDocuments(documents)
+                        observer.onNext(groceryCatalog)
+                    }
                 }
                 return Disposables.create()
             }
@@ -42,18 +41,12 @@ class GroceryCatalog {
     
     
     private static func getDataFromDocuments(_ documents : [QueryDocumentSnapshot]){
+        groceryCatalog.removeAll()
         for document in documents {
             let data = document.data()
-            
             let name = data["name"] as? String ?? ""
             let category = data["category"] as? String ?? ""
-            
-            if groceryCatalog == nil {
-                groceryCatalog = [Grocery(name,category)]
-            } else{
-                groceryCatalog.append(Grocery(name,category))
-            }
-            
+            groceryCatalog.append(Grocery(name,category))
         }
         
     }

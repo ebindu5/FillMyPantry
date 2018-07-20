@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ShoppingListViewController : UIViewController, UITableViewDelegate,UITableViewDataSource{
+class ShoppingListViewController : UIViewController, UITableViewDelegate,UITableViewDataSource, UISearchBarDelegate{
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
@@ -24,6 +24,7 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        searchBar.delegate = self
         tableView.reloadData()
     }
     
@@ -116,4 +117,17 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
     }
     
   
+}
+
+extension ShoppingListViewController {
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        
+        LoadingOverlay.shared.showOverlay(self.view)
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        LoadingOverlay.shared.hideOverlayView()
+    }
+
 }
