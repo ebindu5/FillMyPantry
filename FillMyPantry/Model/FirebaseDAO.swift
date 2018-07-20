@@ -85,45 +85,35 @@ class FirebaseDAO {
     private static func getShoppingListFromDocumentSnapShot(_ documentSnapShot: DocumentSnapshot)->Observable<ShoppingList>{
         
         return Observable.create{ observer in
-            
             if let data = documentSnapShot.data() {
                 var name : String!
                 var items :[Item]!
                 var timestampDate : NSDate!
-                
-                
                 db?.collection("ShoppingLists/\(documentSnapShot.documentID)/items").getDocuments(){ (querySnapshot, error) in
                     if let error = error {
                         items = []
                         observer.onError("Error getting documents: \(error)" as! Error)
-                        
                     } else {
-                        
                         if let names = data["name"] as? String {
                             name = names
                         }else{
                             name = ""
                         }
-                        
                         if let date =  data["creationDate"] as? Timestamp{
                             timestampDate =  date.dateValue() as NSDate
                         }else{
                             timestampDate = nil
                         }
-                        
                         if let snap = querySnapshot {
                             items =  getDataFromDocuments(snap.documents)
                         } else{
                             items = []
                         }
-                        
-                        
                         if let documents = querySnapshot?.documents {
                            items =  getDataFromDocuments(documents)
                         } else{
                             items = []
                         }
-                        
                         let shoppinglist = ShoppingList(documentSnapShot.documentID, name,timestampDate,items)
                         observer.onNext(shoppinglist)
                         observer.onCompleted()
@@ -144,8 +134,7 @@ class FirebaseDAO {
             let completionDate : NSDate!
             let creationDate: NSDate!
             let completed : Bool!
-            
-            
+
             if let name = item["name"] as? String{
                 itemName = name
             } else{
@@ -253,7 +242,6 @@ class FirebaseDAO {
     }
     
     static func updateShoppingListItem(_ documentReference : DocumentReference, _ isCompleted : Bool){
-        
         documentReference.updateData([
             "completed": isCompleted
         ]) { err in
@@ -263,10 +251,7 @@ class FirebaseDAO {
                 print("Document successfully updated")
             }
         }
-        
-        
     }
-    
     
     private static func listen(includeMetadataChanges: Bool) -> Observable<DocumentSnapshot> {
         return Observable<DocumentSnapshot>.create { observer in

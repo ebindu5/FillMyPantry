@@ -16,6 +16,7 @@ class HomeViewController : UITableViewController {
     
     var disposeBag = DisposeBag()
     var shoppingLists : [ShoppingList]!
+    var groceryCatalog : [Grocery]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,12 @@ class HomeViewController : UITableViewController {
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
+            }
+        }
+        
+        GroceryCatalog.getGroceryCatalog().subscribe{ event in
+            if let element = event.element{
+                self.groceryCatalog = element
             }
         }
         
@@ -70,6 +77,7 @@ class HomeViewController : UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(groceryCatalog)
         
         if indexPath.row ==  shoppingLists?.count ?? 0 {
             
