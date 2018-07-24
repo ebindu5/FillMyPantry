@@ -132,7 +132,7 @@
         <!--Shopping List View Controller-->
         <scene sceneID="6BY-ce-d0A">
             <objects>
-                <viewController storyboardIdentifier="ShoppingListViewController" id="5L7-GS-Vod" customClass="ShoppingListViewController" customModule="FillMyPantry" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShoppingListViewController1" id="5L7-GS-Vod" customClass="ShoppingListViewController" customModule="FillMyPantry" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bdk-Lo-GDz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -315,7 +315,7 @@
         <!--Shopping List View Controller-->
         <scene sceneID="B8D-Rj-xfz">
             <objects>
-                <viewController storyboardIdentifier="ShoppingListViewController1" id="pgD-vY-X0x" customClass="ShoppingListViewController" customModule="FillMyPantry" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShoppingListViewController" id="pgD-vY-X0x" customClass="ShoppingListViewController" customModule="FillMyPantry" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tgy-2M-iIH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

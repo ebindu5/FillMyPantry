@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-class ShoppingListViewController : UIViewController, UITableViewDelegate,UITableViewDataSource{
+class ShoppingListViewController : UIViewController, UITableViewDelegate,UITableViewDataSource, UISearchControllerDelegate, UISearchBarDelegate{
     
-//    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
 
     let searchController = UISearchController(searchResultsController: nil)
@@ -27,38 +27,14 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
         tableView.delegate = self
         tableView.dataSource = self
         tableView.reloadData()
-    
-        searchController.searchBar.showsCancelButton = true
-        searchController.hidesNavigationBarDuringPresentation = true
-        searchController.dimsBackgroundDuringPresentation = true
-        searchController.searchBar.placeholder = "Add an Item..."
-//        mysearchController.searchBar.barStyle = UIBarStyle.black
 
       
-        for subView1 in searchController.searchBar.subviews{
-            for subView2 in subView1.subviews{
+    }
+    
 
-                if subView2.isKind(of: UIButton.self){
-                    let customizedCancelButton:UIButton = subView2 as! UIButton
-                    customizedCancelButton.isEnabled = true
-                    customizedCancelButton.setTitle("", for: .normal)
-                    let image1 = UIImage(named: "icon_ios_folder")
-                    customizedCancelButton.setBackgroundImage(image1, for: .normal)
-                    customizedCancelButton.addTarget(self, action: #selector(sort), for: UIControlEvents.touchUpInside)
-                }
-            }
-        }
-        
-        tableView.tableHeaderView = searchController.searchBar
-        definesPresentationContext = true
-    }
-    
-    @objc func sort(){
-        print("sort button fired!!!")
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+  
         FirebaseDAO.getShoppingListFromId(shoppingListId).subscribe{ event in
             if let shoppingListElement = event.element{
                
@@ -152,11 +128,16 @@ extension ShoppingListViewController {
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         
-        LoadingOverlay.shared.showOverlay(self.view)
-    }
+              searchBar.showsCancelButton = false
+            }
     
+//    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+//
+//        LoadingOverlay.shared.showOverlay(self.view)
+//    }
+//
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        LoadingOverlay.shared.hideOverlayView()
+        searchBar.showsCancelButton = true
     }
 
 }
