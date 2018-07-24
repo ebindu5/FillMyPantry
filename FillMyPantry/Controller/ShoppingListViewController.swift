@@ -27,43 +27,7 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
         tableView.delegate = self
         tableView.dataSource = self
         tableView.reloadData()
-        
-//        //navigationController?.navigationBar.isTranslucent = false //set it in strory board
-//        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-//        //navigationController?.navigationBar.barStyle = .black ////set it in strory board
-//        //navigationController?.navigationBar.barTintColor = UIColor.red ////set it in strory board
-//        navigationController?.navigationBar.shadowImage = UIImage()
-//        title = "Location";
-//
-//        searchBar.barStyle = .default
-//        searchBar.isTranslucent = false
-//        searchBar.barTintColor = UIColor.red
-//        searchBar.backgroundImage = UIImage()
-        
-
-//        let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "SearchResultsTableController") as! SearchResultsTableController
-//        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
-//        resultSearchController?.searchResultsUpdater = locationSearchTable as UISearchResultsUpdating
-//
-//
-//      let searchBar = resultSearchController!.searchBar
-//        searchBar.sizeToFit()
-//        searchBar.placeholder = "Search for places"
-////        navigationItem.titleView =  resultSearchController?.searchBar
-////        searchBar =  resultSearchController?.searchBar
-//        resultSearchController?.hidesNavigationBarDuringPresentation = true
-//        resultSearchController?.dimsBackgroundDuringPresentation = true
-
-//
-////        searchBar.addSubview(UIImageView.init(image: UIImage(named : "icon_ios_folder")))
-//        let toolbar = UIToolba
-//
-//        tableView.tableHeaderView = resultSearchController?.searchBar
-//
-//
-        
-        
-      
+    
         searchController.searchBar.showsCancelButton = true
         searchController.hidesNavigationBarDuringPresentation = true
         searchController.dimsBackgroundDuringPresentation = true
