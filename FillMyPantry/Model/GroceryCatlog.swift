@@ -14,6 +14,7 @@ import Firebase
 class GroceryCatalog {
     
     private static var groceryCatalog = [Grocery]()
+    private static var groceryItems = [String]()
     static var db = Constants.dbRef
     
     static func getGroceryCatalog()-> Observable<[Grocery]>{
@@ -31,7 +32,32 @@ class GroceryCatalog {
 //                    print(documentSnapshot?.metadata.isFromCache,"--->DataIsFromCache", documentSnapshot?.documents.count)
                     if let documents = documentSnapshot?.documents {
                         getDataFromDocuments(documents)
+                        
                         observer.onNext(groceryCatalog)
+                    }
+                }
+                return Disposables.create()
+            }
+        }
+    }
+    
+    static func getGroceryItems()-> Observable<[String]>{
+        if groceryItems.count != 0 {
+            return Observable.deferred{
+                return  Observable.just(groceryItems)
+            }
+        } else{
+            return Observable.create{ observer in
+                db?.collection("GroceryCatalog").addSnapshotListener{ documentSnapshot, error in
+                    
+                    if error != nil {
+                        observer.onError(error!)
+                    }
+                    //                    print(documentSnapshot?.metadata.isFromCache,"--->DataIsFromCache", documentSnapshot?.documents.count)
+                    if let documents = documentSnapshot?.documents {
+                        getDataFromDocuments(documents)
+                        
+                        observer.onNext(groceryItems)
                     }
                 }
                 return Disposables.create()
@@ -47,6 +73,7 @@ class GroceryCatalog {
             let name = data["name"] as? String ?? ""
             let category = data["category"] as? String ?? ""
             groceryCatalog.append(Grocery(name,category))
+            groceryItems.append(name)
         }
         
     }

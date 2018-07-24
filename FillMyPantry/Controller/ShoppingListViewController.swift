@@ -11,10 +11,9 @@ import UIKit
 
 class ShoppingListViewController : UIViewController, UITableViewDelegate,UITableViewDataSource, UISearchControllerDelegate, UISearchBarDelegate{
     
-    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
-
-    let searchController = UISearchController(searchResultsController: nil)
+    
+    var searchController = UISearchController(searchResultsController: nil)
     
     var shoppingListId : String!
     var shoppingList : ShoppingList!
@@ -27,17 +26,34 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
         tableView.delegate = self
         tableView.dataSource = self
         tableView.reloadData()
-
-      
+        
+        configureSearchController()
+    
     }
     
-
+    
+    func configureSearchController() {
+        let searchResultsTableController = storyboard!.instantiateViewController(withIdentifier: "SearchResultsTableController") as! SearchResultsTableController
+        searchController = UISearchController(searchResultsController: searchResultsTableController)
+        searchController.searchResultsUpdater = searchResultsTableController
+        searchController.dimsBackgroundDuringPresentation = true
+        searchController.hidesNavigationBarDuringPresentation = true
+        searchController.searchBar.delegate = self
+        searchController.searchBar.showsBookmarkButton = true
+        searchController.searchBar.delegate = self
+        searchController.searchBar.placeholder = "Add an Item..."
+        searchController.searchBar.sizeToFit()
+        self.definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
+    }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-  
+        
         FirebaseDAO.getShoppingListFromId(shoppingListId).subscribe{ event in
             if let shoppingListElement = event.element{
-               
+                
                 self.shoppingList = shoppingListElement
                 if let shoppingListItems = self.shoppingList.items{
                     self.completedItems = shoppingListItems.filter (){ $0.completed == true }
@@ -95,7 +111,7 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-      
+        
         if indexPath.row == uncompletedItems.count + 1 { // Show Hide button
             
             let cell = tableView.cellForRow(at: indexPath) as! ShoppingListItemCell
@@ -110,34 +126,28 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
             
             
         } else if indexPath.row < uncompletedItems.count { // Uncompleted List Items
-                FirebaseDAO.updateShoppingListItem(uncompletedItems[indexPath.row].id, true)
+            FirebaseDAO.updateShoppingListItem(uncompletedItems[indexPath.row].id, true)
             completedItems.append(uncompletedItems[indexPath.row])
             uncompletedItems.remove(at: indexPath.row)
         } else {      // Completed List Items
-                FirebaseDAO.updateShoppingListItem(completedItems[indexPath.row - uncompletedItems.count - 2].id, false)
+            FirebaseDAO.updateShoppingListItem(completedItems[indexPath.row - uncompletedItems.count - 2].id, false)
             uncompletedItems.append(completedItems[indexPath.row - uncompletedItems.count - 2])
             completedItems.remove(at: indexPath.row - uncompletedItems.count - 1)
         }
         tableView.reloadData()
     }
     
-  
+    
 }
 
 extension ShoppingListViewController {
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        
-              searchBar.showsCancelButton = false
-            }
-    
-//    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-//
-//        LoadingOverlay.shared.showOverlay(self.view)
-//    }
-//
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchBar.showsCancelButton = true
+        searchBar.showsBookmarkButton = false
     }
-
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.showsBookmarkButton =  true
+    }
+    
 }

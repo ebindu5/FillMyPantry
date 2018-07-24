@@ -132,7 +132,7 @@
         <!--Shopping List View Controller-->
         <scene sceneID="6BY-ce-d0A">
             <objects>
-                <viewController storyboardIdentifier="ShoppingListViewController1" id="5L7-GS-Vod" customClass="ShoppingListViewController" customModule="FillMyPantry" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShoppingListViewController" id="5L7-GS-Vod" customClass="ShoppingListViewController" customModule="FillMyPantry" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bdk-Lo-GDz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -277,7 +277,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchResultCell" textLabel="v44-sO-1QJ" detailTextLabel="6ud-B5-Sp0" style="IBUITableViewCellStyleSubtitle" id="d2J-IN-Tpg">
+                            <tableViewCell clipsSubviews="YES" alpha="0.69999999999999996" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchResultCell" textLabel="v44-sO-1QJ" detailTextLabel="6ud-B5-Sp0" style="IBUITableViewCellStyleSubtitle" id="d2J-IN-Tpg">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="d2J-IN-Tpg" id="V7L-MH-sKh">
@@ -298,6 +298,11 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HdK-yj-8yK">
+                                            <rect key="frame" x="345" y="10" width="20" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Button" image="icon_ios_add"/>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -310,12 +315,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xGT-Be-NZ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2628" y="104"/>
+            <point key="canvasLocation" x="2628" y="103.89805097451276"/>
         </scene>
         <!--Shopping List View Controller-->
         <scene sceneID="B8D-Rj-xfz">
             <objects>
-                <viewController storyboardIdentifier="ShoppingListViewController" id="pgD-vY-X0x" customClass="ShoppingListViewController" customModule="FillMyPantry" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShoppingListViewController1" id="pgD-vY-X0x" customClass="ShoppingListViewController" customModule="FillMyPantry" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tgy-2M-iIH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -466,7 +471,6 @@
                         <viewLayoutGuide key="safeArea" id="BXv-33-DTI"/>
                     </view>
                     <connections>
-                        <outlet property="searchBar" destination="eul-EF-fLG" id="2qo-3s-L4A"/>
                         <outlet property="tableView" destination="xWW-1d-W0j" id="grs-Cg-cin"/>
                     </connections>
                 </viewController>
