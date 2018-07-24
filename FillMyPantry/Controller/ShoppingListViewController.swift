@@ -9,10 +9,12 @@
 import Foundation
 import UIKit
 
-class ShoppingListViewController : UIViewController, UITableViewDelegate,UITableViewDataSource, UISearchBarDelegate{
+class ShoppingListViewController : UIViewController, UITableViewDelegate,UITableViewDataSource{
     
-    @IBOutlet weak var searchBar: UISearchBar!
+//    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+
+    let searchController = UISearchController(searchResultsController: nil)
     
     var shoppingListId : String!
     var shoppingList : ShoppingList!
@@ -24,8 +26,71 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        searchBar.delegate = self
         tableView.reloadData()
+        
+//        //navigationController?.navigationBar.isTranslucent = false //set it in strory board
+//        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+//        //navigationController?.navigationBar.barStyle = .black ////set it in strory board
+//        //navigationController?.navigationBar.barTintColor = UIColor.red ////set it in strory board
+//        navigationController?.navigationBar.shadowImage = UIImage()
+//        title = "Location";
+//
+//        searchBar.barStyle = .default
+//        searchBar.isTranslucent = false
+//        searchBar.barTintColor = UIColor.red
+//        searchBar.backgroundImage = UIImage()
+        
+
+//        let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "SearchResultsTableController") as! SearchResultsTableController
+//        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
+//        resultSearchController?.searchResultsUpdater = locationSearchTable as UISearchResultsUpdating
+//
+//
+//      let searchBar = resultSearchController!.searchBar
+//        searchBar.sizeToFit()
+//        searchBar.placeholder = "Search for places"
+////        navigationItem.titleView =  resultSearchController?.searchBar
+////        searchBar =  resultSearchController?.searchBar
+//        resultSearchController?.hidesNavigationBarDuringPresentation = true
+//        resultSearchController?.dimsBackgroundDuringPresentation = true
+
+//
+////        searchBar.addSubview(UIImageView.init(image: UIImage(named : "icon_ios_folder")))
+//        let toolbar = UIToolba
+//
+//        tableView.tableHeaderView = resultSearchController?.searchBar
+//
+//
+        
+        
+      
+        searchController.searchBar.showsCancelButton = true
+        searchController.hidesNavigationBarDuringPresentation = true
+        searchController.dimsBackgroundDuringPresentation = true
+        searchController.searchBar.placeholder = "Add an Item..."
+//        mysearchController.searchBar.barStyle = UIBarStyle.black
+
+      
+        for subView1 in searchController.searchBar.subviews{
+            for subView2 in subView1.subviews{
+
+                if subView2.isKind(of: UIButton.self){
+                    let customizedCancelButton:UIButton = subView2 as! UIButton
+                    customizedCancelButton.isEnabled = true
+                    customizedCancelButton.setTitle("", for: .normal)
+                    let image1 = UIImage(named: "icon_ios_folder")
+                    customizedCancelButton.setBackgroundImage(image1, for: .normal)
+                    customizedCancelButton.addTarget(self, action: #selector(sort), for: UIControlEvents.touchUpInside)
+                }
+            }
+        }
+        
+        tableView.tableHeaderView = searchController.searchBar
+        definesPresentationContext = true
+    }
+    
+    @objc func sort(){
+        print("sort button fired!!!")
     }
     
     override func viewWillAppear(_ animated: Bool) {

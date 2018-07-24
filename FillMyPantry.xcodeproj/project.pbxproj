@@ -22,6 +22,7 @@
 		90D2162620F80AEC008FCC7B /* ShoppingListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D2162520F80AEC008FCC7B /* ShoppingListItemCell.swift */; };
 		90FD2CAD210163AD0037D56D /* GroceryCatlog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FD2CAC210163AD0037D56D /* GroceryCatlog.swift */; };
 		90FD2CAF210194EF0037D56D /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FD2CAE210194EF0037D56D /* test.swift */; };
+		90FD2CB1210681D80037D56D /* SearchResultsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FD2CB0210681D80037D56D /* SearchResultsTableController.swift */; };
 		FC2D0D42645F68F38201C172 /* libPods-FillMyPantry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48478639A32FBD80604AF22B /* libPods-FillMyPantry.a */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		90D2162520F80AEC008FCC7B /* ShoppingListItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListItemCell.swift; sourceTree = "<group>"; };
 		90FD2CAC210163AD0037D56D /* GroceryCatlog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryCatlog.swift; sourceTree = "<group>"; };
 		90FD2CAE210194EF0037D56D /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
+		90FD2CB0210681D80037D56D /* SearchResultsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsTableController.swift; sourceTree = "<group>"; };
 		BFEA66B541FCEC938DCAB037 /* Pods-FillMyPantry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FillMyPantry.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fill My Pantry/Pods-FillMyPantry.debug.xcconfig"; sourceTree = "<group>"; };
 		C132519C4EA6024A76A8BE95 /* libPods-Fill My Pantry.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Fill My Pantry.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3D18A5E2175F21E147FF888 /* Pods-FillMyPantry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FillMyPantry.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fill My Pantry/Pods-FillMyPantry.release.xcconfig"; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				9004F45820E59A7B00B5358D /* HomeViewController.swift */,
 				90D2161F20F7D420008FCC7B /* ShoppingListViewController.swift */,
 				90D2162520F80AEC008FCC7B /* ShoppingListItemCell.swift */,
+				90FD2CB0210681D80037D56D /* SearchResultsTableController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				905A559F20E75358001878F6 /* Struct.swift in Sources */,
+				90FD2CB1210681D80037D56D /* SearchResultsTableController.swift in Sources */,
 				907F78DD20E427580060A809 /* AppDelegate.swift in Sources */,
 				905A559B20E6FCFB001878F6 /* ShoppingCell.swift in Sources */,
 				902F50ED20E440C000BFDF3D /* Constants.swift in Sources */,

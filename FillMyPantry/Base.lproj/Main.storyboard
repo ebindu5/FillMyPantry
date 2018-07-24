@@ -137,30 +137,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TOX-5s-iSV" userLabel="Search Stack View">
-                                <rect key="frame" x="0.0" y="29" width="375" height="50"/>
-                                <subviews>
-                                    <searchBar contentMode="redraw" text="Add an item..." showsBookmarkButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q1E-gh-TZF">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
-                                        <scopeButtonTitles>
-                                            <string>Title</string>
-                                        </scopeButtonTitles>
-                                        <connections>
-                                            <outlet property="delegate" destination="5L7-GS-Vod" id="9x3-Ic-hgQ"/>
-                                        </connections>
-                                    </searchBar>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="Q1E-gh-TZF" firstAttribute="leading" secondItem="TOX-5s-iSV" secondAttribute="leading" id="0gR-xg-qsK"/>
-                                    <constraint firstAttribute="height" constant="50" id="2SF-f3-66e"/>
-                                </constraints>
-                            </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="59r-Bi-SCA">
-                                <rect key="frame" x="0.0" y="79" width="375" height="588"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ouw-wP-IqJ" userLabel="ShoppingListItemsTable">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="588"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="shoppingItemCell" id="yzD-gu-FMi" customClass="ShoppingListItemCell" customModule="FillMyPantry" customModuleProvider="target">
@@ -272,82 +253,141 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="59r-Bi-SCA" firstAttribute="top" secondItem="TOX-5s-iSV" secondAttribute="bottom" id="3n0-vJ-OjN"/>
-                            <constraint firstItem="TOX-5s-iSV" firstAttribute="leading" secondItem="T3O-1O-27F" secondAttribute="leading" id="5qh-85-dlJ"/>
+                            <constraint firstItem="59r-Bi-SCA" firstAttribute="top" secondItem="T3O-1O-27F" secondAttribute="top" id="5hE-f9-MkD"/>
                             <constraint firstItem="59r-Bi-SCA" firstAttribute="trailing" secondItem="T3O-1O-27F" secondAttribute="trailing" id="8Pb-N2-Gc3"/>
                             <constraint firstItem="59r-Bi-SCA" firstAttribute="bottom" secondItem="T3O-1O-27F" secondAttribute="bottom" id="X8F-gF-n27"/>
-                            <constraint firstItem="TOX-5s-iSV" firstAttribute="top" secondItem="T3O-1O-27F" secondAttribute="top" constant="9" id="b4Y-m8-xJK"/>
                             <constraint firstItem="59r-Bi-SCA" firstAttribute="leading" secondItem="T3O-1O-27F" secondAttribute="leading" id="pZp-1M-GoE"/>
-                            <constraint firstItem="TOX-5s-iSV" firstAttribute="trailing" secondItem="T3O-1O-27F" secondAttribute="trailing" id="pbk-YT-REa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="T3O-1O-27F"/>
                     </view>
                     <connections>
-                        <outlet property="searchBar" destination="Q1E-gh-TZF" id="CiL-Q0-zNY"/>
                         <outlet property="tableView" destination="Ouw-wP-IqJ" id="Jpg-kM-fqo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ShB-mQ-W3P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1943.2" y="128.18590704647679"/>
+            <point key="canvasLocation" x="1807" y="112"/>
         </scene>
-        <!--Shopping Controller-->
-        <scene sceneID="5P1-1L-mqJ">
+        <!--Search Results Table Controller-->
+        <scene sceneID="Pzv-ys-8QR">
             <objects>
-                <viewController storyboardIdentifier="ShoppingListViewController1" id="iWr-So-cEW" customClass="ShoppingController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Fdp-Vi-7Rf">
+                <tableViewController storyboardIdentifier="SearchResultsTableController" id="tki-qV-y7O" customClass="SearchResultsTableController" customModule="FillMyPantry" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="uT9-0u-Qf4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchResultCell" textLabel="v44-sO-1QJ" detailTextLabel="6ud-B5-Sp0" style="IBUITableViewCellStyleSubtitle" id="d2J-IN-Tpg">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="d2J-IN-Tpg" id="V7L-MH-sKh">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="v44-sO-1QJ">
+                                            <rect key="frame" x="16" y="5" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6ud-B5-Sp0">
+                                            <rect key="frame" x="16" y="25.5" width="44" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="tki-qV-y7O" id="dEL-Mb-xpC"/>
+                            <outlet property="delegate" destination="tki-qV-y7O" id="I8e-JS-3jg"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xGT-Be-NZ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2628" y="104"/>
+        </scene>
+        <!--Shopping List View Controller-->
+        <scene sceneID="B8D-Rj-xfz">
+            <objects>
+                <viewController storyboardIdentifier="ShoppingListViewController1" id="pgD-vY-X0x" customClass="ShoppingListViewController" customModule="FillMyPantry" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Tgy-2M-iIH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="d2H-0L-tmR" userLabel="Search Stack View">
-                                <rect key="frame" x="0.0" y="29" width="375" height="40"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ewf-ZX-7tt" userLabel="Search Stack View">
+                                <rect key="frame" x="0.0" y="29" width="375" height="50"/>
                                 <subviews>
-                                    <searchBar contentMode="redraw" text="Add an item..." showsBookmarkButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9lj-i4-50z">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                                    <searchBar contentMode="redraw" text="Add an item..." showsBookmarkButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eul-EF-fLG">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
                                         <scopeButtonTitles>
                                             <string>Title</string>
                                         </scopeButtonTitles>
                                         <connections>
-                                            <outlet property="delegate" destination="iWr-So-cEW" id="ZqI-0r-Yz6"/>
+                                            <outlet property="delegate" destination="pgD-vY-X0x" id="Gd1-bN-Gs8"/>
                                         </connections>
                                     </searchBar>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="9lj-i4-50z" firstAttribute="leading" secondItem="d2H-0L-tmR" secondAttribute="leading" id="iBp-Tn-mK0"/>
-                                    <constraint firstAttribute="height" constant="40" id="nTF-hf-oYh"/>
+                                    <constraint firstItem="eul-EF-fLG" firstAttribute="leading" secondItem="ewf-ZX-7tt" secondAttribute="leading" id="2VT-5y-PbZ"/>
+                                    <constraint firstAttribute="height" constant="50" id="DWt-vH-RSd"/>
                                 </constraints>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="WUh-mF-NmY">
-                                <rect key="frame" x="0.0" y="69" width="375" height="598"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="WCH-B6-xoz">
+                                <rect key="frame" x="0.0" y="79" width="375" height="588"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7D9-CN-i68" userLabel="ShoppingListItemsTable">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="598"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xWW-1d-W0j" userLabel="ShoppingListItemsTable">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="588"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="shoppingItemCell" id="0wE-JV-lFO">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="shoppingItemCell" id="TCx-Ru-ubL" customClass="ShoppingListItemCell" customModule="FillMyPantry" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0wE-JV-lFO" id="lhs-dO-GKJ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </tableViewCellContentView>
-                                            </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="SjX-NY-maS" userLabel="createShoppingListCell">
-                                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SjX-NY-maS" id="0aR-uR-tR0">
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TCx-Ru-ubL" id="mfs-pY-6Le">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dbs-kK-ReP">
-                                                            <rect key="frame" x="15" y="11" width="22" height="20"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hvL-dG-xBQ">
+                                                            <rect key="frame" x="20" y="11" width="20" height="20"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <state key="normal" title="Button" image="CheckBox"/>
+                                                            <state key="selected" image="CheckedBox"/>
+                                                        </button>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oBa-A1-HUE">
+                                                            <rect key="frame" x="56" y="10" width="304" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="checkBox" destination="hvL-dG-xBQ" id="zt2-sL-cJv"/>
+                                                    <outlet property="itemLabel" destination="oBa-A1-HUE" id="Ijl-eG-gOz"/>
+                                                </connections>
+                                            </tableViewCell>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="createShoppingListCell" id="HZY-NM-pLm" userLabel="createShoppingListCell">
+                                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HZY-NM-pLm" id="nxv-hJ-9Mw">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0H2-uh-1xf">
+                                                            <rect key="frame" x="20" y="11" width="20" height="20"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <state key="normal" title="Button" image="icon_ios_add"/>
                                                             <state key="selected" image="icon_ios_add"/>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add an Item " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vd3-am-0Dh">
-                                                            <rect key="frame" x="45" y="12" width="182" height="21"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add an Item " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rq8-9g-afK">
+                                                            <rect key="frame" x="53" y="12" width="182" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -356,44 +396,58 @@
                                                     </subviews>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="SXl-f3-GdF" userLabel="showHideButtonCell">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="showHideButtonCell" id="ALj-ds-uiS" userLabel="showHideButtonCell" customClass="ShoppingListItemCell" customModule="FillMyPantry" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="116" width="375" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SXl-f3-GdF" id="h2b-S7-SbX">
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ALj-ds-uiS" id="jCP-cY-4Tp">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hbX-Wx-vbN">
-                                                            <rect key="frame" x="0.0" y="6" width="375" height="30"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="30" id="mYD-f2-bj2"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                            <state key="normal" title="Show Completed Items"/>
-                                                        </button>
-                                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PBv-5O-5JZ">
-                                                            <rect key="frame" x="0.0" y="6" width="375" height="30"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="30" id="26F-yv-bCR"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                            <state key="normal" title="Hide Completed Items"/>
+                                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Show Completed Items" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tBK-vu-ysQ" userLabel="Show Completed Items">
+                                                            <rect key="frame" x="15" y="11" width="345" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.43892628030000003" green="0.97680455450000003" blue="0.25447968409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="labeltoShowHide" destination="tBK-vu-ysQ" id="DXa-MI-pgn"/>
+                                                </connections>
+                                            </tableViewCell>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="completedItemCell" id="j25-m7-hFr" customClass="ShoppingListItemCell" customModule="FillMyPantry" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="160" width="375" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="j25-m7-hFr" id="8Ee-sD-2zs">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u6T-Jk-Swb">
+                                                            <rect key="frame" x="48" y="11" width="312" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HtS-P6-Tq0">
+                                                            <rect key="frame" x="20" y="11" width="20" height="20"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <state key="normal" title="Button" image="CheckedBox"/>
+                                                            <state key="disabled" image="CheckedBox"/>
+                                                            <state key="selected" image="CheckBox"/>
                                                         </button>
                                                     </subviews>
                                                 </tableViewCellContentView>
-                                            </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="completedItemCell" id="pA3-MI-EfI">
-                                                <rect key="frame" x="0.0" y="160" width="375" height="44"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pA3-MI-EfI" id="Toa-ZZ-Mds">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="checkBox" destination="HtS-P6-Tq0" id="6FG-dk-SyM"/>
+                                                    <outlet property="itemLabel" destination="u6T-Jk-Swb" id="jbv-6j-oON"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
                                         <connections>
-                                            <outlet property="dataSource" destination="iWr-So-cEW" id="6PJ-Ll-mae"/>
-                                            <outlet property="delegate" destination="iWr-So-cEW" id="DWo-O3-Tgq"/>
+                                            <outlet property="dataSource" destination="pgD-vY-X0x" id="1nZ-Gn-p7G"/>
+                                            <outlet property="delegate" destination="pgD-vY-X0x" id="mnC-9a-gBp"/>
                                         </connections>
                                     </tableView>
                                 </subviews>
@@ -401,29 +455,24 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="d2H-0L-tmR" firstAttribute="top" secondItem="91o-4R-ulU" secondAttribute="top" constant="9" id="16h-N1-Lag"/>
-                            <constraint firstItem="d2H-0L-tmR" firstAttribute="trailing" secondItem="91o-4R-ulU" secondAttribute="trailing" id="FoP-XS-VEw"/>
-                            <constraint firstItem="d2H-0L-tmR" firstAttribute="leading" secondItem="91o-4R-ulU" secondAttribute="leading" id="abD-ua-VBc"/>
-                            <constraint firstItem="WUh-mF-NmY" firstAttribute="bottom" secondItem="91o-4R-ulU" secondAttribute="bottom" id="cGY-uy-Zwz"/>
-                            <constraint firstItem="WUh-mF-NmY" firstAttribute="top" secondItem="d2H-0L-tmR" secondAttribute="bottom" id="q0E-Q2-inh"/>
-                            <constraint firstItem="WUh-mF-NmY" firstAttribute="leading" secondItem="91o-4R-ulU" secondAttribute="leading" id="t0U-Ca-ZQd"/>
-                            <constraint firstItem="WUh-mF-NmY" firstAttribute="trailing" secondItem="91o-4R-ulU" secondAttribute="trailing" id="xcA-mz-8ck"/>
+                            <constraint firstItem="WCH-B6-xoz" firstAttribute="trailing" secondItem="BXv-33-DTI" secondAttribute="trailing" id="1Pu-Gx-Tkg"/>
+                            <constraint firstItem="ewf-ZX-7tt" firstAttribute="top" secondItem="BXv-33-DTI" secondAttribute="top" constant="9" id="QYN-TH-kyS"/>
+                            <constraint firstItem="WCH-B6-xoz" firstAttribute="bottom" secondItem="BXv-33-DTI" secondAttribute="bottom" id="Qes-xn-jxr"/>
+                            <constraint firstItem="ewf-ZX-7tt" firstAttribute="trailing" secondItem="BXv-33-DTI" secondAttribute="trailing" id="g3E-Iu-UUN"/>
+                            <constraint firstItem="WCH-B6-xoz" firstAttribute="top" secondItem="ewf-ZX-7tt" secondAttribute="bottom" id="iaf-Te-kBg"/>
+                            <constraint firstItem="WCH-B6-xoz" firstAttribute="leading" secondItem="BXv-33-DTI" secondAttribute="leading" id="ivm-0u-MRn"/>
+                            <constraint firstItem="ewf-ZX-7tt" firstAttribute="leading" secondItem="BXv-33-DTI" secondAttribute="leading" id="xbZ-XM-LvM"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="91o-4R-ulU"/>
+                        <viewLayoutGuide key="safeArea" id="BXv-33-DTI"/>
                     </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gPH-MD-8BH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="1dt-Rl-gdg">
                     <connections>
-                        <outlet property="delegate" destination="iWr-So-cEW" id="tJw-pS-Cqi"/>
-                        <outlet property="searchBar" destination="9lj-i4-50z" id="RNx-dd-iBC"/>
-                        <outlet property="searchContentsController" destination="iWr-So-cEW" id="ay0-kh-DCP"/>
-                        <outlet property="searchResultsDataSource" destination="iWr-So-cEW" id="t9q-g5-hic"/>
-                        <outlet property="searchResultsDelegate" destination="iWr-So-cEW" id="Axs-9g-aiQ"/>
+                        <outlet property="searchBar" destination="eul-EF-fLG" id="2qo-3s-L4A"/>
+                        <outlet property="tableView" destination="xWW-1d-W0j" id="grs-Cg-cin"/>
                     </connections>
-                </searchDisplayController>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2pL-pe-J5B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3312.8000000000002" y="114.69265367316342"/>
+            <point key="canvasLocation" x="3487" y="112"/>
         </scene>
     </scenes>
     <resources>
