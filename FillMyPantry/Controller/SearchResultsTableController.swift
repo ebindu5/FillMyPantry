@@ -41,13 +41,19 @@ extension SearchResultsTableController : UISearchResultsUpdating {
             let searchPredicate = NSPredicate(format: "SELF CONTAINS %@",text!)
             
             for grocery in groceryCatalog {
-                if grocery.name.starts(with: text!) {
-                    filteredItems.append(grocery.name)
+                if grocery.name.starts(with: text!){
+                         filteredItems.append(grocery.name)
                 }
             }
             
 //            let array = (groceryNames as NSArray).filtered(using: searchPredicate)
 //            filteredItems = array as! [String]
+            
+            if  !filteredItems.contains(text!){
+                filteredItems.insert(text!, at: 0)
+            }
+            
+            
             tableView.reloadData()
         }
         else {
