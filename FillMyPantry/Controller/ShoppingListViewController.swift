@@ -34,6 +34,7 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
     
     func configureSearchController() {
         let searchResultsTableController = storyboard!.instantiateViewController(withIdentifier: "SearchResultsTableController") as! SearchResultsTableController
+        searchResultsTableController.shoppingListID = shoppingListId
         searchController = UISearchController(searchResultsController: searchResultsTableController)
         searchController.searchResultsUpdater = searchResultsTableController
         searchController.dimsBackgroundDuringPresentation = true
@@ -143,10 +144,12 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
 extension ShoppingListViewController {
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.text = ""
         searchBar.showsBookmarkButton = false
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.text = ""
         searchBar.showsBookmarkButton =  true
     }
     

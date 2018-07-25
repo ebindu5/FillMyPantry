@@ -13,18 +13,22 @@ import RxCocoa
 
 class SearchResultsTableController : UITableViewController {
    
-    var groceryNames = [String]()
+    var groceryCatalog = [Grocery]()
     var filteredItems = [String]()
+    var shoppingListID : String!
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         tableView.backgroundColor = UIColor.clear
         self.automaticallyAdjustsScrollViewInsets = false
-        GroceryCatalog.getGroceryItems().subscribe(){ event in
+        
+        GroceryCatalog.getGroceryCatalog().subscribe(){ event in
             if let catalog = event.element{
-                self.groceryNames = catalog
+                self.groceryCatalog = catalog
             }
         }
+        
     }
 }
 
@@ -32,21 +36,25 @@ extension SearchResultsTableController : UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         
         if (searchController.searchBar.text?.count)! > 0 {
+            let text =  searchController.searchBar.text
             filteredItems.removeAll(keepingCapacity: false)
-            let searchPredicate = NSPredicate(format: "SELF CONTAINS %@", searchController.searchBar.text!)
-            let array = (groceryNames as NSArray).filtered(using: searchPredicate)
-            filteredItems = array as! [String]
-            print(filteredItems)
+            let searchPredicate = NSPredicate(format: "SELF CONTAINS %@",text!)
+            
+            for grocery in groceryCatalog {
+                if grocery.name.starts(with: text!) {
+                    filteredItems.append(grocery.name)
+                }
+            }
+            
+//            let array = (groceryNames as NSArray).filtered(using: searchPredicate)
+//            filteredItems = array as! [String]
             tableView.reloadData()
         }
         else {
             filteredItems.removeAll(keepingCapacity: false)
             tableView.reloadData()
         }
-
-        
     }
-
 }
 
 
@@ -69,5 +77,14 @@ extension SearchResultsTableController {
         
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(filteredItems[indexPath.row],";;;;;;;;;;;;;;")
+        FirebaseDAO.addItemToShoppingList(shoppingListID, itemName: filteredItems[indexPath.row]).subscribe()
+        
+        self.dismiss(animated: true, completion: nil)
+        
+    }
+    
 }
 

@@ -31,20 +31,29 @@ struct ShoppingList {
 struct Item {
     let id : DocumentReference
     var name : String
-    var creationDate : NSDate
+    var creationDate : NSDate?
     var completionDate : NSDate?
     var completed: Bool
     var order : Int
     
     
-    init(_ id : DocumentReference, _ name : String, _ creationDate : NSDate, _ completionDate : NSDate?,_ completed : Bool, _ order : Int) {
+    init(_ id : DocumentReference, _ name : String, _ creationDate : NSDate?, _ completionDate : NSDate?,_ completed : Bool, _ order : Int) {
         self.id = id
         self.name = name
         self.creationDate = creationDate
         self.completed = completed
         self.order = order
+        
+        if let creationDate = creationDate {
+            self.creationDate = creationDate
+        }else{
+            self.creationDate = nil
+        }
+        
         if let completionDate = completionDate {
              self.completionDate = completionDate
+        }else{
+            self.completionDate = nil
         }
     }
     

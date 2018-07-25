@@ -14,13 +14,11 @@ import RxCocoa
 class FirebaseDAO {
     
     static var db = Constants.dbRef
-    
 
-    
     private static func createNewShoppingListDocument()->Observable<DocumentReference>{
         return Observable.create { observer in
             var ref: DocumentReference? = nil
-            ref = db?.collection("ShoppingLists").addDocument(data:[ "name": "My Shopping List","creationDate": FieldValue.serverTimestamp(),"items": []]) { error in
+            ref = db?.collection("ShoppingLists").addDocument(data:[ "name": "My Shopping List","creationDate": FieldValue.serverTimestamp()]) { error in
                 if let error = error {
                     observer.onError("Error adding document: \(error)" as! Error)
                 } else {
@@ -62,6 +60,7 @@ class FirebaseDAO {
     private static func getShoppingListRefsForUser()->Observable<[DocumentReference]>{
         let docRef = db?.collection("Users").document(Constants.UID)
         return Observable.create { observer in
+            //            docRef?.addSnapshotListener { documentSnapShot, error in
             docRef?.getDocument { documentSnapShot, error in
                 if let error = error {
                     observer.onError(error)
@@ -80,43 +79,36 @@ class FirebaseDAO {
             return Disposables.create()
         }
     }
-
+    
     
     private static func getShoppingListFromDocumentSnapShot(_ documentSnapShot: DocumentSnapshot)->Observable<ShoppingList>{
         
         return Observable.create{ observer in
             if let data = documentSnapShot.data() {
-                var name : String!
+                
                 var items :[Item]!
-                var timestampDate : NSDate!
-                db?.collection("ShoppingLists/\(documentSnapShot.documentID)/items").getDocuments(){ (querySnapshot, error) in
+                
+                
+                let name = data["name"] as? String ?? ""
+                let timestampDate = ((data["creationDate"] as? Timestamp) ?? Timestamp.init()).dateValue()
+                
+                
+                db?.collection("ShoppingLists/\(documentSnapShot.documentID)/items").addSnapshotListener{  (querySnapshot, error) in
+                    
                     if let error = error {
                         items = []
                         observer.onError("Error getting documents: \(error)" as! Error)
                     } else {
-                        if let names = data["name"] as? String {
-                            name = names
-                        }else{
-                            name = ""
-                        }
-                        if let date =  data["creationDate"] as? Timestamp{
-                            timestampDate =  date.dateValue() as NSDate
-                        }else{
-                            timestampDate = nil
-                        }
-                        if let snap = querySnapshot {
-                            items =  getDataFromDocuments(snap.documents)
-                        } else{
-                            items = []
-                        }
+                        
                         if let documents = querySnapshot?.documents {
-                           items =  getDataFromDocuments(documents)
+                            items =  getDataFromDocuments(documents)
                         } else{
                             items = []
                         }
-                        let shoppinglist = ShoppingList(documentSnapShot.documentID, name,timestampDate,items)
+                        
+                        let shoppinglist = ShoppingList(documentSnapShot.documentID, name,timestampDate as NSDate,items)
                         observer.onNext(shoppinglist)
-                        observer.onCompleted()
+                        //                        observer.onCompleted()
                     }
                 }
             }
@@ -125,7 +117,7 @@ class FirebaseDAO {
     }
     
     private static func getDataFromDocuments(_ documents : [QueryDocumentSnapshot])->[Item]?{
-       var items :[Item]!
+        var items :[Item]!
         for document in documents {
             let item = document.data()
             
@@ -134,7 +126,7 @@ class FirebaseDAO {
             let completionDate : NSDate!
             let creationDate: NSDate!
             let completed : Bool!
-
+            
             if let name = item["name"] as? String{
                 itemName = name
             } else{
@@ -181,6 +173,7 @@ class FirebaseDAO {
     }
     
     private static func getShoppingListFromDocRef(_ documentReference : DocumentReference)-> Observable<ShoppingList>{
+        
         return getSnapshotFromDocRef(documentReference).flatMap({ documentSnapShot in
             return getShoppingListFromDocumentSnapShot(documentSnapShot)
         })
@@ -189,11 +182,13 @@ class FirebaseDAO {
     private static func getSnapshotFromDocRef(_ documentReference : DocumentReference) -> Observable<DocumentSnapshot>{
         
         return Observable.create{ observer in
-            documentReference.getDocument(source: FirestoreSource.default, completion: { (documentSnapShot, error) in
+            
+            documentReference.addSnapshotListener({ (documentSnapShot, error) in
+                
                 if let error = error {
                     observer.onError(error)
                 } else if let documentSnapShot = documentSnapShot, documentSnapShot.exists {
-                  observer.onNext(documentSnapShot)
+                    observer.onNext(documentSnapShot)
                 }else {
                     observer.onError(NSError(domain: FirestoreErrorDomain, code: FirestoreErrorCode.notFound.rawValue, userInfo: nil))
                 }
@@ -202,7 +197,7 @@ class FirebaseDAO {
         }
     }
     
-
+    
     private static func getShoppingListsFromDocRefArray(_ documentReferences : [DocumentReference])->Observable<[ShoppingList]>{
         var shoppingListObservableList = [Observable<ShoppingList>]()
         for documentReference in documentReferences{
@@ -251,6 +246,23 @@ class FirebaseDAO {
                 print("Document successfully updated")
             }
         }
+    }
+    
+    
+    static  func addItemToShoppingList(_ documentId: String, itemName : String)-> Observable<Bool>{
+        
+        return Observable.create { observer in
+            var ref: DocumentReference? = nil
+            ref = db?.collection("ShoppingLists/\(documentId)/items").addDocument(data:["completed": false,"creationDate": FieldValue.serverTimestamp(),"completionDate" : FieldValue.serverTimestamp() , "name" : itemName, "order" : 1]) { error in
+                if let error = error {
+                    observer.onError("Error adding document: \(error)" as! Error)
+                } else {
+                    observer.onNext(true)
+                    observer.onCompleted()
+                }
+            }
+            return  Disposables.create()
+        } 
     }
     
     private static func listen(includeMetadataChanges: Bool) -> Observable<DocumentSnapshot> {
