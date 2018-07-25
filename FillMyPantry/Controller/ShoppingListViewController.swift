@@ -44,6 +44,9 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
         searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = "Add an Item..."
         searchController.searchBar.sizeToFit()
+        
+        searchController.searchBar.setImage(UIImage(named: "icon_ios_add"), for: UISearchBarIcon.search, state: UIControlState.normal)
+        
         self.definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
     }

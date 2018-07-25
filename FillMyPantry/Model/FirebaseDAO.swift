@@ -238,7 +238,8 @@ class FirebaseDAO {
     
     static func updateShoppingListItem(_ documentReference : DocumentReference, _ isCompleted : Bool){
         documentReference.updateData([
-            "completed": isCompleted
+            "completed": isCompleted,
+            "completionDate" : FieldValue.serverTimestamp()
         ]) { err in
             if let err = err {
                 print("Error updating document: \(err)")
@@ -264,6 +265,8 @@ class FirebaseDAO {
             return  Disposables.create()
         } 
     }
+    
+
     
     private static func listen(includeMetadataChanges: Bool) -> Observable<DocumentSnapshot> {
         return Observable<DocumentSnapshot>.create { observer in

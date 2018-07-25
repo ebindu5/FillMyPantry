@@ -79,7 +79,7 @@ extension SearchResultsTableController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(filteredItems[indexPath.row],";;;;;;;;;;;;;;")
+
         FirebaseDAO.addItemToShoppingList(shoppingListID, itemName: filteredItems[indexPath.row]).subscribe()
         
         self.dismiss(animated: true, completion: nil)
