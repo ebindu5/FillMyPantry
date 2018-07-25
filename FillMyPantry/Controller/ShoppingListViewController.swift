@@ -25,6 +25,7 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.tableFooterView = UIView(frame: .zero)
         tableView.reloadData()
         
         configureSearchController()
@@ -101,8 +102,10 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
             cell.checkBox.isEnabled = false
             if Constants.showCompletedItems {
                 cell.isHidden = false
+               
             }else{
                 cell.isHidden = true
+                
             }
             return cell
         }
