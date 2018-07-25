@@ -12,10 +12,10 @@ import Firebase
 struct ShoppingList {
     var id : String
     var name : String
-    var creationDate : NSDate
+    var creationDate : Date
     var items : [Item]?
     
-    init(_ id : String, _ name : String, _ creationDate : NSDate, _ items : [Item]?) {
+    init(_ id : String, _ name : String, _ creationDate : Date, _ items : [Item]?) {
         self.id = id
         self.name = name
         self.creationDate = creationDate
@@ -31,13 +31,13 @@ struct ShoppingList {
 struct Item {
     let id : DocumentReference
     var name : String
-    var creationDate : NSDate?
-    var completionDate : NSDate?
+    var creationDate : Date?
+    var completionDate : Date?
     var completed: Bool
     var order : Int
     
     
-    init(_ id : DocumentReference, _ name : String, _ creationDate : NSDate?, _ completionDate : NSDate?,_ completed : Bool, _ order : Int) {
+    init(_ id : DocumentReference, _ name : String, _ creationDate : Date?, _ completionDate : Date?,_ completed : Bool, _ order : Int) {
         self.id = id
         self.name = name
         self.creationDate = creationDate

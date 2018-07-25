@@ -18,12 +18,15 @@
 		907F78E420E427590060A809 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 907F78E320E427590060A809 /* Assets.xcassets */; };
 		907F78E720E427590060A809 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 907F78E520E427590060A809 /* LaunchScreen.storyboard */; };
 		907F78EF20E42B380060A809 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 907F78EE20E42B370060A809 /* GoogleService-Info.plist */; };
+		909F833221093CC600A50979 /* CategoriesTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909F833121093CC600A50979 /* CategoriesTabViewController.swift */; };
+		909F833421093F2100A50979 /* ABCTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909F833321093F2100A50979 /* ABCTabViewController.swift */; };
 		90D2162020F7D420008FCC7B /* ShoppingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D2161F20F7D420008FCC7B /* ShoppingListViewController.swift */; };
 		90D2162620F80AEC008FCC7B /* ShoppingListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D2162520F80AEC008FCC7B /* ShoppingListItemCell.swift */; };
 		90FD2CAD210163AD0037D56D /* GroceryCatlog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FD2CAC210163AD0037D56D /* GroceryCatlog.swift */; };
 		90FD2CAF210194EF0037D56D /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FD2CAE210194EF0037D56D /* test.swift */; };
 		90FD2CB1210681D80037D56D /* SearchResultsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FD2CB0210681D80037D56D /* SearchResultsTableController.swift */; };
 		90FD2CB72107E6EA0037D56D /* searchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FD2CB62107E6EA0037D56D /* searchResultCell.swift */; };
+		90FD2CB9210934010037D56D /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FD2CB8210934010037D56D /* CustomTabBarController.swift */; };
 		FC2D0D42645F68F38201C172 /* libPods-FillMyPantry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48478639A32FBD80604AF22B /* libPods-FillMyPantry.a */; };
 /* End PBXBuildFile section */
 
@@ -44,12 +47,15 @@
 		907F78E620E427590060A809 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		907F78E820E427590060A809 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		907F78EE20E42B370060A809 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		909F833121093CC600A50979 /* CategoriesTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTabViewController.swift; sourceTree = "<group>"; };
+		909F833321093F2100A50979 /* ABCTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABCTabViewController.swift; sourceTree = "<group>"; };
 		90D2161F20F7D420008FCC7B /* ShoppingListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewController.swift; sourceTree = "<group>"; };
 		90D2162520F80AEC008FCC7B /* ShoppingListItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListItemCell.swift; sourceTree = "<group>"; };
 		90FD2CAC210163AD0037D56D /* GroceryCatlog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryCatlog.swift; sourceTree = "<group>"; };
 		90FD2CAE210194EF0037D56D /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		90FD2CB0210681D80037D56D /* SearchResultsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsTableController.swift; sourceTree = "<group>"; };
 		90FD2CB62107E6EA0037D56D /* searchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchResultCell.swift; sourceTree = "<group>"; };
+		90FD2CB8210934010037D56D /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		BFEA66B541FCEC938DCAB037 /* Pods-FillMyPantry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FillMyPantry.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fill My Pantry/Pods-FillMyPantry.debug.xcconfig"; sourceTree = "<group>"; };
 		C132519C4EA6024A76A8BE95 /* libPods-Fill My Pantry.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Fill My Pantry.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3D18A5E2175F21E147FF888 /* Pods-FillMyPantry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FillMyPantry.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fill My Pantry/Pods-FillMyPantry.release.xcconfig"; sourceTree = "<group>"; };
@@ -76,6 +82,9 @@
 				90D2162520F80AEC008FCC7B /* ShoppingListItemCell.swift */,
 				90FD2CB0210681D80037D56D /* SearchResultsTableController.swift */,
 				90FD2CB62107E6EA0037D56D /* searchResultCell.swift */,
+				90FD2CB8210934010037D56D /* CustomTabBarController.swift */,
+				909F833121093CC600A50979 /* CategoriesTabViewController.swift */,
+				909F833321093F2100A50979 /* ABCTabViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -273,6 +282,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				909F833221093CC600A50979 /* CategoriesTabViewController.swift in Sources */,
+				909F833421093F2100A50979 /* ABCTabViewController.swift in Sources */,
 				905A559F20E75358001878F6 /* Struct.swift in Sources */,
 				90FD2CB1210681D80037D56D /* SearchResultsTableController.swift in Sources */,
 				907F78DD20E427580060A809 /* AppDelegate.swift in Sources */,
@@ -281,6 +292,7 @@
 				90D2162020F7D420008FCC7B /* ShoppingListViewController.swift in Sources */,
 				90FD2CB72107E6EA0037D56D /* searchResultCell.swift in Sources */,
 				905A559D20E750CB001878F6 /* FirebaseDAO.swift in Sources */,
+				90FD2CB9210934010037D56D /* CustomTabBarController.swift in Sources */,
 				90D2162620F80AEC008FCC7B /* ShoppingListItemCell.swift in Sources */,
 				90FD2CAD210163AD0037D56D /* GroceryCatlog.swift in Sources */,
 				9020FF7920F429C800CEC6B4 /* FirebaseAuthDAO.swift in Sources */,

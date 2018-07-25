@@ -106,7 +106,7 @@ class FirebaseDAO {
                             items = []
                         }
                         
-                        let shoppinglist = ShoppingList(documentSnapShot.documentID, name,timestampDate as NSDate,items)
+                        let shoppinglist = ShoppingList(documentSnapShot.documentID, name,timestampDate as Date,items)
                         observer.onNext(shoppinglist)
                         //                        observer.onCompleted()
                     }
@@ -121,41 +121,11 @@ class FirebaseDAO {
         for document in documents {
             let item = document.data()
             
-            let itemName : String!
-            let itemOrder : Int!
-            let completionDate : NSDate!
-            let creationDate: NSDate!
-            let completed : Bool!
-            
-            if let name = item["name"] as? String{
-                itemName = name
-            } else{
-                itemName = ""
-            }
-            
-            if let order = item["order"] as? Int{
-                itemOrder = order
-            } else{
-                itemOrder = 0
-            }
-            
-            if let completionD = item["completionDate"] as? Timestamp{
-                completionDate = completionD.dateValue() as NSDate
-            } else{
-                completionDate = nil
-            }
-            
-            if let creationD = item["creationDate"] as? Timestamp{
-                creationDate = creationD.dateValue() as NSDate
-            } else{
-                creationDate = nil
-            }
-            
-            if let completedValue = item["completed"] as? Bool{
-                completed = completedValue
-            } else{
-                completed = false
-            }
+            let itemName = item["name"] as? String ?? ""
+            let itemOrder = item["order"] as? Int ?? 1
+            let completionDate = ((item["completionDate"] as? Timestamp) ?? Timestamp.init()).dateValue()
+            let creationDate = ((item["creationDate"] as? Timestamp) ?? Timestamp.init()).dateValue()
+            let completed = item["completed"] as? Bool ?? false
             
             if items != nil {
                 items.append(Item(document.reference,itemName,creationDate, completionDate, completed,itemOrder))
@@ -236,25 +206,29 @@ class FirebaseDAO {
         }
     }
     
-    static func updateShoppingListItem(_ documentReference : DocumentReference, _ isCompleted : Bool){
-        documentReference.updateData([
-            "completed": isCompleted,
-            "completionDate" : FieldValue.serverTimestamp()
-        ]) { err in
-            if let err = err {
-                print("Error updating document: \(err)")
-            } else {
-                print("Document successfully updated")
+    static func updateShoppingListItem(_ documentReference : DocumentReference, _ isCompleted : Bool, _ order : Int){
+       
+            documentReference.updateData([
+                "completed": isCompleted,
+                "completionDate" : FieldValue.serverTimestamp(),
+                "order" : order
+                
+            ]) { err in
+                if let err = err {
+                    print("Error updating document: \(err)")
+                } else {
+                    print("Document successfully updated")
+                }
             }
-        }
+
     }
     
     
-    static  func addItemToShoppingList(_ documentId: String, itemName : String)-> Observable<Bool>{
+    static  func addItemToShoppingList(_ documentId: String, _ itemName : String, _ order : Int)-> Observable<Bool>{
         
         return Observable.create { observer in
             var ref: DocumentReference? = nil
-            ref = db?.collection("ShoppingLists/\(documentId)/items").addDocument(data:["completed": false,"creationDate": FieldValue.serverTimestamp(),"completionDate" : FieldValue.serverTimestamp() , "name" : itemName, "order" : 1]) { error in
+            ref = db?.collection("ShoppingLists/\(documentId)/items").addDocument(data:["completed": false,"creationDate": FieldValue.serverTimestamp(),"completionDate" : FieldValue.serverTimestamp() , "name" : itemName, "order" : order ]) { error in
                 if let error = error {
                     observer.onError("Error adding document: \(error)" as! Error)
                 } else {

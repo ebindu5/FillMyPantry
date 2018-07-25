@@ -13,13 +13,17 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
     
     @IBOutlet weak var tableView: UITableView!
     
+    var searchResultsTableController : SearchResultsTableController!
+    
     var searchController = UISearchController(searchResultsController: nil)
     
     var shoppingListId : String!
     var shoppingList : ShoppingList!
     var completedItems = [Item]()
     var uncompletedItems =  [Item]()
-    
+    var newItemOrder = 1
+    var completedItemOrder : Int!
+    var uncompletedItemOrder : Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,8 +38,9 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
     
     
     func configureSearchController() {
-        let searchResultsTableController = storyboard!.instantiateViewController(withIdentifier: "SearchResultsTableController") as! SearchResultsTableController
+        searchResultsTableController = storyboard!.instantiateViewController(withIdentifier: "SearchResultsTableController") as! SearchResultsTableController
         searchResultsTableController.shoppingListID = shoppingListId
+       
         searchController = UISearchController(searchResultsController: searchResultsTableController)
         searchController.searchResultsUpdater = searchResultsTableController
         searchController.dimsBackgroundDuringPresentation = true
@@ -63,6 +68,22 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
                 if let shoppingListItems = self.shoppingList.items{
                     self.completedItems = shoppingListItems.filter (){ $0.completed == true }
                     self.uncompletedItems = shoppingListItems.filter (){ $0.completed == false }
+                    
+                    
+                    
+                    if self.uncompletedItems.count != 0 {
+                        self.newItemOrder = (self.uncompletedItems.max{$0.order < $1.order}?.order)! + 1
+                        self.uncompletedItemOrder = (self.uncompletedItems.min{$0.order < $1.order}?.order)! - 1
+                        self.uncompletedItems.sort(by: { ($0.order) > ($1.order)})
+                        
+                    }
+                   
+                    if self.completedItems.count != 0 {
+                        self.completedItems.sort(by: { ($0.completionDate)! > ($1.completionDate)!})
+//                        self.completedItems = self.completedItems.sorted(by: { ($0.completionDate?.addingTimeInterval(100))! > ($1.completionDate?.addingTimeInterval(100))!})
+                    }
+                    
+                     self.searchResultsTableController.order = self.newItemOrder
                 }
                 self.tableView.reloadData()
             }
@@ -127,11 +148,11 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
                 Constants.showCompletedItems = false
             }
         } else if indexPath.row < uncompletedItems.count { // Uncompleted List Items
-            FirebaseDAO.updateShoppingListItem(uncompletedItems[indexPath.row].id, true)
+            FirebaseDAO.updateShoppingListItem(uncompletedItems[indexPath.row].id, true, -1)
             completedItems.append(uncompletedItems[indexPath.row])
             uncompletedItems.remove(at: indexPath.row)
         } else {      // Completed List Items
-            FirebaseDAO.updateShoppingListItem(completedItems[indexPath.row - uncompletedItems.count - 1].id, false)
+            FirebaseDAO.updateShoppingListItem(completedItems[indexPath.row - uncompletedItems.count - 1].id, false, uncompletedItemOrder)
             uncompletedItems.append(completedItems[indexPath.row - uncompletedItems.count - 1])
             completedItems.remove(at: indexPath.row - uncompletedItems.count )
         }
@@ -151,6 +172,13 @@ extension ShoppingListViewController {
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         searchBar.text = ""
         searchBar.showsBookmarkButton =  true
+    }
+    
+    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
+        let dictionaryController = storyboard?.instantiateViewController(withIdentifier: "customTabBarController")
+        
+        self.present(dictionaryController!, animated: true, completion: nil)
+        
     }
     
 }

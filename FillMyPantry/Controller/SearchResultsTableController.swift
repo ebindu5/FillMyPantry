@@ -16,6 +16,7 @@ class SearchResultsTableController : UITableViewController {
     var groceryCatalog = [Grocery]()
     var filteredItems = [String]()
     var shoppingListID : String!
+    var order : Int!
     
     override func viewDidLoad() {
         
@@ -86,7 +87,7 @@ extension SearchResultsTableController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        FirebaseDAO.addItemToShoppingList(shoppingListID, itemName: filteredItems[indexPath.row]).subscribe()
+        FirebaseDAO.addItemToShoppingList(shoppingListID, filteredItems[indexPath.row], order).subscribe()
         
         self.dismiss(animated: true, completion: nil)
         
