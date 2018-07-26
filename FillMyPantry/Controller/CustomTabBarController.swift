@@ -13,10 +13,23 @@ class CustomTabBarController : UITabBarController {
     
   @IBOutlet weak var customTabBar: UITabBar!
     
+    var shoppingListId : String!
+    var shoppingListItems : [Item]!
+    var groceryCatalog : [Grocery]!
+    
         override func viewDidLoad() {
             super.viewDidLoad()
-           
+            GroceryCatalog.getGroceryCatalog().subscribe(){ event in
+                if let catalog = event.element{
+                    self.groceryCatalog = catalog
+                }
+            }
         }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+    }
     
 //    override func viewWillLayoutSubviews() {
 //        super.viewWillLayoutSubviews()

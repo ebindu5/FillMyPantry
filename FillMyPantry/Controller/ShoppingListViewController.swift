@@ -175,9 +175,11 @@ extension ShoppingListViewController {
     }
     
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
-        let dictionaryController = storyboard?.instantiateViewController(withIdentifier: "customTabBarController")
+        let customTabBarController = storyboard?.instantiateViewController(withIdentifier: "customTabBarController") as? CustomTabBarController
+        customTabBarController?.shoppingListId = shoppingListId
+        customTabBarController?.shoppingListItems = uncompletedItems
         
-        self.present(dictionaryController!, animated: true, completion: nil)
+        self.present(customTabBarController!, animated: true, completion: nil)
         
     }
     
