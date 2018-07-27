@@ -9,9 +9,7 @@
 import Foundation
 import  UIKit
 
-class CustomTabBarController : UITabBarController {
-    
-  @IBOutlet weak var customTabBar: UITabBar!
+class SegmentViewController : UIViewController {
     
     var shoppingListId : String!
     var shoppingListItems : [Item]!
@@ -30,14 +28,5 @@ class CustomTabBarController : UITabBarController {
         super.viewWillAppear(animated)
 
     }
-    
-//    override func viewWillLayoutSubviews() {
-//        super.viewWillLayoutSubviews()
-//        var customTabBar:CGRect = self.customTabBar.frame
-//        customTabBar.origin.y = self.view.frame.origin.y
-//        self.customTabBar.frame = customTabBar
-//    }
-    
-
     
 }

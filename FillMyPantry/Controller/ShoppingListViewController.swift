@@ -175,11 +175,11 @@ extension ShoppingListViewController {
     }
     
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
-        let customTabBarController = storyboard?.instantiateViewController(withIdentifier: "customTabBarController") as? CustomTabBarController
-        customTabBarController?.shoppingListId = shoppingListId
-        customTabBarController?.shoppingListItems = uncompletedItems
+        let segmentViewController = storyboard?.instantiateViewController(withIdentifier: "SegmentViewController") as? SegmentViewController
+        segmentViewController?.shoppingListId = shoppingListId
+        segmentViewController?.shoppingListItems = uncompletedItems
         
-        self.present(customTabBarController!, animated: true, completion: nil)
+        self.present(segmentViewController!, animated: true, completion: nil)
         
     }
     

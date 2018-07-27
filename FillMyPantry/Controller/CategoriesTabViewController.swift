@@ -26,7 +26,7 @@ class  CategoriesTabViewController : UITableViewController,CollapsibleTableViewH
     
     
    
-    var customTabController : CustomTabBarController!
+    var segmentViewController = SegmentViewController()
     var shoppingListId : String!
     var shoppingListItems : [Item]!
     var groceryCatalog = [[String]]()
@@ -35,7 +35,6 @@ class  CategoriesTabViewController : UITableViewController,CollapsibleTableViewH
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        customTabController = self.tabBarController as? CustomTabBarController
 
         // Auto resizing the height of the cell
         tableView.estimatedRowHeight = 44.0
@@ -45,11 +44,11 @@ class  CategoriesTabViewController : UITableViewController,CollapsibleTableViewH
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
          var groceryMap = [String: [String]]()
-        
-        shoppingListId = customTabController.shoppingListId
-        shoppingListItems = customTabController.shoppingListItems
 
-        if let catalog = customTabController.groceryCatalog {
+        shoppingListId = segmentViewController.shoppingListId
+        shoppingListItems = segmentViewController.shoppingListItems
+
+        if let catalog = segmentViewController.groceryCatalog {
             for grocery in catalog {
                 if groceryMap[grocery.category] != nil {
                     groceryMap[grocery.category]?.append(grocery.name)
@@ -69,15 +68,7 @@ class  CategoriesTabViewController : UITableViewController,CollapsibleTableViewH
            let sec = Section(name: grocerySection[i], collapsed: false)
             sections.append(sec)
         }
-
        
-    }
-    
-    
-    
-    @IBAction func doneButtonClicked(_ sender : Any){
-        self.dismiss(animated: true, completion: nil)
-        
     }
     
      func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

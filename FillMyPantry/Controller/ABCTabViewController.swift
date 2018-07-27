@@ -11,7 +11,7 @@ import  UIKit
 
 class  ABCTabViewController : UITableViewController{
 
-    var customTabController : CustomTabBarController!
+    var segmentViewController = SegmentViewController()
     var shoppingListId : String!
     var shoppingListItems : [Item]!
     var groceryItems = [String]()
@@ -20,18 +20,13 @@ class  ABCTabViewController : UITableViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-    customTabController = self.tabBarController as? CustomTabBarController
-       shoppingListId = customTabController.shoppingListId
-       shoppingListItems = customTabController.shoppingListItems
+       shoppingListId = segmentViewController.shoppingListId
+       shoppingListItems = segmentViewController.shoppingListItems
         
-        if let groceryCatalog = customTabController.groceryCatalog {
+        if let groceryCatalog = segmentViewController.groceryCatalog {
             groceryItems = groceryCatalog.map {$0.name}.sorted()
         }
 
-    }
-    
-    @IBAction func doneButtonClicked(_ sender : Any){
-        self.dismiss(animated: true, completion: nil)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
