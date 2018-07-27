@@ -26,7 +26,7 @@ class  CategoriesTabViewController : UITableViewController,CollapsibleTableViewH
     
     
    
-    var segmentViewController = SegmentViewController()
+    var segmentViewController : SegmentViewController!
     var shoppingListId : String!
     var shoppingListItems : [Item]!
     var groceryCatalog = [[String]]()

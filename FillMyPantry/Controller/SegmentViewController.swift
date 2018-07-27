@@ -27,6 +27,8 @@ class SegmentViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        categoriesViewController?.view.isHidden = false
+        ABCviewVontroller?.view.isHidden = true
 //        GroceryCatalog.getGroceryCatalog().subscribe(){ event in
 //            if let catalog = event.element{
 //                self.groceryCatalog = catalog
