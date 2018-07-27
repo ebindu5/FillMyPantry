@@ -20,7 +20,6 @@
 		907F78EF20E42B380060A809 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 907F78EE20E42B370060A809 /* GoogleService-Info.plist */; };
 		909F833221093CC600A50979 /* CategoriesTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909F833121093CC600A50979 /* CategoriesTabViewController.swift */; };
 		909F833421093F2100A50979 /* ABCTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909F833321093F2100A50979 /* ABCTabViewController.swift */; };
-		909F8371210AC4E000A50979 /* CollapsibleTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909F8370210AC4E000A50979 /* CollapsibleTableViewHeader.swift */; };
 		909F8373210AF5F400A50979 /* SegmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909F8372210AF5F400A50979 /* SegmentViewController.swift */; };
 		90D2162020F7D420008FCC7B /* ShoppingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D2161F20F7D420008FCC7B /* ShoppingListViewController.swift */; };
 		90D2162620F80AEC008FCC7B /* ShoppingListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D2162520F80AEC008FCC7B /* ShoppingListItemCell.swift */; };
@@ -50,7 +49,6 @@
 		907F78EE20E42B370060A809 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		909F833121093CC600A50979 /* CategoriesTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTabViewController.swift; sourceTree = "<group>"; };
 		909F833321093F2100A50979 /* ABCTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABCTabViewController.swift; sourceTree = "<group>"; };
-		909F8370210AC4E000A50979 /* CollapsibleTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsibleTableViewHeader.swift; sourceTree = "<group>"; };
 		909F8372210AF5F400A50979 /* SegmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentViewController.swift; sourceTree = "<group>"; };
 		90D2161F20F7D420008FCC7B /* ShoppingListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewController.swift; sourceTree = "<group>"; };
 		90D2162520F80AEC008FCC7B /* ShoppingListItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListItemCell.swift; sourceTree = "<group>"; };
@@ -86,7 +84,6 @@
 				90FD2CB62107E6EA0037D56D /* searchResultCell.swift */,
 				909F833121093CC600A50979 /* CategoriesTabViewController.swift */,
 				909F833321093F2100A50979 /* ABCTabViewController.swift */,
-				909F8370210AC4E000A50979 /* CollapsibleTableViewHeader.swift */,
 				909F8372210AF5F400A50979 /* SegmentViewController.swift */,
 			);
 			path = Controller;
@@ -294,7 +291,6 @@
 				902F50ED20E440C000BFDF3D /* Constants.swift in Sources */,
 				90D2162020F7D420008FCC7B /* ShoppingListViewController.swift in Sources */,
 				90FD2CB72107E6EA0037D56D /* searchResultCell.swift in Sources */,
-				909F8371210AC4E000A50979 /* CollapsibleTableViewHeader.swift in Sources */,
 				905A559D20E750CB001878F6 /* FirebaseDAO.swift in Sources */,
 				90D2162620F80AEC008FCC7B /* ShoppingListItemCell.swift in Sources */,
 				90FD2CAD210163AD0037D56D /* GroceryCatlog.swift in Sources */,

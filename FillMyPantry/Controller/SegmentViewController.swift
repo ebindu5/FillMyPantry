@@ -27,6 +27,13 @@ class SegmentViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
+//        let titleTextAttributes = [kCTForegroundColorAttributeName: UIColor.black]
+        
+        segmentController.setTitleTextAttributes(titleTextAttributes, for: .normal)
+        segmentController.setTitleTextAttributes(titleTextAttributes, for: .selected)
+        segmentController.tintColor = UIColor.green
+
         categoriesViewController?.view.isHidden = false
         ABCviewVontroller?.view.isHidden = true
 //        GroceryCatalog.getGroceryCatalog().subscribe(){ event in
@@ -38,15 +45,17 @@ class SegmentViewController : UIViewController {
     
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? CategoriesTabViewController {
-            categoriesViewController = vc
-            categoriesViewController?.segmentViewController = self
-            
-        }
+
         
         if let vc = segue.destination as? ABCTabViewController {
             ABCviewVontroller = vc
             ABCviewVontroller?.segmentViewController = self
+        }
+        
+        if let vc = segue.destination as? CategoriesTabViewController {
+            categoriesViewController = vc
+            categoriesViewController?.segmentViewController = self
+            
         }
     }
 
@@ -66,16 +75,10 @@ class SegmentViewController : UIViewController {
         case 0:
             categoriesViewController?.view.isHidden = false
             ABCviewVontroller?.view.isHidden = true
-            
-//            categoriesView.isHidden = true
-//            ABCView.isHidden = false
         case 1:
             
             categoriesViewController?.view.isHidden = true
             ABCviewVontroller?.view.isHidden = false
-//            categoriesView.isHidden = false
-//            ABCView.isHidden = true
-            
         default:
             break
         }
