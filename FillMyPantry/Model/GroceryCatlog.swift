@@ -47,9 +47,9 @@ class GroceryCatalog {
             let data = document.data()
             let name = data["name"] as? String ?? ""
             let category = data["category"] as? String ?? ""
-            groceryCatalog.append(Grocery(name,category))
+            groceryCatalog.append(Grocery(name: name,category: category, nameLowerCase: name.lowercased()))
         }
         
     }
-    
+
 }

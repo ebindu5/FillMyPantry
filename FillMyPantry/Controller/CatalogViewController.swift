@@ -1,5 +1,5 @@
 //
-//  SegmentViewController.swift
+//  CatalogViewController.swift
 //  FillMyPantry
 //
 //  Created by NISHANTH NAGELLA on 7/26/18.
@@ -11,12 +11,14 @@ import  UIKit
 import RxSwift
 import RxCocoa
 
-class SegmentViewController : UIViewController {
+class CatalogViewController : UIViewController {
 
     @IBOutlet weak var segmentController : UISegmentedControl!
+    @IBOutlet weak var categoriesContentView: UIView!
+    @IBOutlet weak var ABCContentView: UIView!
     
-    var categoriesViewController:CategoriesTabViewController?
-    var ABCviewVontroller : ABCTabViewController?
+    var categoriesViewController:CategoriesViewController?
+    var ABCviewVontroller : ABCViewController?
     
 
     
@@ -34,8 +36,11 @@ class SegmentViewController : UIViewController {
         segmentController.setTitleTextAttributes(titleTextAttributes, for: .selected)
         segmentController.tintColor = UIColor.green
 
-        categoriesViewController?.view.isHidden = false
-        ABCviewVontroller?.view.isHidden = true
+        categoriesContentView.isHidden = false
+        ABCContentView.isHidden = true
+        
+//        categoriesViewController?.view.isHidden = false
+//        ABCviewVontroller?.view.isHidden = true
 //        GroceryCatalog.getGroceryCatalog().subscribe(){ event in
 //            if let catalog = event.element{
 //                self.groceryCatalog = catalog
@@ -47,14 +52,14 @@ class SegmentViewController : UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         
-        if let vc = segue.destination as? ABCTabViewController {
+        if let vc = segue.destination as? ABCViewController {
             ABCviewVontroller = vc
             ABCviewVontroller?.segmentViewController = self
         }
         
-        if let vc = segue.destination as? CategoriesTabViewController {
+        if let vc = segue.destination as? CategoriesViewController {
             categoriesViewController = vc
-            categoriesViewController?.segmentViewController = self
+            categoriesViewController?.catalogViewController = self
             
         }
     }
@@ -73,12 +78,16 @@ class SegmentViewController : UIViewController {
    @IBAction func segmentChanged(_ sender: UISegmentedControl) {
         switch segmentController.selectedSegmentIndex {
         case 0:
-            categoriesViewController?.view.isHidden = false
-            ABCviewVontroller?.view.isHidden = true
+            categoriesContentView.isHidden = false
+            ABCContentView.isHidden = true
+//            categoriesViewController?.view.isHidden = false
+//            ABCviewVontroller?.view.isHidden = true
         case 1:
+            categoriesContentView.isHidden = true
+            ABCContentView.isHidden = false
             
-            categoriesViewController?.view.isHidden = true
-            ABCviewVontroller?.view.isHidden = false
+//            categoriesViewController?.view.isHidden = true
+//            ABCviewVontroller?.view.isHidden = false
         default:
             break
         }

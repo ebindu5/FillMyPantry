@@ -1,5 +1,5 @@
 //
-//  ABCTabViewController.swift
+//  ABCViewController.swift
 //  FillMyPantry
 //
 //  Created by NISHANTH NAGELLA on 7/25/18.
@@ -9,13 +9,20 @@
 import Foundation
 import  UIKit
 
-class  ABCTabViewController : UITableViewController{
+class  ABCViewController : UITableViewController{
 
-    var segmentViewController : SegmentViewController!
+    var segmentViewController : CatalogViewController!
     var shoppingListId : String!
     var shoppingListItems : [Item]!
     var groceryItems = [String]()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.estimatedRowHeight = 44.0
+        tableView.rowHeight = UITableViewAutomaticDimension
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

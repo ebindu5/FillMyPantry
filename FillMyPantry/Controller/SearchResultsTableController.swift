@@ -39,22 +39,9 @@ extension SearchResultsTableController : UISearchResultsUpdating {
         if (searchController.searchBar.text?.count)! > 0 {
             let text =  searchController.searchBar.text
             filteredItems.removeAll(keepingCapacity: false)
-            let searchPredicate = NSPredicate(format: "SELF CONTAINS %@",text!)
             
-            for grocery in groceryCatalog {
-                if grocery.name.starts(with: text!){
-                         filteredItems.append(grocery.name)
-                }
-            }
-            
-//            let array = (groceryNames as NSArray).filtered(using: searchPredicate)
-//            filteredItems = array as! [String]
-            
-            if  !filteredItems.contains(text!){
-                filteredItems.insert(text!, at: 0)
-            }
-            
-            
+            filteredItems = SearchDAO.getSearchResults(groceryCatalog, (text?.trimmingCharacters(in: CharacterSet(charactersIn: " ")))!)
+
             tableView.reloadData()
         }
         else {

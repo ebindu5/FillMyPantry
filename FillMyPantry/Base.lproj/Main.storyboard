@@ -61,8 +61,8 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3vt-cp-Pl1">
                                                     <rect key="frame" x="334.5" y="9.5" width="10.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
+                                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="highlightedColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </label>
                                             </subviews>
                                         </stackView>
@@ -294,10 +294,10 @@
             </objects>
             <point key="canvasLocation" x="2628" y="103.89805097451276"/>
         </scene>
-        <!--Categories Tab View Controller-->
+        <!--Categories View Controller-->
         <scene sceneID="wWE-XC-224">
             <objects>
-                <tableViewController storyboardIdentifier="CatrgoriesTabViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4ey-Wo-kYN" customClass="CategoriesTabViewController" customModule="FillMyPantry" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CatrgoriesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4ey-Wo-kYN" customClass="CategoriesViewController" customModule="FillMyPantry" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="3d7-W2-RGS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="574"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -338,12 +338,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PTr-d4-Qe3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4558" y="410"/>
+            <point key="canvasLocation" x="4562" y="424"/>
         </scene>
-        <!--Segment View Controller-->
+        <!--Catalog View Controller-->
         <scene sceneID="Tcd-aY-5rZ">
             <objects>
-                <viewController storyboardIdentifier="SegmentViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="467-uF-08F" customClass="SegmentViewController" customModule="FillMyPantry" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CatalogViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="467-uF-08F" customClass="CatalogViewController" customModule="FillMyPantry" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JOS-9A-Yt4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -373,13 +373,13 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fck-Dn-Kde" userLabel="CategoriesContainer View">
                                 <rect key="frame" x="0.0" y="93" width="375" height="574"/>
                                 <connections>
-                                    <segue destination="02K-bT-DHt" kind="embed" id="XIU-0h-ABt"/>
+                                    <segue destination="4ey-Wo-kYN" kind="embed" id="K17-TI-pWx"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KOP-pZ-JUp" userLabel="ABCContainer View">
                                 <rect key="frame" x="0.0" y="93" width="375" height="574"/>
                                 <connections>
-                                    <segue destination="4ey-Wo-kYN" kind="embed" id="tII-fG-73S"/>
+                                    <segue destination="02K-bT-DHt" kind="embed" id="gkD-Yh-dQ4"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -391,18 +391,20 @@
                             <constraint firstItem="KOP-pZ-JUp" firstAttribute="trailing" secondItem="1D4-91-zaf" secondAttribute="trailing" id="8aI-hO-NNP"/>
                             <constraint firstItem="KOP-pZ-JUp" firstAttribute="leading" secondItem="1D4-91-zaf" secondAttribute="leading" id="939-zr-hVo"/>
                             <constraint firstItem="qms-gY-uvv" firstAttribute="trailing" secondItem="1D4-91-zaf" secondAttribute="trailing" id="FGC-aa-YNm"/>
-                            <constraint firstItem="fck-Dn-Kde" firstAttribute="bottom" secondItem="1D4-91-zaf" secondAttribute="bottom" id="GBS-tc-vfY"/>
                             <constraint firstItem="KOP-pZ-JUp" firstAttribute="top" secondItem="qms-gY-uvv" secondAttribute="bottom" constant="1" id="IIb-Jm-Ufs"/>
                             <constraint firstItem="E1D-Yw-sPF" firstAttribute="trailing" secondItem="qms-gY-uvv" secondAttribute="trailing" id="O4u-qW-HPD"/>
+                            <constraint firstItem="1D4-91-zaf" firstAttribute="bottom" secondItem="KOP-pZ-JUp" secondAttribute="bottom" id="TNZ-WH-T2D"/>
                             <constraint firstItem="fck-Dn-Kde" firstAttribute="trailing" secondItem="1D4-91-zaf" secondAttribute="trailing" id="e4p-Gs-0ai"/>
                             <constraint firstItem="fck-Dn-Kde" firstAttribute="top" secondItem="qms-gY-uvv" secondAttribute="bottom" constant="1" id="g5E-Bk-eMo"/>
                             <constraint firstItem="qms-gY-uvv" firstAttribute="leading" secondItem="1D4-91-zaf" secondAttribute="leading" id="n1o-23-zRs"/>
                             <constraint firstItem="fck-Dn-Kde" firstAttribute="leading" secondItem="1D4-91-zaf" secondAttribute="leading" id="wYj-cy-o5a"/>
-                            <constraint firstItem="KOP-pZ-JUp" firstAttribute="bottom" secondItem="1D4-91-zaf" secondAttribute="bottom" id="yd6-ca-kHa"/>
+                            <constraint firstItem="1D4-91-zaf" firstAttribute="bottom" secondItem="fck-Dn-Kde" secondAttribute="bottom" id="x7Y-Cz-aJ8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1D4-91-zaf"/>
                     </view>
                     <connections>
+                        <outlet property="ABCContentView" destination="KOP-pZ-JUp" id="vLL-HM-80C"/>
+                        <outlet property="categoriesContentView" destination="fck-Dn-Kde" id="hv4-hw-Kr6"/>
                         <outlet property="segmentController" destination="qms-gY-uvv" id="m5N-9T-cbs"/>
                     </connections>
                 </viewController>
@@ -410,10 +412,10 @@
             </objects>
             <point key="canvasLocation" x="3506" y="70"/>
         </scene>
-        <!--Tab View Controller-->
+        <!--View Controller-->
         <scene sceneID="j06-NA-rQp">
             <objects>
-                <tableViewController storyboardIdentifier="ABCTabViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="02K-bT-DHt" customClass="ABCTabViewController" customModule="FillMyPantry" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ABCViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="02K-bT-DHt" customClass="ABCViewController" customModule="FillMyPantry" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="2Gn-uu-zJM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="574"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -63,9 +63,6 @@ struct Item {
 struct Grocery {
     let name : String
     let category: String
-    
-    init(_ name : String, _ category: String) {
-        self.category = category
-        self.name = name
-    }
+    let nameLowerCase : String
+
 }

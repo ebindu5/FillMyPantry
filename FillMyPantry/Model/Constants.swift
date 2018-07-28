@@ -10,11 +10,10 @@ import Foundation
 import Firebase
 
 class Constants {
-         static var UID : String!
-         static var dbRef : Firestore!
-        static var showCompletedItems = false
-   
-    struct FireBase {
-//        static var dbRef : Firestore!
-    }
+    static var UID : String!
+    static var dbRef : Firestore!
+    static var showCompletedItems = false
+    
+    static let SEARCH_RESULTS_COUNT = 10
+    
 }

@@ -1,5 +1,5 @@
 //
-//  CategoriesTabViewController.swift
+//  CategoriesViewController.swift
 //  FillMyPantry
 //
 //  Created by NISHANTH NAGELLA on 7/25/18.
@@ -16,9 +16,9 @@ struct cellData {
     var sectionData = [String]()
 }
 
-class  CategoriesTabViewController : UITableViewController{
+class  CategoriesViewController : UITableViewController{
 
-    var segmentViewController : SegmentViewController!
+    var catalogViewController : CatalogViewController!
     var shoppingListId : String!
     var shoppingListItems : [Item]!
     var groceryCatalog = [[String]]()
@@ -29,7 +29,7 @@ class  CategoriesTabViewController : UITableViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-tableView.delegate = self
+        tableView.delegate = self
         tableView.dataSource = self
         // Auto resizing the height of the cell
         tableView.estimatedRowHeight = 44.0
@@ -41,10 +41,10 @@ tableView.delegate = self
         super.viewWillAppear(animated)
          var groceryMap = [String: [String]]()
 
-        shoppingListId = segmentViewController.shoppingListId
-        shoppingListItems = segmentViewController.shoppingListItems
+        shoppingListId = catalogViewController.shoppingListId
+        shoppingListItems = catalogViewController.shoppingListItems
 
-        if let catalog = segmentViewController.groceryCatalog {
+        if let catalog = catalogViewController.groceryCatalog {
             for grocery in catalog {
                 if groceryMap[grocery.category] != nil {
                     groceryMap[grocery.category]?.append(grocery.name)
