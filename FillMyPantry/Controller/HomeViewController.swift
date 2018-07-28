@@ -20,6 +20,7 @@ class HomeViewController : UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        readData()
     }
     
     override func viewWillAppear(_ animated: Bool) {

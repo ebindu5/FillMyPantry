@@ -21,6 +21,9 @@
 		909F833221093CC600A50979 /* CategoriesTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909F833121093CC600A50979 /* CategoriesTabViewController.swift */; };
 		909F833421093F2100A50979 /* ABCTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909F833321093F2100A50979 /* ABCTabViewController.swift */; };
 		909F8373210AF5F400A50979 /* SegmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909F8372210AF5F400A50979 /* SegmentViewController.swift */; };
+		909F8375210C15AE00A50979 /* ImportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909F8374210C15AE00A50979 /* ImportData.swift */; };
+		909F837A210C1C5300A50979 /* GroceryData.csv in Resources */ = {isa = PBXBuildFile; fileRef = 909F8378210C1B1B00A50979 /* GroceryData.csv */; };
+		909F837B210C1C5F00A50979 /* GroceryData.csv in Sources */ = {isa = PBXBuildFile; fileRef = 909F8378210C1B1B00A50979 /* GroceryData.csv */; };
 		90D2162020F7D420008FCC7B /* ShoppingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D2161F20F7D420008FCC7B /* ShoppingListViewController.swift */; };
 		90D2162620F80AEC008FCC7B /* ShoppingListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D2162520F80AEC008FCC7B /* ShoppingListItemCell.swift */; };
 		90FD2CAD210163AD0037D56D /* GroceryCatlog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FD2CAC210163AD0037D56D /* GroceryCatlog.swift */; };
@@ -50,6 +53,8 @@
 		909F833121093CC600A50979 /* CategoriesTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTabViewController.swift; sourceTree = "<group>"; };
 		909F833321093F2100A50979 /* ABCTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABCTabViewController.swift; sourceTree = "<group>"; };
 		909F8372210AF5F400A50979 /* SegmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentViewController.swift; sourceTree = "<group>"; };
+		909F8374210C15AE00A50979 /* ImportData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportData.swift; sourceTree = "<group>"; };
+		909F8378210C1B1B00A50979 /* GroceryData.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = GroceryData.csv; sourceTree = "<group>"; };
 		90D2161F20F7D420008FCC7B /* ShoppingListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewController.swift; sourceTree = "<group>"; };
 		90D2162520F80AEC008FCC7B /* ShoppingListItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListItemCell.swift; sourceTree = "<group>"; };
 		90FD2CAC210163AD0037D56D /* GroceryCatlog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryCatlog.swift; sourceTree = "<group>"; };
@@ -85,6 +90,7 @@
 				909F833121093CC600A50979 /* CategoriesTabViewController.swift */,
 				909F833321093F2100A50979 /* ABCTabViewController.swift */,
 				909F8372210AF5F400A50979 /* SegmentViewController.swift */,
+				909F8374210C15AE00A50979 /* ImportData.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -123,6 +129,7 @@
 		907F78DB20E427580060A809 /* FillMyPantry */ = {
 			isa = PBXGroup;
 			children = (
+				909F8378210C1B1B00A50979 /* GroceryData.csv */,
 				907F78DC20E427580060A809 /* AppDelegate.swift */,
 				907F78E020E427580060A809 /* Main.storyboard */,
 				902F50EE20E4442400BFDF3D /* Model */,
@@ -216,6 +223,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				909F837A210C1C5300A50979 /* GroceryData.csv in Resources */,
 				907F78EF20E42B380060A809 /* GoogleService-Info.plist in Resources */,
 				907F78E720E427590060A809 /* LaunchScreen.storyboard in Resources */,
 				907F78E420E427590060A809 /* Assets.xcassets in Resources */,
@@ -282,6 +290,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				909F837B210C1C5F00A50979 /* GroceryData.csv in Sources */,
 				909F833221093CC600A50979 /* CategoriesTabViewController.swift in Sources */,
 				909F833421093F2100A50979 /* ABCTabViewController.swift in Sources */,
 				905A559F20E75358001878F6 /* Struct.swift in Sources */,
@@ -296,6 +305,7 @@
 				90FD2CAD210163AD0037D56D /* GroceryCatlog.swift in Sources */,
 				9020FF7920F429C800CEC6B4 /* FirebaseAuthDAO.swift in Sources */,
 				9004F45920E59A7B00B5358D /* HomeViewController.swift in Sources */,
+				909F8375210C15AE00A50979 /* ImportData.swift in Sources */,
 				909F8373210AF5F400A50979 /* SegmentViewController.swift in Sources */,
 				90FD2CAF210194EF0037D56D /* test.swift in Sources */,
 			);

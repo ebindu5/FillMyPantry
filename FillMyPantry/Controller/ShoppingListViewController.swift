@@ -80,7 +80,6 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
                    
                     if self.completedItems.count != 0 {
                         self.completedItems.sort(by: { ($0.completionDate)! > ($1.completionDate)!})
-//                        self.completedItems = self.completedItems.sorted(by: { ($0.completionDate?.addingTimeInterval(100))! > ($1.completionDate?.addingTimeInterval(100))!})
                     }
                     
                      self.searchResultsTableController.order = self.newItemOrder
