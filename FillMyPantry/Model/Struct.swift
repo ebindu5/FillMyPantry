@@ -15,17 +15,17 @@ struct ShoppingList {
     var creationDate : Date
     var items : [Item]?
     
-    init(_ id : String, _ name : String, _ creationDate : Date, _ items : [Item]?) {
-        self.id = id
-        self.name = name
-        self.creationDate = creationDate
-        
-        if let items = items {
-            self.items = items
-        } else{
-            self.items = []
-        }
-    }
+//    init(_ id : String, _ name : String, _ creationDate : Date, _ items : [Item]?) {
+//        self.id = id
+//        self.name = name
+//        self.creationDate = creationDate
+//
+//        if let items = items {
+//            self.items = items
+//        } else{
+//            self.items = []
+//        }
+//    }
 }
 
 struct Item {

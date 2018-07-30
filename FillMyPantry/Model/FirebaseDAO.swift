@@ -106,7 +106,7 @@ class FirebaseDAO {
                             items = []
                         }
                         
-                        let shoppinglist = ShoppingList(documentSnapShot.documentID, name,timestampDate as Date,items)
+                        let shoppinglist = ShoppingList(id: documentSnapShot.documentID, name: name,creationDate: timestampDate as Date,items: items)
                         observer.onNext(shoppinglist)
                         //                        observer.onCompleted()
                     }

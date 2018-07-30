@@ -24,7 +24,7 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
     var uncompletedItems =  [Item]()
     var newItemOrder = 1
     var completedItemOrder : Int!
-    var uncompletedItemOrder : Int!
+    var uncompletedItemOrder = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,14 +34,14 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
         tableView.reloadData()
         
         configureSearchController()
-    
+        
     }
     
     
     func configureSearchController() {
         searchResultsTableController = storyboard!.instantiateViewController(withIdentifier: "SearchResultsTableController") as! SearchResultsTableController
         searchResultsTableController.shoppingListID = shoppingListId
-       
+        
         searchController = UISearchController(searchResultsController: searchResultsTableController)
         searchController.searchResultsUpdater = searchResultsTableController
         searchController.dimsBackgroundDuringPresentation = true
@@ -61,12 +61,15 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         FirebaseDAO.getShoppingListFromId(shoppingListId).subscribe{ event in
             if let shoppingListElement = event.element{
                 
                 self.shoppingList = shoppingListElement
                 if let shoppingListItems = self.shoppingList.items{
+                    DispatchQueue.main.async {
+                        self.noItemsText.isHidden = true
+                    }
                     self.completedItems = shoppingListItems.filter (){ $0.completed == true }
                     self.uncompletedItems = shoppingListItems.filter (){ $0.completed == false }
                     
@@ -76,15 +79,20 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
                         self.uncompletedItems.sort(by: { ($0.order) > ($1.order)})
                         
                     }
-                   
+                    
                     if self.completedItems.count != 0 {
                         self.completedItems.sort(by: { ($0.completionDate)! > ($1.completionDate)!})
                     }
                     
-                     self.searchResultsTableController.order = self.newItemOrder
+                    
+                }else{
+                    DispatchQueue.main.async {
+                        self.noItemsText.isHidden = false
+                    }
                 }
-                self.tableView.reloadData()
+                self.searchResultsTableController.order = self.newItemOrder
             }
+            self.tableView.reloadData()
         }
     }
     
@@ -94,34 +102,39 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let shoppingListValue = shoppingList {
-            return (shoppingListValue.items?.count)! + 1
+            return (shoppingListValue.items?.count ?? 0 ) + 1
         }else{
             return 1
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         if indexPath.row < uncompletedItems.count { // Uncompleted List Items
             let cell =  tableView.dequeueReusableCell(withIdentifier: "shoppingItemCell", for: indexPath) as! ShoppingListItemCell
             cell.itemLabel?.text = uncompletedItems[indexPath.row].name
             return cell
         } else if indexPath.row == uncompletedItems.count { // Show Hide button
             let cell =  tableView.dequeueReusableCell(withIdentifier: "showHideButtonCell", for: indexPath) as! ShoppingListItemCell
-            if Constants.showCompletedItems {
-                cell.labeltoShowHide.text =  "Hide Completed Items"
+            if (completedItems.count) != 0 {
+                cell.isHidden = false
+                if Constants.showCompletedItems {
+                    cell.labeltoShowHide.text =  "Hide Completed Items"
+                }else{
+                    cell.labeltoShowHide.text =  "Show Completed Items"
+                }
             }else{
-                cell.labeltoShowHide.text =  "Show Completed Items"
+                cell.isHidden = true
             }
-            
             return cell
+            
         }else {               // Completed List Items
             let cell =  tableView.dequeueReusableCell(withIdentifier: "completedItemCell", for: indexPath) as! ShoppingListItemCell
             cell.itemLabel?.text = completedItems[indexPath.row - uncompletedItems.count - 1].name
             cell.checkBox.isEnabled = false
             if Constants.showCompletedItems {
                 cell.isHidden = false
-               
+                
             }else{
                 cell.isHidden = true
                 

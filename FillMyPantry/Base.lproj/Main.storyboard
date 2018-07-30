@@ -171,7 +171,7 @@
                                                     <outlet property="itemLabel" destination="D3i-Uf-Uhx" id="UpZ-w5-2W7"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="showHideButtonCell" id="i7V-aj-G2y" userLabel="showHideButtonCell" customClass="ShoppingListItemCell" customModule="FillMyPantry" customModuleProvider="target">
+                                            <tableViewCell hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="showHideButtonCell" id="i7V-aj-G2y" userLabel="showHideButtonCell" customClass="ShoppingListItemCell" customModule="FillMyPantry" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="i7V-aj-G2y" id="oZC-GA-dhJ">
@@ -227,8 +227,8 @@
                                     </tableView>
                                 </subviews>
                             </stackView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Shopping List is Empty!!" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tKE-sg-Ncm">
-                                <rect key="frame" x="21.5" y="323.5" width="332" height="40"/>
+                            <textField hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Your Shopping List is Empty!!" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tKE-sg-Ncm">
+                                <rect key="frame" x="-2" y="325.5" width="379" height="36"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
                                 <textInputTraits key="textInputTraits"/>
