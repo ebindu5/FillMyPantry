@@ -18,18 +18,24 @@ class HomeViewController : UITableViewController {
     var shoppingLists : [ShoppingList]!
     var groceryCatalog : [Grocery]!
     
+    var indicator = UIActivityIndicatorView()
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        activityIndicator()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        indicator.startAnimating()
+        indicator.backgroundColor = UIColor.clear
         FirebaseDAO.getShoppingListsForUser().subscribe(){ event in
             if let element = event.element {
                 self.shoppingLists = element
-                
                 DispatchQueue.main.async {
+                    self.indicator.stopAnimating()
+                    self.indicator.hidesWhenStopped = true
                     self.tableView.reloadData()
                 }
             }
@@ -40,6 +46,8 @@ class HomeViewController : UITableViewController {
                 self.groceryCatalog = element
             }
         }
+        
+       
         
     }
     
@@ -117,4 +125,18 @@ class HomeViewController : UITableViewController {
             
         }
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 55
+    }
+    
+    func activityIndicator() {
+        indicator = UIActivityIndicatorView(frame: CGRect(x:0, y:0, width:80,height: 80))
+        self.indicator.transform = CGAffineTransform(scaleX: 2, y: 2)
+        indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        indicator.hidesWhenStopped = true
+        indicator.center = self.view.center
+        self.view.addSubview(indicator)
+    }
+    
 }

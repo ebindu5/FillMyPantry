@@ -227,23 +227,32 @@
                                     </tableView>
                                 </subviews>
                             </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Shopping List is Empty!!" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tKE-sg-Ncm">
+                                <rect key="frame" x="21.5" y="323.5" width="332" height="40"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="59r-Bi-SCA" firstAttribute="top" secondItem="T3O-1O-27F" secondAttribute="top" id="5hE-f9-MkD"/>
                             <constraint firstItem="59r-Bi-SCA" firstAttribute="trailing" secondItem="T3O-1O-27F" secondAttribute="trailing" id="8Pb-N2-Gc3"/>
+                            <constraint firstItem="tKE-sg-Ncm" firstAttribute="centerX" secondItem="T3O-1O-27F" secondAttribute="centerX" id="QA4-eZ-cu8"/>
+                            <constraint firstItem="tKE-sg-Ncm" firstAttribute="centerY" secondItem="T3O-1O-27F" secondAttribute="centerY" id="TAK-NM-6Dr"/>
                             <constraint firstItem="59r-Bi-SCA" firstAttribute="bottom" secondItem="T3O-1O-27F" secondAttribute="bottom" id="X8F-gF-n27"/>
                             <constraint firstItem="59r-Bi-SCA" firstAttribute="leading" secondItem="T3O-1O-27F" secondAttribute="leading" id="pZp-1M-GoE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="T3O-1O-27F"/>
                     </view>
                     <connections>
+                        <outlet property="noItemsText" destination="tKE-sg-Ncm" id="2cy-L7-DFi"/>
                         <outlet property="tableView" destination="Ouw-wP-IqJ" id="Jpg-kM-fqo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ShB-mQ-W3P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1807" y="112"/>
+            <point key="canvasLocation" x="1805.5999999999999" y="111.99400299850076"/>
         </scene>
         <!--Search Results Table Controller-->
         <scene sceneID="Pzv-ys-8QR">
@@ -299,7 +308,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="CatrgoriesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4ey-Wo-kYN" customClass="CategoriesViewController" customModule="FillMyPantry" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="3d7-W2-RGS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="574"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="573"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
@@ -371,13 +380,13 @@
                                 </connections>
                             </segmentedControl>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fck-Dn-Kde" userLabel="CategoriesContainer View">
-                                <rect key="frame" x="0.0" y="93" width="375" height="574"/>
+                                <rect key="frame" x="0.0" y="94" width="375" height="573"/>
                                 <connections>
                                     <segue destination="4ey-Wo-kYN" kind="embed" id="K17-TI-pWx"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KOP-pZ-JUp" userLabel="ABCContainer View">
-                                <rect key="frame" x="0.0" y="93" width="375" height="574"/>
+                                <rect key="frame" x="0.0" y="94" width="375" height="573"/>
                                 <connections>
                                     <segue destination="02K-bT-DHt" kind="embed" id="gkD-Yh-dQ4"/>
                                 </connections>
@@ -391,11 +400,11 @@
                             <constraint firstItem="KOP-pZ-JUp" firstAttribute="trailing" secondItem="1D4-91-zaf" secondAttribute="trailing" id="8aI-hO-NNP"/>
                             <constraint firstItem="KOP-pZ-JUp" firstAttribute="leading" secondItem="1D4-91-zaf" secondAttribute="leading" id="939-zr-hVo"/>
                             <constraint firstItem="qms-gY-uvv" firstAttribute="trailing" secondItem="1D4-91-zaf" secondAttribute="trailing" id="FGC-aa-YNm"/>
-                            <constraint firstItem="KOP-pZ-JUp" firstAttribute="top" secondItem="qms-gY-uvv" secondAttribute="bottom" constant="1" id="IIb-Jm-Ufs"/>
+                            <constraint firstItem="KOP-pZ-JUp" firstAttribute="top" secondItem="qms-gY-uvv" secondAttribute="bottom" constant="2" id="IIb-Jm-Ufs"/>
                             <constraint firstItem="E1D-Yw-sPF" firstAttribute="trailing" secondItem="qms-gY-uvv" secondAttribute="trailing" id="O4u-qW-HPD"/>
                             <constraint firstItem="1D4-91-zaf" firstAttribute="bottom" secondItem="KOP-pZ-JUp" secondAttribute="bottom" id="TNZ-WH-T2D"/>
                             <constraint firstItem="fck-Dn-Kde" firstAttribute="trailing" secondItem="1D4-91-zaf" secondAttribute="trailing" id="e4p-Gs-0ai"/>
-                            <constraint firstItem="fck-Dn-Kde" firstAttribute="top" secondItem="qms-gY-uvv" secondAttribute="bottom" constant="1" id="g5E-Bk-eMo"/>
+                            <constraint firstItem="fck-Dn-Kde" firstAttribute="top" secondItem="qms-gY-uvv" secondAttribute="bottom" constant="2" id="g5E-Bk-eMo"/>
                             <constraint firstItem="qms-gY-uvv" firstAttribute="leading" secondItem="1D4-91-zaf" secondAttribute="leading" id="n1o-23-zRs"/>
                             <constraint firstItem="fck-Dn-Kde" firstAttribute="leading" secondItem="1D4-91-zaf" secondAttribute="leading" id="wYj-cy-o5a"/>
                             <constraint firstItem="1D4-91-zaf" firstAttribute="bottom" secondItem="fck-Dn-Kde" secondAttribute="bottom" id="x7Y-Cz-aJ8"/>
@@ -405,6 +414,7 @@
                     <connections>
                         <outlet property="ABCContentView" destination="KOP-pZ-JUp" id="vLL-HM-80C"/>
                         <outlet property="categoriesContentView" destination="fck-Dn-Kde" id="hv4-hw-Kr6"/>
+                        <outlet property="doneButton" destination="giF-e0-Bnh" id="Bvc-eZ-8eC"/>
                         <outlet property="segmentController" destination="qms-gY-uvv" id="m5N-9T-cbs"/>
                     </connections>
                 </viewController>
@@ -417,7 +427,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="ABCViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="02K-bT-DHt" customClass="ABCViewController" customModule="FillMyPantry" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="2Gn-uu-zJM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="574"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="573"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>

@@ -15,5 +15,6 @@ class Constants {
     static var showCompletedItems = false
     
     static let SEARCH_RESULTS_COUNT = 10
-    
+    static let THEME_COLOR = UIColor.init(red: 31 / 255.0, green: 202 / 255.0, blue: 29 / 255.0, alpha: 1.0)
+//    static let TEXT_COLOR =  UIColor.init(red: 31 / 255.0, green: 202 / 255.0, blue: 29 / 255.0, alpha: 1.0)
 }

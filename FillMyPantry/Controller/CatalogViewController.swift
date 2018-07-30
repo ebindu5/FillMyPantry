@@ -16,6 +16,7 @@ class CatalogViewController : UIViewController {
     @IBOutlet weak var segmentController : UISegmentedControl!
     @IBOutlet weak var categoriesContentView: UIView!
     @IBOutlet weak var ABCContentView: UIView!
+    @IBOutlet weak var doneButton: UIBarButtonItem!
     
     var categoriesViewController:CategoriesViewController?
     var ABCviewVontroller : ABCViewController?
@@ -30,22 +31,14 @@ class CatalogViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
-//        let titleTextAttributes = [kCTForegroundColorAttributeName: UIColor.black]
-        
         segmentController.setTitleTextAttributes(titleTextAttributes, for: .normal)
         segmentController.setTitleTextAttributes(titleTextAttributes, for: .selected)
-        segmentController.tintColor = UIColor.green
+        segmentController.tintColor = Constants.THEME_COLOR
+        doneButton.tintColor = Constants.THEME_COLOR
 
         categoriesContentView.isHidden = false
         ABCContentView.isHidden = true
-        
-//        categoriesViewController?.view.isHidden = false
-//        ABCviewVontroller?.view.isHidden = true
-//        GroceryCatalog.getGroceryCatalog().subscribe(){ event in
-//            if let catalog = event.element{
-//                self.groceryCatalog = catalog
-//            }
-//        }
+
     }
     
 
@@ -98,5 +91,7 @@ class CatalogViewController : UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    
+
     
 }

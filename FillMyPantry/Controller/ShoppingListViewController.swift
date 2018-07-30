@@ -12,6 +12,7 @@ import UIKit
 class ShoppingListViewController : UIViewController, UITableViewDelegate,UITableViewDataSource, UISearchControllerDelegate, UISearchBarDelegate{
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var noItemsText: UITextField!
     
     var searchResultsTableController : SearchResultsTableController!
     
@@ -60,7 +61,7 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         FirebaseDAO.getShoppingListFromId(shoppingListId).subscribe{ event in
             if let shoppingListElement = event.element{
                 
@@ -68,8 +69,6 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
                 if let shoppingListItems = self.shoppingList.items{
                     self.completedItems = shoppingListItems.filter (){ $0.completed == true }
                     self.uncompletedItems = shoppingListItems.filter (){ $0.completed == false }
-                    
-                    
                     
                     if self.uncompletedItems.count != 0 {
                         self.newItemOrder = (self.uncompletedItems.max{$0.order < $1.order}?.order)! + 1
@@ -80,7 +79,6 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
                    
                     if self.completedItems.count != 0 {
                         self.completedItems.sort(by: { ($0.completionDate)! > ($1.completionDate)!})
-//                        self.completedItems = self.completedItems.sorted(by: { ($0.completionDate?.addingTimeInterval(100))! > ($1.completionDate?.addingTimeInterval(100))!})
                     }
                     
                      self.searchResultsTableController.order = self.newItemOrder
@@ -157,6 +155,10 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
             completedItems.remove(at: indexPath.row - uncompletedItems.count )
         }
         tableView.reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 55
     }
     
     
