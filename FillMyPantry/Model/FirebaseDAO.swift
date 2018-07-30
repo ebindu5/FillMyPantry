@@ -40,6 +40,21 @@ class FirebaseDAO {
         }
     }
     
+    
+    static func renameShoppingList(_ documentID :String, _ text : String){
+        let shoppingListRef = db?.collection("ShoppingLists").document(documentID)
+
+        shoppingListRef?.updateData([
+            "name": text
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+    }
+    
     private static func testGetShoppingList(){
         getShoppingListRefsForUser().flatMap { docRefArray  in
             return getShoppingListsFromDocRefArray(docRefArray)
@@ -60,7 +75,6 @@ class FirebaseDAO {
     private static func getShoppingListRefsForUser()->Observable<[DocumentReference]>{
         let docRef = db?.collection("Users").document(Constants.UID)
         return Observable.create { observer in
-            //            docRef?.addSnapshotListener { documentSnapShot, error in
             docRef?.getDocument { documentSnapShot, error in
                 if let error = error {
                     observer.onError(error)
@@ -108,7 +122,6 @@ class FirebaseDAO {
                         
                         let shoppinglist = ShoppingList(id: documentSnapShot.documentID, name: name,creationDate: timestampDate as Date,items: items)
                         observer.onNext(shoppinglist)
-                        //                        observer.onCompleted()
                     }
                 }
             }
@@ -241,20 +254,17 @@ class FirebaseDAO {
     }
     
 
-    
-    private static func listen(includeMetadataChanges: Bool) -> Observable<DocumentSnapshot> {
-        return Observable<DocumentSnapshot>.create { observer in
-            let listener = db?.collection("Users").document(Constants.UID).addSnapshotListener(includeMetadataChanges: includeMetadataChanges) { snapshot, error in
-                if let error = error {
-                    observer.onError(error)
-                } else if let snapshot = snapshot {
-                    observer.onNext(snapshot)
+   static func clearCompletedItems(_ documentRefs : [DocumentReference]!){
+        for document in documentRefs {
+            document.delete(){ err in
+                if let err = err {
+                    print("Error removing document: \(err)")
+                } else {
+                    print("Document successfully removed!")
                 }
             }
-            return Disposables.create {
-                listener!.remove()
-            }
         }
+        
     }
 }
 

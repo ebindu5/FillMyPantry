@@ -233,20 +233,34 @@
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JaT-Px-2P3">
+                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <tabBarItem title="Rename" id="yAp-BH-ytC"/>
+                                    <tabBarItem title="Share" id="gIE-Hl-k4r"/>
+                                    <tabBarItem title="Clear" id="rnW-U4-TLm"/>
+                                    <tabBarItem title="Delete" id="bo9-Oy-Bsz"/>
+                                </items>
+                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="T3O-1O-27F" firstAttribute="trailing" secondItem="JaT-Px-2P3" secondAttribute="trailing" id="1xA-ei-up9"/>
                             <constraint firstItem="59r-Bi-SCA" firstAttribute="top" secondItem="T3O-1O-27F" secondAttribute="top" id="5hE-f9-MkD"/>
                             <constraint firstItem="59r-Bi-SCA" firstAttribute="trailing" secondItem="T3O-1O-27F" secondAttribute="trailing" id="8Pb-N2-Gc3"/>
+                            <constraint firstItem="JaT-Px-2P3" firstAttribute="leading" secondItem="T3O-1O-27F" secondAttribute="leading" id="LFn-Ya-QUk"/>
                             <constraint firstItem="tKE-sg-Ncm" firstAttribute="centerX" secondItem="T3O-1O-27F" secondAttribute="centerX" id="QA4-eZ-cu8"/>
                             <constraint firstItem="tKE-sg-Ncm" firstAttribute="centerY" secondItem="T3O-1O-27F" secondAttribute="centerY" id="TAK-NM-6Dr"/>
                             <constraint firstItem="59r-Bi-SCA" firstAttribute="bottom" secondItem="T3O-1O-27F" secondAttribute="bottom" id="X8F-gF-n27"/>
+                            <constraint firstItem="T3O-1O-27F" firstAttribute="bottom" secondItem="JaT-Px-2P3" secondAttribute="bottom" id="kvW-q4-dZt"/>
                             <constraint firstItem="59r-Bi-SCA" firstAttribute="leading" secondItem="T3O-1O-27F" secondAttribute="leading" id="pZp-1M-GoE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="T3O-1O-27F"/>
                     </view>
                     <connections>
                         <outlet property="noItemsText" destination="tKE-sg-Ncm" id="2cy-L7-DFi"/>
+                        <outlet property="tabBar" destination="JaT-Px-2P3" id="IQU-zV-WjW"/>
                         <outlet property="tableView" destination="Ouw-wP-IqJ" id="Jpg-kM-fqo"/>
                     </connections>
                 </viewController>

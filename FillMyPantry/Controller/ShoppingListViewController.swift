@@ -13,6 +13,7 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var noItemsText: UITextField!
+    @IBOutlet weak var tabBar: UITabBar!
     
     var searchResultsTableController : SearchResultsTableController!
     
@@ -32,11 +33,11 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
         tableView.dataSource = self
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.reloadData()
-       
+        tabBar.delegate = self
         configureSearchController()
         
+        
     }
-    
 
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,7 +77,7 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
                 self.configureNavigationBar()
                 self.tableView.reloadData()
             }
-
+            
         }
     }
     
@@ -208,7 +209,93 @@ extension ShoppingListViewController{
     
     
     func configureNavigationBar(){
-      self.navigationItem.title = shoppingList?.name
+        self.navigationItem.title = shoppingList?.name
+        
+    }
+}
+
+extension ShoppingListViewController : UITabBarDelegate {
+    
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        
+        switch item.title {
+        case "Rename" :
+            renameTabSelected()
+        case "Share" :
+            shareTabSelected()
+        case "Clear" :
+            clearCompletedItems()
+        case "Delete" : removeShoppingList()
+        default : break
+            
+            
+        }
+        
+        
+    }
+    
+    fileprivate func renameTabSelected() {
+        let alert = UIAlertController(title: "Rename Shopping List", message: "Would you like to rename your Shopping List?", preferredStyle: UIAlertControllerStyle.alert)
+        let doneAction = UIAlertAction(title: "Done", style: .default) { (alertAction) in
+            if let text = alert.textFields![0].text {
+                if text != self.shoppingList.name {
+                    FirebaseDAO.renameShoppingList(self.shoppingListId,text)
+                }
+            }
+        }
+        alert.addTextField { (textField) in
+            textField.text = self.shoppingList?.name
+            NotificationCenter.default.addObserver(forName: NSNotification.Name.UITextFieldTextDidChange, object: textField, queue: OperationQueue.main) { (notification) in
+                doneAction.isEnabled = (textField.text?.count)! > 0
+            }
+        }
+        alert.addAction(doneAction)
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    func shareTabSelected() {
+        
+    }
+    
+    func clearCompletedItems(){
+        let alert = UIAlertController(title: "Clear Completed Items", message: "Would you like to clear completed items?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { (alertAction) in
+            let completedItemDoumentRefs = self.completedItems.map{$0.id}
+            FirebaseDAO.clearCompletedItems(completedItemDoumentRefs)
+            self.completedItems.removeAll()
+           
+        }
+        alert.addAction(yesAction)
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+        
+        
 
     }
+    
+    func removeShoppingList(){
+        
+        let alert = UIAlertController(title: "Delete Shopping List", message: "Would you like to delete \(shoppingList.name) ?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { (alertAction) in
+            FirebaseDAO.updateShoppingList(self.shoppingListId).subscribe(){ event in
+                if let success = event.element, success == true {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
+        }
+        alert.addAction(yesAction)
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+        
+        
+    }
+    
+    
+    
 }
