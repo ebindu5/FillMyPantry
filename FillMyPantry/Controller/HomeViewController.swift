@@ -88,13 +88,21 @@ class HomeViewController : UITableViewController {
 
         if indexPath.row ==  shoppingLists?.count ?? 0 {
             
-            FirebaseDAO.createShoppingList().subscribe { event in
-                if let id = event.element {
-                    let shoppingListViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShoppingListViewController") as! ShoppingListViewController
-                    shoppingListViewController.shoppingListId = id
-                    self.navigationController?.pushViewController(shoppingListViewController, animated: true)
+            if (shoppingLists?.count ?? 0) == Constants.MAX_SHOPPING_LIST_COUNT{
+                let alert = UIAlertController(title: "You've reached the limit", message: "Hello, You can only create upto 15 shopping lists.", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }else{
+                
+                FirebaseDAO.createShoppingList().subscribe { event in
+                    if let id = event.element {
+                        let shoppingListViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShoppingListViewController") as! ShoppingListViewController
+                        shoppingListViewController.shoppingListId = id
+                        self.navigationController?.pushViewController(shoppingListViewController, animated: true)
+                    }
                 }
             }
+
         } else{
             let shoppingListViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShoppingListViewController") as! ShoppingListViewController
             
