@@ -32,32 +32,12 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
         tableView.dataSource = self
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.reloadData()
-        
+       
         configureSearchController()
         
     }
     
-    
-    func configureSearchController() {
-        searchResultsTableController = storyboard!.instantiateViewController(withIdentifier: "SearchResultsTableController") as! SearchResultsTableController
-        searchResultsTableController.shoppingListID = shoppingListId
-        
-        searchController = UISearchController(searchResultsController: searchResultsTableController)
-        searchController.searchResultsUpdater = searchResultsTableController
-        searchController.dimsBackgroundDuringPresentation = true
-        searchController.hidesNavigationBarDuringPresentation = true
-        searchController.searchBar.delegate = self
-        searchController.searchBar.showsBookmarkButton = true
-        searchController.searchBar.delegate = self
-        searchController.searchBar.placeholder = "Add an Item..."
-        searchController.searchBar.sizeToFit()
-        
-        searchController.searchBar.setImage(UIImage(named: "icon_ios_add"), for: UISearchBarIcon.search, state: UIControlState.normal)
-        
-        self.definesPresentationContext = true
-        tableView.tableHeaderView = searchController.searchBar
-    }
-    
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -92,7 +72,11 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
                 }
                 self.searchResultsTableController.order = self.newItemOrder
             }
-            self.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.configureNavigationBar()
+                self.tableView.reloadData()
+            }
+
         }
     }
     
@@ -198,4 +182,33 @@ extension ShoppingListViewController {
         
     }
     
+}
+
+extension ShoppingListViewController{
+    
+    func configureSearchController() {
+        searchResultsTableController = storyboard!.instantiateViewController(withIdentifier: "SearchResultsTableController") as! SearchResultsTableController
+        searchResultsTableController.shoppingListID = shoppingListId
+        
+        searchController = UISearchController(searchResultsController: searchResultsTableController)
+        searchController.searchResultsUpdater = searchResultsTableController
+        searchController.dimsBackgroundDuringPresentation = true
+        searchController.hidesNavigationBarDuringPresentation = true
+        searchController.searchBar.delegate = self
+        searchController.searchBar.showsBookmarkButton = true
+        searchController.searchBar.delegate = self
+        searchController.searchBar.placeholder = "Add an Item..."
+        searchController.searchBar.sizeToFit()
+        
+        searchController.searchBar.setImage(UIImage(named: "icon_ios_add"), for: UISearchBarIcon.search, state: UIControlState.normal)
+        
+        self.definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
+    }
+    
+    
+    func configureNavigationBar(){
+      self.navigationItem.title = shoppingList?.name
+
+    }
 }

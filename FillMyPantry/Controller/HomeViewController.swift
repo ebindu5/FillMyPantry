@@ -46,10 +46,8 @@ class HomeViewController : UITableViewController {
                 self.groceryCatalog = element
             }
         }
-        
-       
-        
     }
+    
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -107,6 +105,9 @@ class HomeViewController : UITableViewController {
             let shoppingListViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShoppingListViewController") as! ShoppingListViewController
             
             shoppingListViewController.shoppingListId = shoppingLists[indexPath.row].id
+            let backItem = UIBarButtonItem()
+            backItem.title = ""
+            navigationItem.backBarButtonItem = backItem
             self.navigationController?.pushViewController(shoppingListViewController, animated: true)
         }
         
