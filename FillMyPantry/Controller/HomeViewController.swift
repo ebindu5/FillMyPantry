@@ -109,6 +109,7 @@ class HomeViewController : UITableViewController {
             let backItem = UIBarButtonItem()
             backItem.title = ""
             navigationItem.backBarButtonItem = backItem
+            navigationItem.backBarButtonItem?.tintColor = Constants.THEME_COLOR
             self.navigationController?.pushViewController(shoppingListViewController, animated: true)
         }
         

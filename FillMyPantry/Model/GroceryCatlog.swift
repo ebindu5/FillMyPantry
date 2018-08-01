@@ -28,7 +28,6 @@ class GroceryCatalog {
                     if error != nil {
                         observer.onError(error!)
                     }
-//                    print(documentSnapshot?.metadata.isFromCache,"--->DataIsFromCache", documentSnapshot?.documents.count)
                     if let documents = documentSnapshot?.documents {
                         getDataFromDocuments(documents)
                         

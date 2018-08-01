@@ -152,37 +152,43 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Q88-kJ-aNJ">
-                                                            <rect key="frame" x="15" y="15" width="345" height="25"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Q88-kJ-aNJ">
+                                                            <rect key="frame" x="15" y="0.0" width="345" height="55"/>
                                                             <subviews>
-                                                                <stackView opaque="NO" contentMode="center" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Z9A-iJ-bTp">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="20" height="25"/>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z9A-iJ-bTp">
+                                                                    <rect key="frame" x="0.0" y="17.5" width="20" height="20"/>
                                                                     <subviews>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zCW-Gp-1wb">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="20" height="25"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="20" id="TPN-b7-2Qr"/>
+                                                                                <constraint firstAttribute="height" constant="20" id="w13-jG-s4h"/>
                                                                             </constraints>
                                                                             <state key="normal" title="Button" image="icon_checkbox_empty"/>
                                                                             <state key="selected" image="CheckedBox"/>
                                                                         </button>
                                                                     </subviews>
                                                                 </stackView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D3i-Uf-Uhx">
-                                                                    <rect key="frame" x="32" y="0.0" width="313" height="25"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="ngq-Ai-61p">
+                                                                    <rect key="frame" x="32" y="17.5" width="313" height="20.5"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D3i-Uf-Uhx">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="313" height="20.5"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </stackView>
                                                             </subviews>
                                                         </stackView>
                                                     </subviews>
                                                 </tableViewCellContentView>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="Q88-kJ-aNJ" secondAttribute="trailing" constant="15" id="2QE-Gk-HdZ"/>
-                                                    <constraint firstItem="Q88-kJ-aNJ" firstAttribute="top" secondItem="yzD-gu-FMi" secondAttribute="top" constant="15" id="JV5-gx-7e5"/>
+                                                    <constraint firstItem="Q88-kJ-aNJ" firstAttribute="top" secondItem="yzD-gu-FMi" secondAttribute="top" id="JV5-gx-7e5"/>
                                                     <constraint firstItem="Q88-kJ-aNJ" firstAttribute="leading" secondItem="yzD-gu-FMi" secondAttribute="leading" constant="15" id="eVI-Wa-984"/>
-                                                    <constraint firstAttribute="bottom" secondItem="Q88-kJ-aNJ" secondAttribute="bottom" constant="15" id="vLD-yT-Rfg"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Q88-kJ-aNJ" secondAttribute="bottom" id="vLD-yT-Rfg"/>
                                                 </constraints>
                                                 <connections>
                                                     <outlet property="checkBox" destination="zCW-Gp-1wb" id="vwK-8q-oyp"/>
@@ -199,7 +205,7 @@
                                                         <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Completed Items" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R07-qw-c5F" userLabel="Show Completed Items">
                                                             <rect key="frame" x="15" y="11" width="345" height="33"/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                                            <color key="textColor" red="0.12156862745098039" green="0.792156862745098" blue="0.11372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="textColor" red="0.20784313725490194" green="0.73725490196078436" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -224,7 +230,7 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="xMM-8D-94t">
                                                             <rect key="frame" x="15" y="10" width="345" height="35"/>
                                                             <subviews>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="bBT-2b-5TI">
+                                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bBT-2b-5TI">
                                                                     <rect key="frame" x="0.0" y="7.5" width="20" height="20"/>
                                                                     <subviews>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LPn-jm-bqG">
@@ -238,7 +244,7 @@
                                                                         </button>
                                                                     </subviews>
                                                                 </stackView>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8eo-Cc-c3X">
+                                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="8eo-Cc-c3X">
                                                                     <rect key="frame" x="32" y="7.5" width="313" height="20.5"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qsg-0X-kvf">
@@ -278,15 +284,16 @@
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JaT-Px-2P3">
+                            <tabBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JaT-Px-2P3">
                                 <rect key="frame" x="0.0" y="618" width="375" height="49"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
-                                    <tabBarItem title="Rename" id="yAp-BH-ytC"/>
-                                    <tabBarItem title="Share" id="gIE-Hl-k4r"/>
-                                    <tabBarItem title="Clear" id="rnW-U4-TLm"/>
-                                    <tabBarItem title="Delete" id="bo9-Oy-Bsz"/>
+                                    <tabBarItem title="Rename" image="icon_rename" id="yAp-BH-ytC"/>
+                                    <tabBarItem title="Share" image="icon_share" id="gIE-Hl-k4r"/>
+                                    <tabBarItem title="Clear" image="icon_clear" id="rnW-U4-TLm"/>
+                                    <tabBarItem title="Delete" image="icon_trash" id="bo9-Oy-Bsz"/>
                                 </items>
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                             </tabBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -618,7 +625,11 @@
         <image name="circleAddIcon" width="42" height="42"/>
         <image name="icon_checkbox_empty" width="16" height="16"/>
         <image name="icon_checkbox_filled" width="16" height="16"/>
+        <image name="icon_clear" width="14" height="14"/>
         <image name="icon_list" width="20" height="14"/>
         <image name="icon_plus" width="15" height="14"/>
+        <image name="icon_rename" width="23" height="23"/>
+        <image name="icon_share" width="20" height="27"/>
+        <image name="icon_trash" width="20" height="26"/>
     </resources>
 </document>

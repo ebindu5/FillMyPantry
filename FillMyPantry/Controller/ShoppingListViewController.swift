@@ -46,10 +46,9 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
         tableView.reloadData()
         tabBar.delegate = self
         configureSearchController()
-        
+        configureTabBar()
         
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -161,6 +160,7 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
         }
     }
     
+
     
 }
 
@@ -200,11 +200,14 @@ extension ShoppingListViewController{
         searchController.hidesNavigationBarDuringPresentation = true
         searchController.searchBar.delegate = self
         searchController.searchBar.showsBookmarkButton = true
+        searchController.searchBar.barTintColor = UIColor.init(red: 230 / 255.0, green: 230 / 255.0, blue: 230 / 255.0, alpha: 1.0)
         searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = "Add an Item..."
         searchController.searchBar.sizeToFit()
         
-        searchController.searchBar.setImage(UIImage(named: "icon_ios_add"), for: UISearchBarIcon.search, state: UIControlState.normal)
+        searchController.searchBar.setImage(UIImage(named: "icon_plus"), for: UISearchBarIcon.search, state: UIControlState.normal)
+        
+        searchController.searchBar.setImage(UIImage(named: "icon_catalog"), for: UISearchBarIcon.bookmark, state: UIControlState.normal)
         
         self.definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
@@ -217,6 +220,13 @@ extension ShoppingListViewController{
 }
 
 extension ShoppingListViewController : UITabBarDelegate {
+    
+    func configureTabBar(){
+        self.tabBarController?.tabBar.tintColor = Constants.THEME_COLOR
+        let titleTextAttributes_normal = [NSAttributedStringKey.foregroundColor: Constants.THEME_COLOR]
+        UITabBarItem.appearance().setTitleTextAttributes(titleTextAttributes_normal, for: .normal)
+        
+    }
     
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         

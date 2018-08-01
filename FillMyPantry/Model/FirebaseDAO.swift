@@ -75,7 +75,7 @@ class FirebaseDAO {
     private static func getShoppingListRefsForUser()->Observable<[DocumentReference]>{
         let docRef = db?.collection("Users").document(Constants.UID)
         return Observable.create { observer in
-            docRef?.getDocument { documentSnapShot, error in
+            docRef?.addSnapshotListener { documentSnapShot, error in
                 if let error = error {
                     observer.onError(error)
                 } else if let documentSnapShot = documentSnapShot, documentSnapShot.exists {
@@ -85,7 +85,7 @@ class FirebaseDAO {
                     }else{
                         observer.onNext([])
                     }
-                    observer.onCompleted()
+//                    observer.onCompleted()
                 } else {
                     observer.onError(NSError(domain: FirestoreErrorDomain, code: FirestoreErrorCode.notFound.rawValue, userInfo: nil))
                 }
