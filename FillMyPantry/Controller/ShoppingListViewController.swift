@@ -22,7 +22,7 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
     var searchController = UISearchController(searchResultsController: nil)
     
     var shoppingListId : String!
-
+    
     struct ShoppingListTableData {
         var completedItems = [Item]()
         var uncompletedItems =  [Item]()
@@ -37,7 +37,7 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
     
     var shoppingListTableData = ShoppingListTableData(title: "")
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -94,7 +94,7 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      
+        
         var count =  shoppingListTableData.uncompletedItems.count
         
         if shoppingListTableData.completedItems.count != 0 {
@@ -143,7 +143,6 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
         if indexPath.row == shoppingListTableData.uncompletedItems.count { // Show Hide button
             
             let cell = tableView.cellForRow(at: indexPath) as! ShoppingListItemCell
@@ -185,7 +184,7 @@ extension ShoppingListViewController {
         let catalogViewController = storyboard?.instantiateViewController(withIdentifier: "CatalogViewController") as? CatalogViewController
         catalogViewController?.shoppingListId = shoppingListId
         catalogViewController?.shoppingListItems = shoppingListTableData.uncompletedItems
-        
+        catalogViewController?.order = shoppingListTableData.newItemOrder
         self.present(catalogViewController!, animated: true, completion: nil)
         
     }

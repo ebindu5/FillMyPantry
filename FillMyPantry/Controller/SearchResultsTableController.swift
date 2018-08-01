@@ -12,7 +12,7 @@ import RxSwift
 import RxCocoa
 
 class SearchResultsTableController : UITableViewController {
-   
+    
     var groceryCatalog = [Grocery]()
     var filteredItems = [String]()
     var shoppingListID : String!
@@ -41,7 +41,7 @@ extension SearchResultsTableController : UISearchResultsUpdating {
             filteredItems.removeAll(keepingCapacity: false)
             
             filteredItems = SearchDAO.getSearchResults(groceryCatalog, (text?.trimmingCharacters(in: CharacterSet(charactersIn: " ")))!)
-
+            
             tableView.reloadData()
         }
         else {
@@ -64,16 +64,15 @@ extension SearchResultsTableController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "searchResultCell", for: indexPath as IndexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "searchResultCell", for: indexPath as IndexPath) as? searchResultCell
         let selectedItem = filteredItems[indexPath.row]
-        cell.textLabel?.text = selectedItem
-        cell.detailTextLabel?.text = ""
-        
-        return cell
+        cell?.textCell.text = selectedItem
+
+        return cell!
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        tableView.deselectRow(at: indexPath, animated: true)
         FirebaseDAO.addItemToShoppingList(shoppingListID, filteredItems[indexPath.row], order).subscribe()
         
         self.dismiss(animated: true, completion: nil)

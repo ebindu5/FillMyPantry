@@ -20,8 +20,7 @@ class CatalogViewController : UIViewController {
     
     var categoriesViewController:CategoriesViewController?
     var ABCviewVontroller : ABCViewController?
-    
-
+    var order : Int!
     
     var shoppingListId : String!
     var shoppingListItems : [Item]!
@@ -30,11 +29,13 @@ class CatalogViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
-        segmentController.setTitleTextAttributes(titleTextAttributes, for: .normal)
-        segmentController.setTitleTextAttributes(titleTextAttributes, for: .selected)
+        let titleTextAttributes_normal = [NSAttributedStringKey.foregroundColor: UIColor.black]
+        let titleTextAttributes_selected = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        segmentController.setTitleTextAttributes(titleTextAttributes_normal, for: .normal)
+        segmentController.setTitleTextAttributes(titleTextAttributes_selected, for: .selected)
         segmentController.tintColor = Constants.THEME_COLOR
         doneButton.tintColor = Constants.THEME_COLOR
+    
 
         categoriesContentView.isHidden = false
         ABCContentView.isHidden = true
@@ -47,13 +48,12 @@ class CatalogViewController : UIViewController {
         
         if let vc = segue.destination as? ABCViewController {
             ABCviewVontroller = vc
-            ABCviewVontroller?.segmentViewController = self
+            ABCviewVontroller?.catalogViewController = self
         }
         
         if let vc = segue.destination as? CategoriesViewController {
             categoriesViewController = vc
             categoriesViewController?.catalogViewController = self
-            
         }
     }
 
@@ -73,14 +73,9 @@ class CatalogViewController : UIViewController {
         case 0:
             categoriesContentView.isHidden = false
             ABCContentView.isHidden = true
-//            categoriesViewController?.view.isHidden = false
-//            ABCviewVontroller?.view.isHidden = true
         case 1:
             categoriesContentView.isHidden = true
             ABCContentView.isHidden = false
-            
-//            categoriesViewController?.view.isHidden = true
-//            ABCviewVontroller?.view.isHidden = false
         default:
             break
         }

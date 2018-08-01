@@ -135,9 +135,9 @@ class HomeViewController : UITableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 55
-    }
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 55
+//    }
     
     func activityIndicator() {
         indicator = UIActivityIndicatorView(frame: CGRect(x:0, y:0, width:80,height: 80))
