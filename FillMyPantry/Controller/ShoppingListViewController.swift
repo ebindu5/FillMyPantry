@@ -161,10 +161,6 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
         }
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 55
-    }
-    
     
 }
 
@@ -200,6 +196,7 @@ extension ShoppingListViewController{
         searchController = UISearchController(searchResultsController: searchResultsTableController)
         searchController.searchResultsUpdater = searchResultsTableController
         searchController.dimsBackgroundDuringPresentation = true
+        searchController.view.backgroundColor = UIColor.init(red: 51 / 255.0, green: 51 / 255.0, blue: 51 / 255.0, alpha: 0.55)
         searchController.hidesNavigationBarDuringPresentation = true
         searchController.searchBar.delegate = self
         searchController.searchBar.showsBookmarkButton = true

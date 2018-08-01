@@ -23,7 +23,7 @@ class SearchResultsTableController : UITableViewController {
         super.viewDidLoad()
         tableView.backgroundColor = UIColor.clear
         self.automaticallyAdjustsScrollViewInsets = false
-        
+        tableView.tableFooterView = UIView(frame: .zero)
         GroceryCatalog.getGroceryCatalog().subscribe(){ event in
             if let catalog = event.element{
                 self.groceryCatalog = catalog
