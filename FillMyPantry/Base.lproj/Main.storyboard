@@ -288,10 +288,10 @@
                                 <rect key="frame" x="0.0" y="618" width="375" height="49"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
-                                    <tabBarItem title="Rename" image="icon_rename" id="yAp-BH-ytC"/>
+                                    <tabBarItem title="Rename" image="icon_edit" id="yAp-BH-ytC"/>
                                     <tabBarItem title="Share" image="icon_share" id="gIE-Hl-k4r"/>
                                     <tabBarItem title="Clear" image="icon_clear" id="rnW-U4-TLm"/>
-                                    <tabBarItem title="Delete" image="icon_trash" id="bo9-Oy-Bsz"/>
+                                    <tabBarItem title="Delete" image="icon_delete" id="bo9-Oy-Bsz"/>
                                 </items>
                                 <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                             </tabBar>
@@ -626,10 +626,10 @@
         <image name="icon_checkbox_empty" width="16" height="16"/>
         <image name="icon_checkbox_filled" width="16" height="16"/>
         <image name="icon_clear" width="14" height="14"/>
+        <image name="icon_delete" width="14" height="18"/>
+        <image name="icon_edit" width="18" height="18"/>
         <image name="icon_list" width="20" height="14"/>
         <image name="icon_plus" width="15" height="14"/>
-        <image name="icon_rename" width="23" height="23"/>
-        <image name="icon_share" width="20" height="27"/>
-        <image name="icon_trash" width="20" height="26"/>
+        <image name="icon_share" width="18" height="20"/>
     </resources>
 </document>

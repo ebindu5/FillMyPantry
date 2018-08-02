@@ -32,9 +32,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
         FirebaseApp.configure()
         FirebaseAuthDAO.logOutUserOnFreshInstall()
+        
         Constants.dbRef = Firestore.firestore()
         let settings = Constants.dbRef.settings
         settings.areTimestampsInSnapshotsEnabled = true
+        settings.isPersistenceEnabled = true
         Constants.dbRef.settings = settings
         
         if let currentUser = Auth.auth().currentUser {
