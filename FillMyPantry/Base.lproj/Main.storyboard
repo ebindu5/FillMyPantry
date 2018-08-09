@@ -441,13 +441,12 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="Gey-jQ-VG1" userLabel="Stack View2">
                                                     <rect key="frame" x="325" y="0.0" width="20" height="20.5"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HAD-rI-Re6">
+                                                        <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HAD-rI-Re6">
                                                             <rect key="frame" x="0.0" y="0.0" width="20" height="20.5"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="ers-iV-NFr"/>
                                                                 <constraint firstAttribute="width" constant="20" id="jR3-6v-Icg"/>
                                                             </constraints>
-                                                            <state key="normal" image="circleAddIcon"/>
                                                         </button>
                                                     </subviews>
                                                 </stackView>
@@ -589,7 +588,6 @@
                                                                 <constraint firstAttribute="height" constant="20" id="Fer-o2-NGK"/>
                                                                 <constraint firstAttribute="width" constant="20" id="GUl-JR-dPh"/>
                                                             </constraints>
-                                                            <state key="normal" image="circleAddIcon"/>
                                                         </button>
                                                     </subviews>
                                                 </stackView>

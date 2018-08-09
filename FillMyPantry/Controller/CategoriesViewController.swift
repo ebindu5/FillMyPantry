@@ -20,7 +20,6 @@ class  CategoriesViewController : UITableViewController{
     
     var catalogViewController = CatalogViewController()
     var shoppingListId : String!
-    var shoppingListItems : [Item]!
     var groceryCatalog = [[String]]()
     var grocerySection = [String]()
     var expandData = [NSMutableDictionary]()
@@ -31,14 +30,14 @@ class  CategoriesViewController : UITableViewController{
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshTable), name: NSNotification.Name(rawValue: "refresh"), object: nil)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         var groceryMap = [String: [String]]()
         shoppingListId = catalogViewController.shoppingListId
-//        shoppingListItems = catalogViewController.shoppingListItems
-        
         if let catalog = catalogViewController.groceryCatalog {
             for grocery in catalog {
                 if groceryMap[grocery.category] != nil {
@@ -56,10 +55,8 @@ class  CategoriesViewController : UITableViewController{
         }
         
         for i in 0..<grocerySection.count {
-            //            myBoolean.append(false)
             tableViewData.append(cellData(opened: true, title: grocerySection[i], sectionData: groceryCatalog[i]))
         }
-        
         
         
     }
@@ -87,26 +84,22 @@ class  CategoriesViewController : UITableViewController{
             }
             
             cell.textLabel?.text = tableViewData[indexPath.section].title
-//            if cell.isSelected {
-//                cell.accessoryView = UIImageView(image: UIImage(named: "icon_left"))
-//            } else{
-//                cell.accessoryView = UIImageView(image: UIImage(named: "icon_right_arrow"))
-//            }
-            
             return cell
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "CategoriesCell", for: indexPath) as! searchResultCell
-            
-            cell.textCell.text = tableViewData[indexPath.section].sectionData[indexPath.row - 1]
-            cell.addButton.imageView?.image = UIImage(named: "icon_plus")
+            let groceryName = tableViewData[indexPath.section].sectionData[indexPath.row - 1]
+            cell.textCell.text = groceryName
+            if catalogViewController.shoppingListItems.contains(groceryName){
+                cell.addButton.setImage(UIImage(named: "icon_done"), for: .normal)
+            }else{
+                cell.addButton.setImage(UIImage(named: "circleAddIcon"), for: .normal)
+            }
             return cell
         }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (indexPath.row == 0) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SectionCell")
-            
             if tableViewData[indexPath.section].opened == true {
                 
                 tableViewData[indexPath.section].opened = false
@@ -118,19 +111,46 @@ class  CategoriesViewController : UITableViewController{
                 tableView.reloadSections(sections, with: .fade)
             }
         } else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CategoriesCell") as? searchResultCell
+            
             tableView.deselectRow(at: indexPath, animated: true)
             FirebaseDAO.addItemToShoppingList(shoppingListId, tableViewData[indexPath.section].sectionData[indexPath.row - 1], catalogViewController.order).subscribe()
             catalogViewController.order = catalogViewController.order + 1
-            cell.addButton.imageView?.image = UIImage(named: "icon_plus")
-            if catalogViewController.shoppingListItems != nil {
-                catalogViewController.shoppingListItems.append(tableViewData[indexPath.section].sectionData[indexPath.row - 1])
-            }else{
-                catalogViewController.shoppingListItems = [tableViewData[indexPath.section].sectionData[indexPath.row - 1]]
-            }
+            catalogViewController.shoppingListItems.append(tableViewData[indexPath.section].sectionData[indexPath.row - 1])
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refresh"), object: nil, userInfo: nil)
         }
-        tableView.reloadData()
     }
     
+    
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        
+        if  isGroceryItemPresent(indexPath){
+            return nil
+        } else{
+            return indexPath
+        }
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return !isGroceryItemPresent(indexPath)
+    }
+    
+    @objc func refreshTable(notification: NSNotification) {
+        self.tableView.reloadData()
+    }
+    
+    func isGroceryItemPresent(_ indexPath : IndexPath)-> Bool{
+        if indexPath.row != 0 {
+            let groceryName = tableViewData[indexPath.section].sectionData[indexPath.row - 1]
+            if catalogViewController.shoppingListItems.contains(groceryName){
+                return true
+            } else{
+                return false
+            }
+        }else{
+            return false
+        }
+        
+    }
     
 }

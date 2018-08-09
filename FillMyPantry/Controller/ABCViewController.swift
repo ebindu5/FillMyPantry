@@ -13,23 +13,21 @@ class  ABCViewController : UITableViewController{
     
     var catalogViewController = CatalogViewController()
     var shoppingListId : String!
-    var shoppingListItems : [Item]!
     var groceryItems = [String]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.estimatedRowHeight = 44.0
         tableView.rowHeight = UITableViewAutomaticDimension
-      
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshTable), name: NSNotification.Name(rawValue: "refresh"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         shoppingListId = catalogViewController.shoppingListId
-//        shoppingListItems = catalogViewController.shoppingListItems
-        
         if let groceryCatalog = catalogViewController.groceryCatalog {
             groceryItems = groceryCatalog.map {$0.name}.sorted()
         }
@@ -43,7 +41,13 @@ class  ABCViewController : UITableViewController{
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ABCTableCell", for: indexPath) as! searchResultCell
-        cell.textCell.text = groceryItems[indexPath.row]
+        let groceryName = groceryItems[indexPath.row]
+        cell.textCell.text = groceryName
+        if catalogViewController.shoppingListItems.contains(groceryName){
+            cell.addButton.setImage(UIImage(named: "icon_done"), for: .normal)
+        }else{
+            cell.addButton.setImage(UIImage(named: "circleAddIcon"), for: .normal)
+        }
         return cell
     }
     
@@ -55,6 +59,38 @@ class  ABCViewController : UITableViewController{
         tableView.deselectRow(at: indexPath, animated: true)
         FirebaseDAO.addItemToShoppingList(shoppingListId,groceryItems[indexPath.row], catalogViewController.order).subscribe()
         catalogViewController.order = catalogViewController.order + 1
+        catalogViewController.shoppingListItems.append(groceryItems[indexPath.row])
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refresh"), object: nil, userInfo: nil)
     }
     
+    
+    
+    
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        
+        if  isGroceryItemPresent(indexPath){
+            return nil
+        } else{
+            return indexPath
+        }
+        
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return !isGroceryItemPresent(indexPath)
+    }
+    
+    @objc func refreshTable(notification: NSNotification) {
+        self.tableView.reloadData()
+    }
+    
+    func isGroceryItemPresent(_ indexPath : IndexPath)-> Bool{
+        let groceryName = groceryItems[indexPath.row]
+        if catalogViewController.shoppingListItems.contains(groceryName){
+            return true
+        } else{
+            return false
+        }
+    }
 }

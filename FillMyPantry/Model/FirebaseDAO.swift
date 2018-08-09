@@ -191,9 +191,14 @@ class FirebaseDAO {
             shoppingListObservableList.append(getShoppingListFromDocRef(documentReference))
         }
         
-        return Observable.zip(shoppingListObservableList){ shoppingLists in
-            return shoppingLists
+        if shoppingListObservableList.count == 0 {
+            return Observable.just([])
+        }else{
+            return Observable.zip(shoppingListObservableList){ shoppingLists in
+                return shoppingLists
+            }
         }
+       
     }
     
     private static  func deleteShoppingList(_ documentID : String)->Observable<DocumentReference>{

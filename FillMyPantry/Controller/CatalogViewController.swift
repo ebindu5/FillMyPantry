@@ -12,7 +12,7 @@ import RxSwift
 import RxCocoa
 
 class CatalogViewController : UIViewController {
-
+    
     @IBOutlet weak var segmentController : UISegmentedControl!
     @IBOutlet weak var categoriesContentView: UIView!
     @IBOutlet weak var ABCContentView: UIView!
@@ -23,7 +23,7 @@ class CatalogViewController : UIViewController {
     var order : Int!
     
     var shoppingListId : String!
-    var shoppingListItems : [String]!
+    var shoppingListItems = [String]()
     var groceryCatalog : [Grocery]!
     
     
@@ -35,16 +35,17 @@ class CatalogViewController : UIViewController {
         segmentController.setTitleTextAttributes(titleTextAttributes_selected, for: .selected)
         segmentController.tintColor = Constants.THEME_COLOR
         doneButton.tintColor = Constants.THEME_COLOR
-    
-
+        
+        
         categoriesContentView.isHidden = false
         ABCContentView.isHidden = true
-
+        
     }
     
-
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
+        
         
         if let vc = segue.destination as? ABCViewController {
             ABCviewVontroller = vc
@@ -56,7 +57,7 @@ class CatalogViewController : UIViewController {
             categoriesViewController?.catalogViewController = self
         }
     }
-
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -68,7 +69,7 @@ class CatalogViewController : UIViewController {
         
     }
     
-   @IBAction func segmentChanged(_ sender: UISegmentedControl) {
+    @IBAction func segmentChanged(_ sender: UISegmentedControl) {
         switch segmentController.selectedSegmentIndex {
         case 0:
             categoriesContentView.isHidden = false
@@ -87,6 +88,6 @@ class CatalogViewController : UIViewController {
     }
     
     
-
+    
     
 }
