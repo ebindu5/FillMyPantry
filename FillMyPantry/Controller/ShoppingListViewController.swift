@@ -179,7 +179,6 @@ extension ShoppingListViewController {
     func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
         let catalogViewController = storyboard?.instantiateViewController(withIdentifier: "CatalogViewController") as? CatalogViewController
         catalogViewController?.shoppingListId = shoppingListId
-//        catalogViewController?.shoppingListItems = shoppingListTableData.uncompletedItems
         catalogViewController?.order = shoppingListTableData.newItemOrder
         self.present(catalogViewController!, animated: true, completion: nil)
         

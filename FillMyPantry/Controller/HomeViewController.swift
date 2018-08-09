@@ -20,7 +20,7 @@ class HomeViewController : UITableViewController {
     
     var indicator = UIActivityIndicatorView()
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         activityIndicator()
@@ -75,8 +75,6 @@ class HomeViewController : UITableViewController {
             } else{
                 cell.count.text = "0"
             }
-            
-            
             return cell
         }
         
@@ -84,7 +82,7 @@ class HomeViewController : UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        
         if indexPath.row ==  shoppingLists?.count ?? 0 {
             
             if (shoppingLists?.count ?? 0) == Constants.MAX_SHOPPING_LIST_COUNT{
@@ -95,28 +93,19 @@ class HomeViewController : UITableViewController {
                 
                 FirebaseDAO.createShoppingList().subscribe { event in
                     if let id = event.element {
-                        let shoppingListViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShoppingListViewController") as! ShoppingListViewController
-                        shoppingListViewController.shoppingListId = id
-                        self.navigationController?.pushViewController(shoppingListViewController, animated: true)
+                        self.navigateToShoppingListViewController(id)
                     }
                 }
             }
-
-        } else{
-            let shoppingListViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShoppingListViewController") as! ShoppingListViewController
             
-            shoppingListViewController.shoppingListId = shoppingLists[indexPath.row].id
-            let backItem = UIBarButtonItem()
-            backItem.title = ""
-            navigationItem.backBarButtonItem = backItem
-            navigationItem.backBarButtonItem?.tintColor = Constants.THEME_COLOR
-            self.navigationController?.pushViewController(shoppingListViewController, animated: true)
+        } else{
+            navigateToShoppingListViewController(shoppingLists[indexPath.row].id)
         }
         
         
     }
     
-    
+
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         if indexPath.row ==  shoppingLists?.count ?? 0 {
             return false
@@ -130,7 +119,9 @@ class HomeViewController : UITableViewController {
             FirebaseDAO.updateShoppingList(shoppingLists[indexPath.row].id).subscribe(){ event in
                 if let success = event.element, success == true {
                     self.shoppingLists.remove(at: indexPath.row)
-                    tableView.reloadData()
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
                 }
             }
             
@@ -138,13 +129,24 @@ class HomeViewController : UITableViewController {
     }
     
     
-    func activityIndicator() {
+    private func activityIndicator() {
         indicator = UIActivityIndicatorView(frame: CGRect(x:0, y:0, width:80,height: 80))
         self.indicator.transform = CGAffineTransform(scaleX: 2, y: 2)
         indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
         indicator.hidesWhenStopped = true
         indicator.center = self.view.center
         self.view.addSubview(indicator)
+    }
+    
+    private func navigateToShoppingListViewController(_ id : String){
+        let shoppingListViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShoppingListViewController") as! ShoppingListViewController
+        
+        shoppingListViewController.shoppingListId = id
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationItem.backBarButtonItem = backItem
+        navigationItem.backBarButtonItem?.tintColor = Constants.THEME_COLOR
+        self.navigationController?.pushViewController(shoppingListViewController, animated: true)
     }
     
 }

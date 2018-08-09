@@ -51,11 +51,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 case .error(let error): print(error)
                 }
             }
-//
-//
-//
-//            FirebaseAuthDAO.anonymousUserInstantiation().subscribe {
-//
         }
 
         return true
