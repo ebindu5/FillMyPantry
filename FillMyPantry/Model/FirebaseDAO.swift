@@ -34,7 +34,12 @@ class FirebaseDAO {
         
         return Observable.zip(createNewShoppingListDocument(), getShoppingListRefsForUser()){ (newDocumentReference, exisitingDocumentReferences) in
             var existingDocs = exisitingDocumentReferences
-            existingDocs.append(newDocumentReference)
+            if existingDocs != nil {
+                existingDocs.append(newDocumentReference)
+            }else{
+                existingDocs = [newDocumentReference]
+            }
+            
             db?.collection("Users").document(Constants.UID).setData(["shoppingLists" : existingDocs], merge: true)
             return newDocumentReference.documentID
         }
@@ -85,9 +90,8 @@ class FirebaseDAO {
                     }else{
                         observer.onNext([])
                     }
-//                    observer.onCompleted()
                 } else {
-                    observer.onError(NSError(domain: FirestoreErrorDomain, code: FirestoreErrorCode.notFound.rawValue, userInfo: nil))
+                    observer.onNext([])
                 }
             }
             return Disposables.create()

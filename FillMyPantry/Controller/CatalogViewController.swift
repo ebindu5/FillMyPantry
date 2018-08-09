@@ -23,7 +23,7 @@ class CatalogViewController : UIViewController {
     var order : Int!
     
     var shoppingListId : String!
-    var shoppingListItems : [Item]!
+    var shoppingListItems : [String]!
     var groceryCatalog : [Grocery]!
     
     

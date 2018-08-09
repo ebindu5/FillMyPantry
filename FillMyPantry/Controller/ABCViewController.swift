@@ -28,7 +28,7 @@ class  ABCViewController : UITableViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         shoppingListId = catalogViewController.shoppingListId
-        shoppingListItems = catalogViewController.shoppingListItems
+//        shoppingListItems = catalogViewController.shoppingListItems
         
         if let groceryCatalog = catalogViewController.groceryCatalog {
             groceryItems = groceryCatalog.map {$0.name}.sorted()

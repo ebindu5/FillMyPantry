@@ -37,7 +37,7 @@ class  CategoriesViewController : UITableViewController{
         super.viewWillAppear(animated)
         var groceryMap = [String: [String]]()
         shoppingListId = catalogViewController.shoppingListId
-        shoppingListItems = catalogViewController.shoppingListItems
+//        shoppingListItems = catalogViewController.shoppingListItems
         
         if let catalog = catalogViewController.groceryCatalog {
             for grocery in catalog {
@@ -87,12 +87,18 @@ class  CategoriesViewController : UITableViewController{
             }
             
             cell.textLabel?.text = tableViewData[indexPath.section].title
-            //             cell.accessoryView = UIImageView(image: UIImage(named: "icon_right_arrow"))
+//            if cell.isSelected {
+//                cell.accessoryView = UIImageView(image: UIImage(named: "icon_left"))
+//            } else{
+//                cell.accessoryView = UIImageView(image: UIImage(named: "icon_right_arrow"))
+//            }
+            
             return cell
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "CategoriesCell", for: indexPath) as! searchResultCell
             
             cell.textCell.text = tableViewData[indexPath.section].sectionData[indexPath.row - 1]
+            cell.addButton.imageView?.image = UIImage(named: "icon_plus")
             return cell
         }
     }
@@ -112,10 +118,18 @@ class  CategoriesViewController : UITableViewController{
                 tableView.reloadSections(sections, with: .fade)
             }
         } else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CategoriesCell") as? searchResultCell
             tableView.deselectRow(at: indexPath, animated: true)
             FirebaseDAO.addItemToShoppingList(shoppingListId, tableViewData[indexPath.section].sectionData[indexPath.row - 1], catalogViewController.order).subscribe()
             catalogViewController.order = catalogViewController.order + 1
+            cell.addButton.imageView?.image = UIImage(named: "icon_plus")
+            if catalogViewController.shoppingListItems != nil {
+                catalogViewController.shoppingListItems.append(tableViewData[indexPath.section].sectionData[indexPath.row - 1])
+            }else{
+                catalogViewController.shoppingListItems = [tableViewData[indexPath.section].sectionData[indexPath.row - 1]]
+            }
         }
+        tableView.reloadData()
     }
     
     
