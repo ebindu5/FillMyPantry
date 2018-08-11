@@ -172,8 +172,8 @@
 				907F78D520E427580060A809 /* Sources */,
 				907F78D620E427580060A809 /* Frameworks */,
 				907F78D720E427580060A809 /* Resources */,
-				902F50EB20E4317A00BFDF3D /* ShellScript */,
 				5A100DF8A784BE7F8C461AF1 /* [CP] Copy Pods Resources */,
+				902F50EB20E4317A00BFDF3D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -270,7 +270,7 @@
 		};
 		902F50EB20E4317A00BFDF3D /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (

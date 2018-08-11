@@ -287,7 +287,7 @@ extension ShoppingListViewController : UITabBarDelegate {
         let firstActivityItem = getShareListText()
         let activityViewController : UIActivityViewController = UIActivityViewController(
             activityItems: [firstActivityItem], applicationActivities: nil)
-
+        
         if let popOver = activityViewController.popoverPresentationController {
             popOver.sourceView = self.view
         }
@@ -313,21 +313,24 @@ extension ShoppingListViewController : UITabBarDelegate {
     
     func removeShoppingList(){
         
-        let alert = UIAlertController(title: "Delete Shopping List", message: "Would you like to delete \(shoppingListTableData.title) ?", preferredStyle: UIAlertControllerStyle.alert)
-        
-        let yesAction = UIAlertAction(title: "Yes", style: .default) { (alertAction) in
-            FirebaseDAO.updateShoppingList(self.shoppingListId).subscribe(){ event in
-                if let success = event.element, success == true {
-                    self.navigationController?.popViewController(animated: true)
+        if Reachability.isConnectedToNetwork(){
+            let alert = UIAlertController(title: "Delete Shopping List", message: "Would you like to delete \(shoppingListTableData.title) ?", preferredStyle: UIAlertControllerStyle.alert)
+            
+            let yesAction = UIAlertAction(title: "Yes", style: .default) { (alertAction) in
+                FirebaseDAO.updateShoppingList(self.shoppingListId).subscribe(){ event in
+                    if let success = event.element, success == true {
+                        self.navigationController?.popViewController(animated: true)
+                    }
                 }
             }
+            alert.addAction(yesAction)
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
+            
+            self.present(alert, animated: true, completion: nil)
+            
+        }else{
+            Reachability.showNetworkUnavailableDialog(self)
         }
-        alert.addAction(yesAction)
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
-        
-        self.present(alert, animated: true, completion: nil)
-        
-        
     }
     
     

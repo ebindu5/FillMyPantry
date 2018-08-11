@@ -64,7 +64,7 @@ class  ABCViewController : UITableViewController{
     
     fileprivate func addItem(_ indexPath: NSIndexPath){
         FirebaseDAO.addItemToShoppingList(shoppingListId,groceryItems[indexPath.row], catalogViewController.order).subscribe(){ event in
-            if let element = event.element {
+            if event.element != nil {
                 self.catalogViewController.count = self.catalogViewController.count + 1
                 FirebaseDAO.updateShoppingListItemCount(self.shoppingListId, self.catalogViewController.count)
             }

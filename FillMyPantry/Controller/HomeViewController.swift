@@ -24,12 +24,6 @@ class HomeViewController : UITableViewController {
         super.viewDidLoad()
         activityIndicator()
         tableView.tableFooterView = UIView(frame: .zero)
-        
-        //        if !Reachability.isNetworkConnectionAvailble() {
-        //            self.performSegue(withIdentifier: "NoNetworkViewController", sender: self)
-        //        }
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,7 +74,7 @@ class HomeViewController : UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row ==  shoppingLists?.count ?? 0 {
             
             if (shoppingLists?.count ?? 0) == Constants.MAX_SHOPPING_LIST_COUNT{
@@ -88,11 +82,14 @@ class HomeViewController : UITableViewController {
                 alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }else{
-                
-                FirebaseDAO.createShoppingList().subscribe { event in
-                    if let id = event.element {
-                        self.navigateToShoppingListViewController(id)
+                if Reachability.isConnectedToNetwork(){
+                    FirebaseDAO.createShoppingList().subscribe { event in
+                        if let id = event.element {
+                            self.navigateToShoppingListViewController(id)
+                        }
                     }
+                }else{
+                   Reachability.showNetworkUnavailableDialog(self)
                 }
             }
             
@@ -113,11 +110,15 @@ class HomeViewController : UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
-            FirebaseDAO.updateShoppingList(shoppingLists[indexPath.row].id).subscribe(){ event in
-                if let success = event.element, success == true {
-                    self.shoppingLists.remove(at: indexPath.row)
-                    self.tableView.reloadData()
+            if Reachability.isConnectedToNetwork(){
+                FirebaseDAO.updateShoppingList(shoppingLists[indexPath.row].id).subscribe(){ event in
+                    if let success = event.element, success == true {
+                        self.shoppingLists.remove(at: indexPath.row)
+                        self.tableView.reloadData()
+                    }
                 }
+            }else{
+               Reachability.showNetworkUnavailableDialog(self)
             }
             
         }
