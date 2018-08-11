@@ -35,17 +35,8 @@ class FirebaseDAO {
     
     static func createShoppingList()->Observable<String> {
         
-        //        return Observable.zip(createNewShoppingListDocument(), getShoppingListRefsForUser()){ (newDocumentReference, exisitingDocumentReferences) in
-        //            var existingDocs = exisitingDocumentReferences
-        //            existingDocs.append(newDocumentReference)
-        //            db?.collection("users").document(Constants.UID).setData(["shoppingLists" : existingDocs], merge: true)
-        //            return newDocumentReference.documentID
-        //        }
-        //
-        
         return Observable.zip(createNewShoppingListDocument(), getShoppingListRefsForUser()){ (newDocumentReference, exisitingDocumentReferences) in
             var existingDocs = exisitingDocumentReferences
-
             if existingDocs.count != 0 {
                 existingDocs.append(newDocumentReference)
             }else{
@@ -96,16 +87,7 @@ class FirebaseDAO {
                     observer.onError(error)
                 } else if let documentSnapShot = documentSnapShot, documentSnapShot.exists {
                     if let data = documentSnapShot.data() {
-                        var shoppingLists: [DocumentReference]!
-                        let shoppingListsObject = data["shoppingLists"] as! [String:Any]
-                        
-                        for list in shoppingListsObject {
-                            if shoppingLists != nil {
-                                shoppingLists.append((db?.document(list.key))!)
-                            }else{
-                                shoppingLists = [(db?.document(list.key))!]
-                            }
-                        }
+                        let shoppingLists = data["shoppingLists"] as! [DocumentReference]
                         observer.onNext(shoppingLists)
                     }else{
                         observer.onNext([])
@@ -250,7 +232,7 @@ class FirebaseDAO {
                 if let error = error {
                     observer.onError("Error removing document: \(error)" as! Error)
                 } else {
-//                    self.deleteItemSubCollection(documentID, 10)
+                    //                    self.deleteItemSubCollection(documentID, 10)
                     observer.onNext(documentReference)
                 }
             }
@@ -330,7 +312,7 @@ class FirebaseDAO {
                 }
             }
             return  Disposables.create()
-        } 
+        }
     }
     
     
@@ -361,6 +343,7 @@ class FirebaseDAO {
     }
     
 }
+
 
 
 
