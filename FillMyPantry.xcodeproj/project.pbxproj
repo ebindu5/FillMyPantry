@@ -25,6 +25,7 @@
 		909F837D210D2C1E00A50979 /* SearchDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909F837C210D2C1E00A50979 /* SearchDAO.swift */; };
 		90D2162020F7D420008FCC7B /* ShoppingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D2161F20F7D420008FCC7B /* ShoppingListViewController.swift */; };
 		90D2162620F80AEC008FCC7B /* ShoppingListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D2162520F80AEC008FCC7B /* ShoppingListItemCell.swift */; };
+		90FC0C5D211EC40300CDA8C2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90FC0C5C211EC40300CDA8C2 /* Images.xcassets */; };
 		90FD2CAD210163AD0037D56D /* GroceryCatlog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FD2CAC210163AD0037D56D /* GroceryCatlog.swift */; };
 		90FD2CAF210194EF0037D56D /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FD2CAE210194EF0037D56D /* test.swift */; };
 		90FD2CB1210681D80037D56D /* SearchResultsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FD2CB0210681D80037D56D /* SearchResultsTableController.swift */; };
@@ -56,6 +57,7 @@
 		909F837C210D2C1E00A50979 /* SearchDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDAO.swift; sourceTree = "<group>"; };
 		90D2161F20F7D420008FCC7B /* ShoppingListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewController.swift; sourceTree = "<group>"; };
 		90D2162520F80AEC008FCC7B /* ShoppingListItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListItemCell.swift; sourceTree = "<group>"; };
+		90FC0C5C211EC40300CDA8C2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		90FD2CAC210163AD0037D56D /* GroceryCatlog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryCatlog.swift; sourceTree = "<group>"; };
 		90FD2CAE210194EF0037D56D /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		90FD2CB0210681D80037D56D /* SearchResultsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsTableController.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				907F78E320E427590060A809 /* Assets.xcassets */,
 				907F78E520E427590060A809 /* LaunchScreen.storyboard */,
 				907F78E820E427590060A809 /* Info.plist */,
+				90FC0C5C211EC40300CDA8C2 /* Images.xcassets */,
 			);
 			path = FillMyPantry;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				907F78EF20E42B380060A809 /* GoogleService-Info.plist in Resources */,
+				90FC0C5D211EC40300CDA8C2 /* Images.xcassets in Resources */,
 				907F78E720E427590060A809 /* LaunchScreen.storyboard in Resources */,
 				907F78E420E427590060A809 /* Assets.xcassets in Resources */,
 				907F78E220E427580060A809 /* Main.storyboard in Resources */,
@@ -449,6 +453,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 89FAE15742D291E87C5670DF /* Pods-FillMyPantry.debug.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TLC9XD328V;
 				INFOPLIST_FILE = FillMyPantry/Info.plist;
@@ -468,6 +474,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 24FADCA54D5627AC837F9AB7 /* Pods-FillMyPantry.release.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TLC9XD328V;
 				INFOPLIST_FILE = FillMyPantry/Info.plist;

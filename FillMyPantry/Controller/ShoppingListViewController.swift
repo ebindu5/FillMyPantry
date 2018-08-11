@@ -81,11 +81,11 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
                 if let shoppingData = event.element {
                     self.shoppingListTableData = shoppingData
                     self.noItemsText.isHidden = !( shoppingData.completedItems.count == 0 && shoppingData.uncompletedItems.count == 0 )
-                   
+                    
                     self.count = shoppingData.count
                     self.configureNavigationBar()
                     self.configureSearchController()
-                     self.searchResultsTableController.order = shoppingData.newItemOrder
+                    self.searchResultsTableController.order = shoppingData.newItemOrder
                     self.searchResultsTableController.count = self.count
                     self.tableView.reloadData()
                 }
@@ -166,7 +166,7 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
             Constants.showCompletedItems = !Constants.showCompletedItems
             tableView.reloadData()
         } else if indexPath.row < shoppingListTableData.uncompletedItems.count { // Uncompleted List Items
-
+            
             
             FirebaseDAO.updateShoppingListItem(shoppingListTableData.uncompletedItems[indexPath.row].id, true, -1)
             
@@ -175,7 +175,7 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
         }
     }
     
-
+    
     
 }
 
@@ -313,7 +313,7 @@ extension ShoppingListViewController : UITabBarDelegate {
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
         
         self.present(alert, animated: true, completion: nil)
- 
+        
     }
     
     func removeShoppingList(){

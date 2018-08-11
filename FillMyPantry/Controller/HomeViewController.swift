@@ -72,7 +72,7 @@ class HomeViewController : UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ShoppingCell", for: indexPath) as! ShoppingCell
             cell.listName.text = shoppingLists[indexPath.row].name
             cell.count.text = String(shoppingLists[indexPath.row].count)
-           
+            
             return cell
         }
         

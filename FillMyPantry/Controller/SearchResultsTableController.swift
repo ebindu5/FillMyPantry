@@ -22,7 +22,6 @@ class SearchResultsTableController : UITableViewController {
     
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         tableView.backgroundColor = UIColor.clear
         self.automaticallyAdjustsScrollViewInsets = false
@@ -66,14 +65,14 @@ extension SearchResultsTableController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "searchResultCell", for: indexPath as IndexPath) as? searchResultCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "searchResultCell", for: indexPath as IndexPath) as! searchResultCell
         let selectedItem = filteredItems[indexPath.row]
-        cell?.textCell.text = selectedItem
-        cell?.onButtonTapped = {
+        cell.textCell.text = selectedItem
+        cell.onButtonTapped = {
             self.addItemtoShoppingList(indexPath)
         }
         
-        return cell!
+        return cell
     }
     
     fileprivate func addItemtoShoppingList(_ indexPath: IndexPath) {

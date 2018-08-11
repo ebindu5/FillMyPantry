@@ -35,8 +35,6 @@ class CatalogViewController : UIViewController {
         segmentController.setTitleTextAttributes(titleTextAttributes_selected, for: .selected)
         segmentController.tintColor = Constants.THEME_COLOR
         doneButton.tintColor = Constants.THEME_COLOR
-        
-        
         categoriesContentView.isHidden = false
         ABCContentView.isHidden = true
         
@@ -45,8 +43,6 @@ class CatalogViewController : UIViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        
         if let vc = segue.destination as? ABCViewController {
             ABCviewVontroller = vc
             ABCviewVontroller?.catalogViewController = self

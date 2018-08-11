@@ -89,14 +89,14 @@ class  CategoriesViewController : UITableViewController{
             let cell = tableView.dequeueReusableCell(withIdentifier: "CategoriesCell", for: indexPath) as! searchResultCell
             let groceryName = tableViewData[indexPath.section].sectionData[indexPath.row - 1]
             cell.textCell.text = groceryName
-
-             cell.addButton.addTarget(self, action: #selector(CategoriesViewController.addItemtoShoppingList(_:)), for: .touchUpInside)
+            
+            cell.addButton.addTarget(self, action: #selector(CategoriesViewController.addItemtoShoppingList(_:)), for: .touchUpInside)
             cell.addButton.tag = (indexPath.section*100)+indexPath.row
             if catalogViewController.shoppingListItems.contains(groceryName){
                 cell.addButton.setImage(UIImage(named: "icon_done"), for: .normal)
-                }else{
+            }else{
                 cell.addButton.setImage(UIImage(named: "circleAddIcon"), for: .normal)
-               
+                
             }
             return cell
         }
