@@ -44,22 +44,22 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="GRO-7H-XLg">
-                                            <rect key="frame" x="15" y="17" width="345" height="20.5"/>
+                                            <rect key="frame" x="15" y="17" width="570" height="20.5"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="vN7-uf-HAh">
-                                                    <rect key="frame" x="0.0" y="0.0" width="345" height="20.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="570" height="20.5"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_list" translatesAutoresizingMaskIntoConstraints="NO" id="No2-KL-Mb1">
                                                             <rect key="frame" x="0.0" y="0.0" width="20" height="20.5"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="My Shopping List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wBS-9t-0dv">
-                                                            <rect key="frame" x="35" y="0.0" width="284.5" height="20.5"/>
+                                                            <rect key="frame" x="35" y="0.0" width="509.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3vt-cp-Pl1">
-                                                            <rect key="frame" x="334.5" y="0.0" width="10.5" height="20.5"/>
+                                                            <rect key="frame" x="559.5" y="0.0" width="10.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <color key="highlightedColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -90,7 +90,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="hJj-Cz-Ee3">
-                                            <rect key="frame" x="15" y="17" width="345" height="20.5"/>
+                                            <rect key="frame" x="15" y="17" width="570" height="20.5"/>
                                             <subviews>
                                                 <imageView contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_plus" translatesAutoresizingMaskIntoConstraints="NO" id="Jfl-8f-jvY">
                                                     <rect key="frame" x="0.0" y="0.0" width="20" height="20.5"/>
@@ -99,7 +99,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create New" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3lP-yN-zik">
-                                                    <rect key="frame" x="35" y="0.0" width="310" height="20.5"/>
+                                                    <rect key="frame" x="35" y="0.0" width="535" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.20784313725490194" green="0.73725490196078436" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -243,7 +243,7 @@
                                                                                 <constraint firstAttribute="height" constant="20" id="yQJ-hO-EbZ"/>
                                                                             </constraints>
                                                                             <state key="normal" title="Button" image="icon_checkbox_filled"/>
-                                                                            <state key="selected" image="CheckedBox"/>
+                                                                            <state key="selected" title="Button"/>
                                                                             <connections>
                                                                                 <action selector="uncheckedAnItem:" destination="mTi-mk-6pt" eventType="touchUpInside" id="ODT-1L-GO3"/>
                                                                             </connections>
@@ -349,13 +349,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="77Z-5h-OvW">
-                                            <rect key="frame" x="15" y="10" width="345" height="34.5"/>
+                                            <rect key="frame" x="15" y="10" width="570" height="34.5"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1rp-8q-mZq" userLabel="Stack View1">
-                                                    <rect key="frame" x="0.0" y="7" width="317" height="20.5"/>
+                                                    <rect key="frame" x="0.0" y="7" width="542" height="20.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kIO-yT-our">
-                                                            <rect key="frame" x="0.0" y="0.0" width="317" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="542" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -363,7 +363,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="cgJ-TA-qs9" userLabel="Stack View2">
-                                                    <rect key="frame" x="325" y="7" width="20" height="20.5"/>
+                                                    <rect key="frame" x="550" y="7" width="20" height="20.5"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HdK-yj-8yK">
                                                             <rect key="frame" x="0.0" y="0.0" width="20" height="20.5"/>

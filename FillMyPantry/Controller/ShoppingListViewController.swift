@@ -287,14 +287,10 @@ extension ShoppingListViewController : UITabBarDelegate {
         let firstActivityItem = getShareListText()
         let activityViewController : UIActivityViewController = UIActivityViewController(
             activityItems: [firstActivityItem], applicationActivities: nil)
-        
-        // This lines is for the popover you need to show in iPad
-        //        activityViewController.popoverPresentationController?.sourceView = (sender as! UIButton)
-        
-        // This line remove the arrow of the popover to show in iPad
-        //        activityViewController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.allZeros
-        activityViewController.popoverPresentationController?.sourceRect = CGRect(x: 150, y: 150, width: 0, height: 0)
-        
+
+        if let popOver = activityViewController.popoverPresentationController {
+            popOver.sourceView = self.view
+        }
         
         self.present(activityViewController, animated: true, completion: nil)
     }
@@ -307,7 +303,6 @@ extension ShoppingListViewController : UITabBarDelegate {
             let completedItemDoumentRefs = self.shoppingListTableData.completedItems.map{$0.id}
             FirebaseDAO.clearCompletedItems(completedItemDoumentRefs)
             FirebaseDAO.updateShoppingListItemCount(self.shoppingListId, self.shoppingListTableData.uncompletedItems.count)
-            //            self.completedItems.removeAll()
         }
         alert.addAction(yesAction)
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))

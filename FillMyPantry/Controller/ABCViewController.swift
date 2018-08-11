@@ -21,8 +21,6 @@ class  ABCViewController : UITableViewController{
         tableView.dataSource = self
         tableView.estimatedRowHeight = 44.0
         tableView.rowHeight = UITableViewAutomaticDimension
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(refreshTable), name: NSNotification.Name(rawValue: "refresh"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,7 +72,7 @@ class  ABCViewController : UITableViewController{
         }
         catalogViewController.order = catalogViewController.order + 1
         catalogViewController.shoppingListItems.append(groceryItems[indexPath.row])
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refresh"), object: nil, userInfo: nil)
+        self.tableView.reloadRows(at: [indexPath as IndexPath], with: .fade)
     }
     
     @objc func addItemtoShoppingList(_ sender: UIButton) {
@@ -100,9 +98,6 @@ class  ABCViewController : UITableViewController{
         return !isGroceryItemPresent(indexPath)
     }
     
-    @objc func refreshTable(notification: NSNotification) {
-        self.tableView.reloadData()
-    }
     
     func isGroceryItemPresent(_ indexPath : IndexPath)-> Bool{
         let groceryName = groceryItems[indexPath.row]
