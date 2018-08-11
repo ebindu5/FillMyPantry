@@ -155,8 +155,8 @@ class  CategoriesViewController : UITableViewController{
     }
     
     fileprivate func addItem(_ indexPath: NSIndexPath) {
-        FirebaseDAO.addItemToShoppingList(shoppingListId, tableViewData[indexPath.section].sectionData[indexPath.row - 1], catalogViewController.order).subscribe(){ event in
-            if let element = event.element {
+        FirebaseDAO.addItemToShoppingList(shoppingListId, tableViewData[indexPath.section].sectionData[indexPath.row - 1], catalogViewController.order).subscribe{ event in
+            if event.element != nil {
                 self.catalogViewController.count = self.catalogViewController.count + 1
                 FirebaseDAO.updateShoppingListItemCount(self.shoppingListId, self.catalogViewController.count)
             }

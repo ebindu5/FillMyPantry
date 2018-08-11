@@ -121,7 +121,6 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
             cell.itemLabel?.text = shoppingListTableData.uncompletedItems[indexPath.row].name
             cell.onButtonTapped = {
                 FirebaseDAO.updateShoppingListItem(self.shoppingListTableData.uncompletedItems[indexPath.row].id, true, -1)
-                //Do whatever you want to do when the button is tapped here
             }
             return cell
         } else if indexPath.row == shoppingListTableData.uncompletedItems.count { // Show Hide button
@@ -140,7 +139,6 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
             cell.checkBox.isEnabled = false
             cell.onButtonTapped = {
                 FirebaseDAO.updateShoppingListItem(self.shoppingListTableData.completedItems[indexPath.row - self.shoppingListTableData.uncompletedItems.count - 1].id, false, self.shoppingListTableData.uncompletedItemOrder)
-                //Do whatever you want to do when the button is tapped here
             }
             if Constants.showCompletedItems {
                 cell.isHidden = false
