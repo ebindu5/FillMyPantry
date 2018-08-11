@@ -25,7 +25,7 @@ class CatalogViewController : UIViewController {
     var shoppingListId : String!
     var shoppingListItems = [String]()
     var groceryCatalog : [Grocery]!
-    
+    var count : Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()

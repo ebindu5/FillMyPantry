@@ -14,6 +14,20 @@ class ShoppingListItemCell: UITableViewCell {
     @IBOutlet weak var checkBox: UIButton!    
     @IBOutlet weak var labeltoShowHide : UILabel!
     
+    
+    @IBAction func checkedAnItem(_ sender: Any) {
+        if let onButtonTapped = self.onButtonTapped {
+            onButtonTapped()
+        }
+    }
+    
+    @IBAction func uncheckedAnItem(_ sender: Any) {
+        if let onButtonTapped = self.onButtonTapped {
+            onButtonTapped()
+        }
+    }
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,5 +38,7 @@ class ShoppingListItemCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    var onButtonTapped : (() -> Void)? = nil
 
 }

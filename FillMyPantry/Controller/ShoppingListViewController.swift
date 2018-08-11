@@ -16,6 +16,7 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var noItemsText: UITextField!
     @IBOutlet weak var tabBar: UITabBar!
+    var count = 0
     
     var searchResultsTableController : SearchResultsTableController!
     
@@ -29,6 +30,7 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
         let title : String
         var newItemOrder = 1
         var uncompletedItemOrder = 1
+        var count = 0
         
         init(title : String) {
             self.title = title
@@ -44,7 +46,8 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
         tableView.dataSource = self
         tableView.tableFooterView = UIView(frame: .zero)
         tabBar.delegate = self
-        configureSearchController()
+        
+        
         configureTabBar()
         
     }
@@ -71,14 +74,19 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
                 
                 shoppingListData.completedItems = completedItems
                 shoppingListData.uncompletedItems = uncompletedItems
+                shoppingListData.count = completedItems.count + uncompletedItems.count
             }
             return shoppingListData
             }.subscribe{ event in
                 if let shoppingData = event.element {
                     self.shoppingListTableData = shoppingData
                     self.noItemsText.isHidden = !( shoppingData.completedItems.count == 0 && shoppingData.uncompletedItems.count == 0 )
-                    self.searchResultsTableController.order = shoppingData.newItemOrder
+                   
+                    self.count = shoppingData.count
                     self.configureNavigationBar()
+                    self.configureSearchController()
+                     self.searchResultsTableController.order = shoppingData.newItemOrder
+                    self.searchResultsTableController.count = self.count
                     self.tableView.reloadData()
                 }
                 
@@ -111,6 +119,10 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
         if indexPath.row < shoppingListTableData.uncompletedItems.count { // Uncompleted List Items
             let cell =  tableView.dequeueReusableCell(withIdentifier: "shoppingItemCell", for: indexPath) as! ShoppingListItemCell
             cell.itemLabel?.text = shoppingListTableData.uncompletedItems[indexPath.row].name
+            cell.onButtonTapped = {
+                FirebaseDAO.updateShoppingListItem(self.shoppingListTableData.uncompletedItems[indexPath.row].id, true, -1)
+                //Do whatever you want to do when the button is tapped here
+            }
             return cell
         } else if indexPath.row == shoppingListTableData.uncompletedItems.count { // Show Hide button
             let cell =  tableView.dequeueReusableCell(withIdentifier: "showHideButtonCell", for: indexPath) as! ShoppingListItemCell
@@ -126,6 +138,10 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
             let cell =  tableView.dequeueReusableCell(withIdentifier: "completedItemCell", for: indexPath) as! ShoppingListItemCell
             cell.itemLabel?.text = shoppingListTableData.completedItems[indexPath.row - shoppingListTableData.uncompletedItems.count - 1].name
             cell.checkBox.isEnabled = false
+            cell.onButtonTapped = {
+                FirebaseDAO.updateShoppingListItem(self.shoppingListTableData.completedItems[indexPath.row - self.shoppingListTableData.uncompletedItems.count - 1].id, false, self.shoppingListTableData.uncompletedItemOrder)
+                //Do whatever you want to do when the button is tapped here
+            }
             if Constants.showCompletedItems {
                 cell.isHidden = false
                 
@@ -152,6 +168,8 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
             Constants.showCompletedItems = !Constants.showCompletedItems
             tableView.reloadData()
         } else if indexPath.row < shoppingListTableData.uncompletedItems.count { // Uncompleted List Items
+
+            
             FirebaseDAO.updateShoppingListItem(shoppingListTableData.uncompletedItems[indexPath.row].id, true, -1)
             
         } else {      // Completed List Items
@@ -179,6 +197,7 @@ extension ShoppingListViewController {
         let catalogViewController = storyboard?.instantiateViewController(withIdentifier: "CatalogViewController") as? CatalogViewController
         catalogViewController?.shoppingListId = shoppingListId
         catalogViewController?.order = shoppingListTableData.newItemOrder
+        catalogViewController?.count = shoppingListTableData.count
         self.present(catalogViewController!, animated: true, completion: nil)
         
     }
@@ -190,6 +209,7 @@ extension ShoppingListViewController{
     func configureSearchController() {
         searchResultsTableController = storyboard!.instantiateViewController(withIdentifier: "SearchResultsTableController") as! SearchResultsTableController
         searchResultsTableController.shoppingListID = shoppingListId
+        searchResultsTableController.count = count
         
         searchController = UISearchController(searchResultsController: searchResultsTableController)
         searchController.searchResultsUpdater = searchResultsTableController
@@ -288,6 +308,7 @@ extension ShoppingListViewController : UITabBarDelegate {
         let yesAction = UIAlertAction(title: "Yes", style: .default) { (alertAction) in
             let completedItemDoumentRefs = self.shoppingListTableData.completedItems.map{$0.id}
             FirebaseDAO.clearCompletedItems(completedItemDoumentRefs)
+            FirebaseDAO.updateShoppingListItemCount(self.shoppingListId, self.shoppingListTableData.uncompletedItems.count)
             //            self.completedItems.removeAll()
         }
         alert.addAction(yesAction)

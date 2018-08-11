@@ -71,11 +71,8 @@ class HomeViewController : UITableViewController {
         } else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "ShoppingCell", for: indexPath) as! ShoppingCell
             cell.listName.text = shoppingLists[indexPath.row].name
-            if let items = shoppingLists[indexPath.row].items {
-                cell.count.text = String(items.count)
-            } else{
-                cell.count.text = "0"
-            }
+            cell.count.text = String(shoppingLists[indexPath.row].count)
+           
             return cell
         }
         

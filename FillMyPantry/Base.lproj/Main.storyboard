@@ -139,10 +139,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="59r-Bi-SCA">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ouw-wP-IqJ" userLabel="ShoppingListItemsTable">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="598"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="shoppingItemCell" rowHeight="55" id="yzD-gu-FMi" customClass="ShoppingListItemCell" customModule="FillMyPantry" customModuleProvider="target">
@@ -166,6 +166,9 @@
                                                                             </constraints>
                                                                             <state key="normal" title="Button" image="icon_checkbox_empty"/>
                                                                             <state key="selected" image="CheckedBox"/>
+                                                                            <connections>
+                                                                                <action selector="checkedAnItem:" destination="yzD-gu-FMi" eventType="touchUpInside" id="VUk-64-pUa"/>
+                                                                            </connections>
                                                                         </button>
                                                                     </subviews>
                                                                 </stackView>
@@ -241,6 +244,9 @@
                                                                             </constraints>
                                                                             <state key="normal" title="Button" image="icon_checkbox_filled"/>
                                                                             <state key="selected" image="CheckedBox"/>
+                                                                            <connections>
+                                                                                <action selector="uncheckedAnItem:" destination="mTi-mk-6pt" eventType="touchUpInside" id="ODT-1L-GO3"/>
+                                                                            </connections>
                                                                         </button>
                                                                     </subviews>
                                                                 </stackView>
@@ -287,6 +293,9 @@
                             <tabBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JaT-Px-2P3">
                                 <rect key="frame" x="0.0" y="618" width="375" height="49"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="23u-nW-oL2"/>
+                                </constraints>
                                 <items>
                                     <tabBarItem title="Rename" image="icon_edit" id="yAp-BH-ytC"/>
                                     <tabBarItem title="Share" image="icon_share" id="gIE-Hl-k4r"/>
@@ -301,12 +310,15 @@
                             <constraint firstItem="T3O-1O-27F" firstAttribute="trailing" secondItem="JaT-Px-2P3" secondAttribute="trailing" id="1xA-ei-up9"/>
                             <constraint firstItem="59r-Bi-SCA" firstAttribute="top" secondItem="T3O-1O-27F" secondAttribute="top" id="5hE-f9-MkD"/>
                             <constraint firstItem="59r-Bi-SCA" firstAttribute="trailing" secondItem="T3O-1O-27F" secondAttribute="trailing" id="8Pb-N2-Gc3"/>
+                            <constraint firstItem="JaT-Px-2P3" firstAttribute="trailing" secondItem="T3O-1O-27F" secondAttribute="trailing" id="Htb-Bg-apc"/>
                             <constraint firstItem="JaT-Px-2P3" firstAttribute="leading" secondItem="T3O-1O-27F" secondAttribute="leading" id="LFn-Ya-QUk"/>
                             <constraint firstItem="tKE-sg-Ncm" firstAttribute="centerX" secondItem="T3O-1O-27F" secondAttribute="centerX" id="QA4-eZ-cu8"/>
                             <constraint firstItem="tKE-sg-Ncm" firstAttribute="centerY" secondItem="T3O-1O-27F" secondAttribute="centerY" id="TAK-NM-6Dr"/>
-                            <constraint firstItem="59r-Bi-SCA" firstAttribute="bottom" secondItem="T3O-1O-27F" secondAttribute="bottom" id="X8F-gF-n27"/>
+                            <constraint firstItem="59r-Bi-SCA" firstAttribute="bottom" secondItem="JaT-Px-2P3" secondAttribute="top" id="UPR-gV-s9g"/>
+                            <constraint firstItem="JaT-Px-2P3" firstAttribute="bottom" secondItem="T3O-1O-27F" secondAttribute="bottom" id="iRK-Sf-t8p"/>
                             <constraint firstItem="T3O-1O-27F" firstAttribute="bottom" secondItem="JaT-Px-2P3" secondAttribute="bottom" id="kvW-q4-dZt"/>
                             <constraint firstItem="59r-Bi-SCA" firstAttribute="leading" secondItem="T3O-1O-27F" secondAttribute="leading" id="pZp-1M-GoE"/>
+                            <constraint firstItem="JaT-Px-2P3" firstAttribute="leading" secondItem="T3O-1O-27F" secondAttribute="leading" id="qjB-ua-3US"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="T3O-1O-27F"/>
                     </view>
@@ -360,6 +372,9 @@
                                                                 <constraint firstAttribute="height" constant="20" id="ipV-M8-AIz"/>
                                                             </constraints>
                                                             <state key="normal" image="circleAddIcon"/>
+                                                            <connections>
+                                                                <action selector="addButtonClicked:" destination="d2J-IN-Tpg" eventType="touchUpInside" id="Y4T-Zs-1Ki"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                 </stackView>

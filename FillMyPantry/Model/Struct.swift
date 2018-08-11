@@ -14,6 +14,7 @@ struct ShoppingList {
     var name : String
     var creationDate : Date
     var items : [Item]?
+    var count : Int
     
 //    init(_ id : String, _ name : String, _ creationDate : Date, _ items : [Item]?) {
 //        self.id = id

@@ -89,10 +89,14 @@ class  CategoriesViewController : UITableViewController{
             let cell = tableView.dequeueReusableCell(withIdentifier: "CategoriesCell", for: indexPath) as! searchResultCell
             let groceryName = tableViewData[indexPath.section].sectionData[indexPath.row - 1]
             cell.textCell.text = groceryName
+
+             cell.addButton.addTarget(self, action: #selector(CategoriesViewController.addItemtoShoppingList(_:)), for: .touchUpInside)
+            cell.addButton.tag = (indexPath.section*100)+indexPath.row
             if catalogViewController.shoppingListItems.contains(groceryName){
                 cell.addButton.setImage(UIImage(named: "icon_done"), for: .normal)
-            }else{
+                }else{
                 cell.addButton.setImage(UIImage(named: "circleAddIcon"), for: .normal)
+               
             }
             return cell
         }
@@ -113,10 +117,7 @@ class  CategoriesViewController : UITableViewController{
         } else{
             
             tableView.deselectRow(at: indexPath, animated: true)
-            FirebaseDAO.addItemToShoppingList(shoppingListId, tableViewData[indexPath.section].sectionData[indexPath.row - 1], catalogViewController.order).subscribe()
-            catalogViewController.order = catalogViewController.order + 1
-            catalogViewController.shoppingListItems.append(tableViewData[indexPath.section].sectionData[indexPath.row - 1])
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refresh"), object: nil, userInfo: nil)
+            self.addItem(indexPath as NSIndexPath)
         }
     }
     
@@ -151,6 +152,26 @@ class  CategoriesViewController : UITableViewController{
             return false
         }
         
+    }
+    
+    fileprivate func addItem(_ indexPath: NSIndexPath) {
+        FirebaseDAO.addItemToShoppingList(shoppingListId, tableViewData[indexPath.section].sectionData[indexPath.row - 1], catalogViewController.order).subscribe(){ event in
+            if let element = event.element {
+                self.catalogViewController.count = self.catalogViewController.count + 1
+                FirebaseDAO.updateShoppingListItemCount(self.shoppingListId, self.catalogViewController.count)
+            }
+        }
+        catalogViewController.order = catalogViewController.order + 1
+        catalogViewController.shoppingListItems.append(tableViewData[indexPath.section].sectionData[indexPath.row - 1])
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refresh"), object: nil, userInfo: nil)
+    }
+    
+    @objc func addItemtoShoppingList(_ sender: UIButton) {
+        let section = sender.tag / 100
+        let row = sender.tag % 100
+        let indexPath = NSIndexPath(row: row, section: section)
+        
+        addItem(indexPath)
     }
     
 }

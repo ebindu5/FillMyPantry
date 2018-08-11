@@ -43,8 +43,11 @@ class  ABCViewController : UITableViewController{
         let cell = tableView.dequeueReusableCell(withIdentifier: "ABCTableCell", for: indexPath) as! searchResultCell
         let groceryName = groceryItems[indexPath.row]
         cell.textCell.text = groceryName
+        cell.addButton.addTarget(self, action: #selector(CategoriesViewController.addItemtoShoppingList(_:)), for: .touchUpInside)
+        cell.addButton.tag = (indexPath.section*100)+indexPath.row
         if catalogViewController.shoppingListItems.contains(groceryName){
             cell.addButton.setImage(UIImage(named: "icon_done"), for: .normal)
+            
         }else{
             cell.addButton.setImage(UIImage(named: "circleAddIcon"), for: .normal)
         }
@@ -57,14 +60,30 @@ class  ABCViewController : UITableViewController{
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        FirebaseDAO.addItemToShoppingList(shoppingListId,groceryItems[indexPath.row], catalogViewController.order).subscribe()
+        self.addItem(indexPath as NSIndexPath)
+    }
+    
+    
+     fileprivate func addItem(_ indexPath: NSIndexPath){
+        FirebaseDAO.addItemToShoppingList(shoppingListId,groceryItems[indexPath.row], catalogViewController.order).subscribe(){ event in
+            if let element = event.element {
+                self.catalogViewController.count = self.catalogViewController.count + 1
+                FirebaseDAO.updateShoppingListItemCount(self.shoppingListId, self.catalogViewController.count)
+            }
+            
+        }
         catalogViewController.order = catalogViewController.order + 1
         catalogViewController.shoppingListItems.append(groceryItems[indexPath.row])
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refresh"), object: nil, userInfo: nil)
     }
     
-    
-    
+    @objc func addItemtoShoppingList(_ sender: UIButton) {
+        let section = sender.tag / 100
+        let row = sender.tag % 100
+        let indexPath = NSIndexPath(row: row, section: section)
+        
+        addItem(indexPath)
+    }
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         

@@ -17,6 +17,9 @@ class SearchResultsTableController : UITableViewController {
     var filteredItems = [String]()
     var shoppingListID : String!
     var order : Int!
+    var count : Int!
+    
+  
     
     override func viewDidLoad() {
         
@@ -67,16 +70,25 @@ extension SearchResultsTableController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchResultCell", for: indexPath as IndexPath) as? searchResultCell
         let selectedItem = filteredItems[indexPath.row]
         cell?.textCell.text = selectedItem
+        cell?.onButtonTapped = {
+            self.addItemtoShoppingList(indexPath)
+        }
 
         return cell!
     }
     
+    fileprivate func addItemtoShoppingList(_ indexPath: IndexPath) {
+        FirebaseDAO.addItemToShoppingList(shoppingListID, filteredItems[indexPath.row], order).subscribe(){ event in
+            if event.element != nil {
+                FirebaseDAO.updateShoppingListItemCount(self.shoppingListID, self.count + 1)
+            }
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        FirebaseDAO.addItemToShoppingList(shoppingListID, filteredItems[indexPath.row], order).subscribe()
-        
-        self.dismiss(animated: true, completion: nil)
-        
+        addItemtoShoppingList(indexPath)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
