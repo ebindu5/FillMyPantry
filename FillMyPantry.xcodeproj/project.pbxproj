@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9004F45920E59A7B00B5358D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9004F45820E59A7B00B5358D /* HomeViewController.swift */; };
+		900AF574211E6125002E2378 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900AF573211E6125002E2378 /* Reachability.swift */; };
 		9020FF7920F429C800CEC6B4 /* FirebaseAuthDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9020FF7820F429C800CEC6B4 /* FirebaseAuthDAO.swift */; };
 		902F50ED20E440C000BFDF3D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902F50EC20E440C000BFDF3D /* Constants.swift */; };
 		905A559B20E6FCFB001878F6 /* ShoppingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905A559A20E6FCFB001878F6 /* ShoppingCell.swift */; };
@@ -36,6 +37,7 @@
 		48478639A32FBD80604AF22B /* libPods-FillMyPantry.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FillMyPantry.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89FAE15742D291E87C5670DF /* Pods-FillMyPantry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FillMyPantry.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FillMyPantry/Pods-FillMyPantry.debug.xcconfig"; sourceTree = "<group>"; };
 		9004F45820E59A7B00B5358D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		900AF573211E6125002E2378 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		9020FF7820F429C800CEC6B4 /* FirebaseAuthDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthDAO.swift; sourceTree = "<group>"; };
 		902F50EC20E440C000BFDF3D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		905A559A20E6FCFB001878F6 /* ShoppingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCell.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				90FD2CAC210163AD0037D56D /* GroceryCatlog.swift */,
 				90FD2CAE210194EF0037D56D /* test.swift */,
 				909F837C210D2C1E00A50979 /* SearchDAO.swift */,
+				900AF573211E6125002E2378 /* Reachability.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				90D2162620F80AEC008FCC7B /* ShoppingListItemCell.swift in Sources */,
 				90FD2CAD210163AD0037D56D /* GroceryCatlog.swift in Sources */,
 				9020FF7920F429C800CEC6B4 /* FirebaseAuthDAO.swift in Sources */,
+				900AF574211E6125002E2378 /* Reachability.swift in Sources */,
 				9004F45920E59A7B00B5358D /* HomeViewController.swift in Sources */,
 				909F8373210AF5F400A50979 /* CatalogViewController.swift in Sources */,
 				90FD2CAF210194EF0037D56D /* test.swift in Sources */,

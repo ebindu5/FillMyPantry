@@ -217,6 +217,35 @@ class FirebaseDAO {
     }
     
     
+    static func deleteItemSubCollection(_ documentID : String, _ batchSize : Int)-> Observable<Bool>{
+        
+        return Observable.create{ observer in
+            db?.collection("/ShoppingLists/\((documentID))/items").limit(to: batchSize).addSnapshotListener({ (querySnapShot, error) in
+                var deleted : Int = 0
+                if let error = error {
+                    observer.onError(error)
+                }
+                
+                if let documents = querySnapShot?.documents {
+                    for document in documents {
+                        document.reference.delete()
+                        deleted += 1
+                    }
+                    
+                    if deleted >= batchSize {
+                        deleteItemSubCollection(documentID, batchSize)
+                    } else{
+                        observer.onNext(true)
+                    }
+                }
+                
+            })
+            return Disposables.create()
+        }
+        
+    }
+
+    
     static func updateShoppingList(_ documentID : String)->Observable<Bool> {
         return Observable.zip(deleteShoppingList(documentID), getShoppingListRefsForUser()){ (deletableDocumentReference, exisitingDocumentReferences) in
             var existingDocs = exisitingDocumentReferences

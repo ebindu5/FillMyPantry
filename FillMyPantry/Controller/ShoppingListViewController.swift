@@ -43,7 +43,6 @@ class ShoppingListViewController : UIViewController, UITableViewDelegate,UITable
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView(frame: .zero)
-        tableView.reloadData()
         tabBar.delegate = self
         configureSearchController()
         configureTabBar()
@@ -295,9 +294,7 @@ extension ShoppingListViewController : UITabBarDelegate {
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
         
         self.present(alert, animated: true, completion: nil)
-        
-        
-        
+ 
     }
     
     func removeShoppingList(){

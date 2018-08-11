@@ -476,6 +476,30 @@
             </objects>
             <point key="canvasLocation" x="4562" y="424"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="erV-W9-gUg">
+            <objects>
+                <viewController storyboardIdentifier="NoNetworkViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="euj-qN-6rc" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="W2d-wd-30B">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No Network Connection. Try later!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bco-TC-Y7Q">
+                                <rect key="frame" x="40" y="129" width="498" height="454"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="5mv-Dl-M4D"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oeq-9t-YQb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="601" y="-721"/>
+        </scene>
         <!--Catalog View Controller-->
         <scene sceneID="Tcd-aY-5rZ">
             <objects>

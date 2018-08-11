@@ -16,7 +16,6 @@ class HomeViewController : UITableViewController {
     
     var disposeBag = DisposeBag()
     var shoppingLists : [ShoppingList]!
-    var groceryCatalog : [Grocery]!
     
     var indicator = UIActivityIndicatorView()
     
@@ -25,6 +24,12 @@ class HomeViewController : UITableViewController {
         super.viewDidLoad()
         activityIndicator()
         tableView.tableFooterView = UIView(frame: .zero)
+        
+        //        if !Reachability.isNetworkConnectionAvailble() {
+        //            self.performSegue(withIdentifier: "NoNetworkViewController", sender: self)
+        //        }
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,11 +47,7 @@ class HomeViewController : UITableViewController {
             }
         }
         
-        GroceryCatalog.getGroceryCatalog().subscribe{ event in
-            if let element = event.element{
-                self.groceryCatalog = element
-            }
-        }
+        GroceryCatalog.getGroceryCatalog().subscribe()
     }
     
     
@@ -102,10 +103,9 @@ class HomeViewController : UITableViewController {
             navigateToShoppingListViewController(shoppingLists[indexPath.row].id)
         }
         
-        
     }
     
-
+    
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         if indexPath.row ==  shoppingLists?.count ?? 0 {
             return false
@@ -119,9 +119,7 @@ class HomeViewController : UITableViewController {
             FirebaseDAO.updateShoppingList(shoppingLists[indexPath.row].id).subscribe(){ event in
                 if let success = event.element, success == true {
                     self.shoppingLists.remove(at: indexPath.row)
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
+                    self.tableView.reloadData()
                 }
             }
             
@@ -148,5 +146,6 @@ class HomeViewController : UITableViewController {
         navigationItem.backBarButtonItem?.tintColor = Constants.THEME_COLOR
         self.navigationController?.pushViewController(shoppingListViewController, animated: true)
     }
+    
     
 }
