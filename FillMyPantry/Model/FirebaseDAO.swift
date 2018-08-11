@@ -22,8 +22,11 @@ class FirebaseDAO {
                 if let error = error {
                     observer.onError("Error adding document: \(error)" as! Error)
                 } else {
-                    observer.onNext(ref!)
-                    observer.onCompleted()
+                    ref?.addSnapshotListener({ (querySnapShot, error) in
+                        observer.onNext(ref!)
+                        observer.onCompleted()
+                    })
+                    
                 }
             }
             return  Disposables.create()
@@ -34,7 +37,7 @@ class FirebaseDAO {
         
         return Observable.zip(createNewShoppingListDocument(), getShoppingListRefsForUser()){ (newDocumentReference, exisitingDocumentReferences) in
             var existingDocs = exisitingDocumentReferences
-            if existingDocs != nil {
+            if existingDocs.count != 0 {
                 existingDocs.append(newDocumentReference)
             }else{
                 existingDocs = [newDocumentReference]
@@ -229,6 +232,7 @@ class FirebaseDAO {
                 if let error = error {
                     observer.onError("Error removing document: \(error)" as! Error)
                 } else {
+//                    self.deleteItemSubCollection(documentID, 10)
                     observer.onNext(documentReference)
                 }
             }
@@ -318,12 +322,10 @@ class FirebaseDAO {
                 if let err = err {
                     print("Error removing document: \(err)")
                 } else {
-                    
                     print("Document successfully removed!")
                 }
             }
         }
-        
     }
     
     
