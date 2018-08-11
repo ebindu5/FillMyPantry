@@ -17,24 +17,39 @@ class HomeViewController : UITableViewController {
     var disposeBag = DisposeBag()
     var shoppingLists : [ShoppingList]!
     
+    var indicator = UIActivityIndicatorView()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        activityIndicator()
+        tableView.tableFooterView = UIView(frame: .zero)
+        
+        //        if !Reachability.isNetworkConnectionAvailble() {
+        //            self.performSegue(withIdentifier: "NoNetworkViewController", sender: self)
+        //        }
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        indicator.startAnimating()
+        indicator.backgroundColor = UIColor.clear
+        self.indicator.hidesWhenStopped = true
         FirebaseDAO.getShoppingListsForUser().subscribe(){ event in
             if let element = event.element {
                 self.shoppingLists = element
-                
-                DispatchQueue.main.async {
-                     self.tableView.reloadData()
-                }
+            }
+            DispatchQueue.main.async {
+                self.indicator.stopAnimating()
+                self.tableView.reloadData()
             }
         }
         
+        GroceryCatalog.getGroceryCatalog().subscribe()
     }
+    
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -49,19 +64,14 @@ class HomeViewController : UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         if (indexPath.row ==  shoppingLists?.count ?? 0) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CreateListCell", for: indexPath)
             return cell
         } else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "ShoppingCell", for: indexPath) as! ShoppingCell
             cell.listName.text = shoppingLists[indexPath.row].name
-            if let items = shoppingLists[indexPath.row].items {
-             cell.count.text = String(items.count)
-            } else{
-                cell.count.text = "0"
-            }
-            
+            cell.count.text = String(shoppingLists[indexPath.row].count)
             
             return cell
         }
@@ -71,23 +81,25 @@ class HomeViewController : UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-      if indexPath.row ==  shoppingLists?.count ?? 0 {
-
-       FirebaseDAO.createShoppingList().subscribe { event in
-            if let id = event.element {
-                let shoppingListViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShoppingListViewController") as! ShoppingListViewController
-                shoppingListViewController.shoppingListId = id
-                self.navigationController?.pushViewController(shoppingListViewController, animated: true)
+        if indexPath.row ==  shoppingLists?.count ?? 0 {
+            
+            if (shoppingLists?.count ?? 0) == Constants.MAX_SHOPPING_LIST_COUNT{
+                let alert = UIAlertController(title: "You've reached the limit", message: "Hello, You can only create upto 15 shopping lists.", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }else{
+                
+                FirebaseDAO.createShoppingList().subscribe { event in
+                    if let id = event.element {
+                        self.navigateToShoppingListViewController(id)
+                    }
+                }
             }
+            
+        } else{
+            navigateToShoppingListViewController(shoppingLists[indexPath.row].id)
         }
-      } else{
-        let shoppingListViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShoppingListViewController") as! ShoppingListViewController
         
-        shoppingListViewController.shoppingListId = shoppingLists[indexPath.row].id
-        self.navigationController?.pushViewController(shoppingListViewController, animated: true)
-        }
-       
-
     }
     
     
@@ -101,13 +113,36 @@ class HomeViewController : UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
-            print(shoppingLists[indexPath.row].id,"{{{{{}}}}}}")
-            FirebaseDAO.deleteShoppingList(shoppingLists[indexPath.row].id).subscribe(){ event in
-                if let success = event.element, success == true{
+            FirebaseDAO.updateShoppingList(shoppingLists[indexPath.row].id).subscribe(){ event in
+                if let success = event.element, success == true {
                     self.shoppingLists.remove(at: indexPath.row)
-                    tableView.reloadData()
+                    self.tableView.reloadData()
                 }
             }
+            
         }
     }
+    
+    
+    private func activityIndicator() {
+        indicator = UIActivityIndicatorView(frame: CGRect(x:0, y:0, width:80,height: 80))
+        self.indicator.transform = CGAffineTransform(scaleX: 2, y: 2)
+        indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        indicator.hidesWhenStopped = true
+        indicator.center = self.view.center
+        self.view.addSubview(indicator)
+    }
+    
+    private func navigateToShoppingListViewController(_ id : String){
+        let shoppingListViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShoppingListViewController") as! ShoppingListViewController
+        
+        shoppingListViewController.shoppingListId = id
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationItem.backBarButtonItem = backItem
+        navigationItem.backBarButtonItem?.tintColor = Constants.THEME_COLOR
+        self.navigationController?.pushViewController(shoppingListViewController, animated: true)
+    }
+    
+    
 }

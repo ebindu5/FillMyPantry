@@ -18,40 +18,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let initialViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
-
+        
         let navigationController = UINavigationController(rootViewController: initialViewController)
         navigationController.navigationBar.isTranslucent = false
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
-
-        Constants.dbRef = Firestore.firestore()
-        let settings = Constants.dbRef.settings
-        settings.areTimestampsInSnapshotsEnabled = true
-        Constants.dbRef.settings = settings
+        Constants.UID = UserDefaults.standard.object(forKey: "uid") as? String
+        print(Constants.dbRef, Constants.UID)
     }
+    
+
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-    
+        
         FirebaseApp.configure()
         FirebaseAuthDAO.logOutUserOnFreshInstall()
+        Constants.dbRef = Firestore.firestore()
+        let settings = Constants.dbRef.settings
+        settings.areTimestampsInSnapshotsEnabled = true
+        settings.isPersistenceEnabled = true
+        Constants.dbRef.settings = settings
+ 
         
         if let currentUser = Auth.auth().currentUser {
             Constants.UID = currentUser.uid
+            UserDefaults.standard.set(currentUser.uid, forKey: "uid")
+            UserDefaults.standard.synchronize()
             setRootViewController()
         } else {
-           
-            FirebaseAuthDAO.anonymousUserInstantiation().subscribe { event in
+            
+            FirebaseAuthDAO.anonymousAuthentication().subscribe{ event in
                 switch event {
                 case .success(let uid) : Constants.UID = uid
-
-                self.setRootViewController()
+                    UserDefaults.standard.set(uid, forKey: "uid")
+                    UserDefaults.standard.synchronize()
+                    self.setRootViewController()
                 case .error(let error): print(error)
                 }
-                }
-            
+            }
         }
-
+        
         return true
     }
     

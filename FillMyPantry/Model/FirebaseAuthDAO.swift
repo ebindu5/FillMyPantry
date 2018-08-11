@@ -12,6 +12,7 @@ import RxSwift
 import RxCocoa
 
 class FirebaseAuthDAO {
+    static var db = Constants.dbRef
     
     static func  anonymousUserInstantiation() -> Single<String>{
         return Single<String>.create { singleObserver in
@@ -24,13 +25,40 @@ class FirebaseAuthDAO {
                     singleObserver(.error("FIRAuthDataResult object is nil" as! Error))
                     return
                 }
+                print("AuthId =  ", authResult.user.uid)
+                Constants.UID = authResult.user.uid
                 singleObserver(.success(authResult.user.uid))
-             
             }
               return Disposables.create()
         }
     }
     
+    
+    private  static func createDocumentInUsersNode(_ uid : String) -> Single<String>{
+        return Single<String>.create{ singleObserver in
+            print("UID = ", uid)
+            db?.collection("Users").document(uid).setData([
+                "shoppingLists": []
+            ]) { error in
+                if let error = error {
+                    singleObserver(.error(error.localizedDescription as! Error))
+                    return
+                } else {
+                   
+                    singleObserver(.success(uid))
+                }
+            }
+            return Disposables.create()
+        }
+        
+    }
+    
+    static func anonymousAuthentication() -> Single<String>{
+        return anonymousUserInstantiation().flatMap({ uid in
+            return createDocumentInUsersNode(uid)
+        })
+        
+    }
     
     static func logOutUserOnFreshInstall(){
         let userDefaults = UserDefaults.standard

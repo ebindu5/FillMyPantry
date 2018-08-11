@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9004F45920E59A7B00B5358D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9004F45820E59A7B00B5358D /* HomeViewController.swift */; };
+		900AF574211E6125002E2378 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900AF573211E6125002E2378 /* Reachability.swift */; };
 		9020FF7920F429C800CEC6B4 /* FirebaseAuthDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9020FF7820F429C800CEC6B4 /* FirebaseAuthDAO.swift */; };
 		902F50ED20E440C000BFDF3D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902F50EC20E440C000BFDF3D /* Constants.swift */; };
 		905A559B20E6FCFB001878F6 /* ShoppingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905A559A20E6FCFB001878F6 /* ShoppingCell.swift */; };
@@ -16,10 +17,18 @@
 		907F78DD20E427580060A809 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907F78DC20E427580060A809 /* AppDelegate.swift */; };
 		907F78E220E427580060A809 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 907F78E020E427580060A809 /* Main.storyboard */; };
 		907F78E420E427590060A809 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 907F78E320E427590060A809 /* Assets.xcassets */; };
-		907F78E720E427590060A809 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 907F78E520E427590060A809 /* LaunchScreen.storyboard */; };
 		907F78EF20E42B380060A809 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 907F78EE20E42B370060A809 /* GoogleService-Info.plist */; };
+		909F833221093CC600A50979 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909F833121093CC600A50979 /* CategoriesViewController.swift */; };
+		909F833421093F2100A50979 /* ABCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909F833321093F2100A50979 /* ABCViewController.swift */; };
+		909F8373210AF5F400A50979 /* CatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909F8372210AF5F400A50979 /* CatalogViewController.swift */; };
+		909F837D210D2C1E00A50979 /* SearchDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909F837C210D2C1E00A50979 /* SearchDAO.swift */; };
 		90D2162020F7D420008FCC7B /* ShoppingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D2161F20F7D420008FCC7B /* ShoppingListViewController.swift */; };
 		90D2162620F80AEC008FCC7B /* ShoppingListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D2162520F80AEC008FCC7B /* ShoppingListItemCell.swift */; };
+		90FC0C5F211EDE3800CDA8C2 /* LaunchScreen.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90FC0C5E211EDE3800CDA8C2 /* LaunchScreen.xcassets */; };
+		90FD2CAD210163AD0037D56D /* GroceryCatlog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FD2CAC210163AD0037D56D /* GroceryCatlog.swift */; };
+		90FD2CAF210194EF0037D56D /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FD2CAE210194EF0037D56D /* test.swift */; };
+		90FD2CB1210681D80037D56D /* SearchResultsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FD2CB0210681D80037D56D /* SearchResultsTableController.swift */; };
+		90FD2CB72107E6EA0037D56D /* searchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FD2CB62107E6EA0037D56D /* searchResultCell.swift */; };
 		FC2D0D42645F68F38201C172 /* libPods-FillMyPantry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48478639A32FBD80604AF22B /* libPods-FillMyPantry.a */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +37,7 @@
 		48478639A32FBD80604AF22B /* libPods-FillMyPantry.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FillMyPantry.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89FAE15742D291E87C5670DF /* Pods-FillMyPantry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FillMyPantry.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FillMyPantry/Pods-FillMyPantry.debug.xcconfig"; sourceTree = "<group>"; };
 		9004F45820E59A7B00B5358D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		900AF573211E6125002E2378 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		9020FF7820F429C800CEC6B4 /* FirebaseAuthDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthDAO.swift; sourceTree = "<group>"; };
 		902F50EC20E440C000BFDF3D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		905A559A20E6FCFB001878F6 /* ShoppingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCell.swift; sourceTree = "<group>"; };
@@ -37,11 +47,19 @@
 		907F78DC20E427580060A809 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		907F78E120E427580060A809 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		907F78E320E427590060A809 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		907F78E620E427590060A809 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		907F78E820E427590060A809 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		907F78EE20E42B370060A809 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		909F833121093CC600A50979 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
+		909F833321093F2100A50979 /* ABCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABCViewController.swift; sourceTree = "<group>"; };
+		909F8372210AF5F400A50979 /* CatalogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogViewController.swift; sourceTree = "<group>"; };
+		909F837C210D2C1E00A50979 /* SearchDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDAO.swift; sourceTree = "<group>"; };
 		90D2161F20F7D420008FCC7B /* ShoppingListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewController.swift; sourceTree = "<group>"; };
 		90D2162520F80AEC008FCC7B /* ShoppingListItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListItemCell.swift; sourceTree = "<group>"; };
+		90FC0C5E211EDE3800CDA8C2 /* LaunchScreen.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = LaunchScreen.xcassets; sourceTree = "<group>"; };
+		90FD2CAC210163AD0037D56D /* GroceryCatlog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryCatlog.swift; sourceTree = "<group>"; };
+		90FD2CAE210194EF0037D56D /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
+		90FD2CB0210681D80037D56D /* SearchResultsTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsTableController.swift; sourceTree = "<group>"; };
+		90FD2CB62107E6EA0037D56D /* searchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchResultCell.swift; sourceTree = "<group>"; };
 		BFEA66B541FCEC938DCAB037 /* Pods-FillMyPantry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FillMyPantry.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fill My Pantry/Pods-FillMyPantry.debug.xcconfig"; sourceTree = "<group>"; };
 		C132519C4EA6024A76A8BE95 /* libPods-Fill My Pantry.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Fill My Pantry.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3D18A5E2175F21E147FF888 /* Pods-FillMyPantry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FillMyPantry.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fill My Pantry/Pods-FillMyPantry.release.xcconfig"; sourceTree = "<group>"; };
@@ -66,6 +84,11 @@
 				9004F45820E59A7B00B5358D /* HomeViewController.swift */,
 				90D2161F20F7D420008FCC7B /* ShoppingListViewController.swift */,
 				90D2162520F80AEC008FCC7B /* ShoppingListItemCell.swift */,
+				90FD2CB0210681D80037D56D /* SearchResultsTableController.swift */,
+				90FD2CB62107E6EA0037D56D /* searchResultCell.swift */,
+				909F833121093CC600A50979 /* CategoriesViewController.swift */,
+				909F833321093F2100A50979 /* ABCViewController.swift */,
+				909F8372210AF5F400A50979 /* CatalogViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -77,6 +100,10 @@
 				905A559C20E750CB001878F6 /* FirebaseDAO.swift */,
 				905A559E20E75358001878F6 /* Struct.swift */,
 				9020FF7820F429C800CEC6B4 /* FirebaseAuthDAO.swift */,
+				90FD2CAC210163AD0037D56D /* GroceryCatlog.swift */,
+				90FD2CAE210194EF0037D56D /* test.swift */,
+				909F837C210D2C1E00A50979 /* SearchDAO.swift */,
+				900AF573211E6125002E2378 /* Reachability.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -108,7 +135,7 @@
 				9004F45A20E59A8500B5358D /* Controller */,
 				907F78EE20E42B370060A809 /* GoogleService-Info.plist */,
 				907F78E320E427590060A809 /* Assets.xcassets */,
-				907F78E520E427590060A809 /* LaunchScreen.storyboard */,
+				90FC0C5E211EDE3800CDA8C2 /* LaunchScreen.xcassets */,
 				907F78E820E427590060A809 /* Info.plist */,
 			);
 			path = FillMyPantry;
@@ -195,8 +222,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90FC0C5F211EDE3800CDA8C2 /* LaunchScreen.xcassets in Resources */,
 				907F78EF20E42B380060A809 /* GoogleService-Info.plist in Resources */,
-				907F78E720E427590060A809 /* LaunchScreen.storyboard in Resources */,
 				907F78E420E427590060A809 /* Assets.xcassets in Resources */,
 				907F78E220E427580060A809 /* Main.storyboard in Resources */,
 			);
@@ -261,15 +288,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				909F833221093CC600A50979 /* CategoriesViewController.swift in Sources */,
+				909F833421093F2100A50979 /* ABCViewController.swift in Sources */,
+				909F837D210D2C1E00A50979 /* SearchDAO.swift in Sources */,
 				905A559F20E75358001878F6 /* Struct.swift in Sources */,
+				90FD2CB1210681D80037D56D /* SearchResultsTableController.swift in Sources */,
 				907F78DD20E427580060A809 /* AppDelegate.swift in Sources */,
 				905A559B20E6FCFB001878F6 /* ShoppingCell.swift in Sources */,
 				902F50ED20E440C000BFDF3D /* Constants.swift in Sources */,
 				90D2162020F7D420008FCC7B /* ShoppingListViewController.swift in Sources */,
+				90FD2CB72107E6EA0037D56D /* searchResultCell.swift in Sources */,
 				905A559D20E750CB001878F6 /* FirebaseDAO.swift in Sources */,
 				90D2162620F80AEC008FCC7B /* ShoppingListItemCell.swift in Sources */,
+				90FD2CAD210163AD0037D56D /* GroceryCatlog.swift in Sources */,
 				9020FF7920F429C800CEC6B4 /* FirebaseAuthDAO.swift in Sources */,
+				900AF574211E6125002E2378 /* Reachability.swift in Sources */,
 				9004F45920E59A7B00B5358D /* HomeViewController.swift in Sources */,
+				909F8373210AF5F400A50979 /* CatalogViewController.swift in Sources */,
+				90FD2CAF210194EF0037D56D /* test.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,14 +318,6 @@
 				907F78E120E427580060A809 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		907F78E520E427590060A809 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				907F78E620E427590060A809 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -413,9 +441,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 89FAE15742D291E87C5670DF /* Pods-FillMyPantry.debug.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TLC9XD328V;
 				INFOPLIST_FILE = FillMyPantry/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -431,9 +462,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 24FADCA54D5627AC837F9AB7 /* Pods-FillMyPantry.release.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TLC9XD328V;
 				INFOPLIST_FILE = FillMyPantry/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
