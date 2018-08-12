@@ -27,38 +27,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print(Constants.dbRef, Constants.UID)
     }
     
-
+    func setNetworkViewController(){
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let initialViewController = storyboard.instantiateViewController(withIdentifier: "NoNetworkViewController")
+        
+        let navigationController = UINavigationController(rootViewController: initialViewController)
+        navigationController.navigationBar.isTranslucent = false
+        self.window?.rootViewController = navigationController
+        self.window?.makeKeyAndVisible()
+        Constants.UID = UserDefaults.standard.object(forKey: "uid") as? String
+        print(Constants.dbRef, Constants.UID)
+    }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-
+        print("enterd launch options")
         FirebaseApp.configure()
         FirebaseAuthDAO.logOutUserOnFreshInstall()
         Constants.dbRef = Firestore.firestore()
+        FirebaseDAO.db = Constants.dbRef
         let settings = Constants.dbRef.settings
         settings.areTimestampsInSnapshotsEnabled = true
         settings.isPersistenceEnabled = true
         Constants.dbRef.settings = settings
- 
         
-        if let currentUser = Auth.auth().currentUser {
-            Constants.UID = currentUser.uid
-            UserDefaults.standard.set(currentUser.uid, forKey: "uid")
-            UserDefaults.standard.synchronize()
-            setRootViewController()
-        } else {
-            
-            FirebaseAuthDAO.anonymousAuthentication().subscribe{ event in
-                switch event {
-                case .success(let uid) : Constants.UID = uid
-                    UserDefaults.standard.set(uid, forKey: "uid")
-                    UserDefaults.standard.synchronize()
-                    self.setRootViewController()
-                case .error(let error): print(error)
-                }
-            }
-        }
-        
+        print(Constants.dbRef, Constants.UID,"::::")
         return true
     }
     
@@ -74,10 +68,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        print("enterd foreground")
+//        if Constants.UID != nil {
+//             self.setRootViewController()
+//        }else{
+//            self.setNetworkViewController()
+//        }
+        
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
+           print("enterd active")
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
+        if let currentUser = Auth.auth().currentUser {
+            Constants.UID = currentUser.uid
+            UserDefaults.standard.set(currentUser.uid, forKey: "uid")
+            UserDefaults.standard.synchronize()
+            setRootViewController()
+        } else {
+            
+            FirebaseAuthDAO.anonymousAuthentication().subscribe{ event in
+                switch event {
+                case .success(let uid) : Constants.UID = uid
+                UserDefaults.standard.set(uid, forKey: "uid")
+                UserDefaults.standard.synchronize()
+                self.setRootViewController()
+                case .error(let error): self.setNetworkViewController()
+                }
+            }
+        }
+        
     }
     
     func applicationWillTerminate(_ application: UIApplication) {

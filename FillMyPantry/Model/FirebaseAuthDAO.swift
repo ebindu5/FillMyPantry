@@ -13,16 +13,17 @@ import RxCocoa
 
 class FirebaseAuthDAO {
     static var db = Constants.dbRef
-    
+  
     static func  anonymousUserInstantiation() -> Single<String>{
+        print(Constants.dbRef, Constants.UID,"{}{}{}{}")
         return Single<String>.create { singleObserver in
             Auth.auth().signInAnonymously() { (authResult, error) in
                 guard error == nil else {
-                    singleObserver(.error(error!.localizedDescription as! Error))
+                    singleObserver(.error(error!))
                     return
                 }
                 guard let authResult = authResult else {
-                    singleObserver(.error("FIRAuthDataResult object is nil" as! Error))
+                    singleObserver(.error(getErrorFromString("Auth Result is Nil")))
                     return
                 }
                 print("AuthId =  ", authResult.user.uid)
@@ -74,4 +75,9 @@ class FirebaseAuthDAO {
             }
         }
     }
+    
+    private static func getErrorFromString(_ text : String)-> Error{
+        return NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey : text]) as Error
+    }
+    
 }
