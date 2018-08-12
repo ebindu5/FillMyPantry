@@ -2,7 +2,7 @@
 //  GroceryCatlog.swift
 //  FillMyPantry
 //
-//  Created by NISHANTH NAGELLA on 7/19/18.
+//  Created by BINDU ELAKURTHI on 7/19/18.
 //  Copyright © 2018 Udacity. All rights reserved.
 //
 

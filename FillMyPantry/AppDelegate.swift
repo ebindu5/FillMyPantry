@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  FillMyPantry
 //
-//  Created by NISHANTH NAGELLA on 6/27/18.
+//  Created by BINDU ELAKURTHI on 6/27/18.
 //  Copyright © 2018 Udacity. All rights reserved.
 //
 

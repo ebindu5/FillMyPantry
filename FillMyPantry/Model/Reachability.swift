@@ -2,7 +2,7 @@
 //  Reachability.swift
 //  FillMyPantry
 //
-//  Created by NISHANTH NAGELLA on 8/10/18.
+//  Created by BINDU ELAKURTHI on 8/10/18.
 //  Copyright © 2018 Udacity. All rights reserved.
 //
 
