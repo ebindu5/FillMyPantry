@@ -2,7 +2,8 @@
 
 # How To Run
 
-1. Clone this project and install pods.
+1. Clone this project.
+2. The app uses cocoa pods. Go to root directory of the project and run `pod install`.
 2. Open .xcworkspace file and run the app.
 
 # App Features
