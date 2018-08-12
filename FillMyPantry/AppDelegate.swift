@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         settings.areTimestampsInSnapshotsEnabled = true
         settings.isPersistenceEnabled = true
         Constants.dbRef.settings = settings
+        
         return true
     }
     
@@ -37,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaults.standard.synchronize()
             setRootViewController("HomeViewController")
         } else {
+            
             FirebaseAuthDAO.anonymousAuthentication().subscribe{ event in
                 switch event {
                 case .success(let uid) : Constants.UID = uid
@@ -47,21 +49,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
-        
     }
     
-
     func setRootViewController(_ identifier : String){
+        DispatchQueue.main.async {
             self.window = UIWindow(frame: UIScreen.main.bounds)
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let initialViewController = storyboard.instantiateViewController(withIdentifier: identifier)
-            
             let navigationController = UINavigationController(rootViewController: initialViewController)
             navigationController.navigationBar.isTranslucent = false
             self.window?.rootViewController = navigationController
             self.window?.makeKeyAndVisible()
             Constants.UID = UserDefaults.standard.object(forKey: "uid") as? String
             debugPrint(Constants.dbRef, Constants.UID)
+        }
+
     }
     
 }

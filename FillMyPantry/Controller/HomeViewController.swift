@@ -26,14 +26,15 @@ class HomeViewController : UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        indicator.startAnimating()
         indicator.backgroundColor = UIColor.clear
         self.indicator.hidesWhenStopped = true
+        indicator.startAnimating()
         FirebaseDAO.getShoppingListsForUser().subscribe(){ event in
             if let element = event.element {
                 self.shoppingLists = element
             }
-            DispatchQueue.main.async {
+            let delay = 0.1
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
                 self.indicator.stopAnimating()
                 self.tableView.reloadData()
             }

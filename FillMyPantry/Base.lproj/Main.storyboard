@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TpA-RR-Lde">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -14,12 +14,12 @@
         <!--View Controller-->
         <scene sceneID="SgS-MZ-2vZ">
             <objects>
-                <viewController id="TpA-RR-Lde" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InitialViewController" id="TpA-RR-Lde" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ARh-TT-bvM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Default" translatesAutoresizingMaskIntoConstraints="NO" id="Ywb-xW-AoQ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iphone&lt;8" highlightedImage="iphone&lt;8" translatesAutoresizingMaskIntoConstraints="NO" id="Ywb-xW-AoQ">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </imageView>
                         </subviews>
@@ -35,7 +35,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yQY-bV-h0p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1199" y="-347"/>
+            <point key="canvasLocation" x="-1918" y="168"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="H3j-lz-e7I">
@@ -705,7 +705,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Default" width="320" height="480"/>
         <image name="circleAddIcon" width="42" height="42"/>
         <image name="icon_checkbox_empty" width="16" height="16"/>
         <image name="icon_checkbox_filled" width="16" height="16"/>
@@ -715,5 +714,6 @@
         <image name="icon_list" width="20" height="14"/>
         <image name="icon_plus" width="15" height="14"/>
         <image name="icon_share" width="18" height="20"/>
+        <image name="iphone&lt;8" width="640" height="1136"/>
     </resources>
 </document>
