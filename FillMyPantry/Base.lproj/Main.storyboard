@@ -165,7 +165,6 @@
                                                                                 <constraint firstAttribute="height" constant="20" id="w13-jG-s4h"/>
                                                                             </constraints>
                                                                             <state key="normal" title="Button" image="icon_checkbox_empty"/>
-                                                                            <state key="selected" image="CheckedBox"/>
                                                                             <connections>
                                                                                 <action selector="checkedAnItem:" destination="yzD-gu-FMi" eventType="touchUpInside" id="VUk-64-pUa"/>
                                                                             </connections>
@@ -341,7 +340,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" alpha="0.69999999999999996" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchResultCell" rowHeight="55" id="d2J-IN-Tpg" customClass="searchResultCell" customModule="FillMyPantry" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" alpha="0.69999999999999996" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchResultCell" rowHeight="55" id="d2J-IN-Tpg" customClass="SearchResultCell" customModule="FillMyPantry" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="d2J-IN-Tpg" id="V7L-MH-sKh">
@@ -432,7 +431,7 @@
                                 <color key="backgroundColor" red="0.18132549392426245" green="0.792156862745098" blue="0.24405682479911442" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" alpha="0.69999998807907104" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoriesCell" rowHeight="55" id="MhF-h1-VdX" customClass="searchResultCell" customModule="FillMyPantry" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" alpha="0.69999998807907104" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoriesCell" rowHeight="55" id="MhF-h1-VdX" customClass="SearchResultCell" customModule="FillMyPantry" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="375" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MhF-h1-VdX" id="peh-xK-22c">
@@ -617,7 +616,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" alpha="0.69999998807907104" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ABCTableCell" rowHeight="55" id="nfU-BP-zLx" customClass="searchResultCell" customModule="FillMyPantry" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" alpha="0.69999998807907104" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ABCTableCell" rowHeight="55" id="nfU-BP-zLx" customClass="SearchResultCell" customModule="FillMyPantry" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nfU-BP-zLx" id="Dn9-16-XGb">
@@ -678,7 +677,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="CheckedBox" width="72" height="72"/>
         <image name="circleAddIcon" width="42" height="42"/>
         <image name="icon_checkbox_empty" width="16" height="16"/>
         <image name="icon_checkbox_filled" width="16" height="16"/>

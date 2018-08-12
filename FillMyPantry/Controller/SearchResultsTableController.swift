@@ -65,7 +65,7 @@ extension SearchResultsTableController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "searchResultCell", for: indexPath as IndexPath) as! searchResultCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "searchResultCell", for: indexPath as IndexPath) as! SearchResultCell
         let selectedItem = filteredItems[indexPath.row]
         cell.textCell.text = selectedItem
         cell.onButtonTapped = {

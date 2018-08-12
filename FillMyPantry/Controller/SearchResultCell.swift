@@ -1,5 +1,5 @@
 //
-//  searchResultCell.swift
+//  SearchResultCell.swift
 //  FillMyPantry
 //
 //  Created by BINDU ELAKURTHI on 7/24/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class searchResultCell: UITableViewCell {
+class SearchResultCell: UITableViewCell {
 
     @IBOutlet weak var textCell: UILabel!
     @IBOutlet weak var addButton: UIButton!

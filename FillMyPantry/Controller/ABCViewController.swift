@@ -17,8 +17,6 @@ class  ABCViewController : UITableViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
         tableView.estimatedRowHeight = 44.0
         tableView.rowHeight = UITableViewAutomaticDimension
     }
@@ -38,7 +36,7 @@ class  ABCViewController : UITableViewController{
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ABCTableCell", for: indexPath) as! searchResultCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ABCTableCell", for: indexPath) as! SearchResultCell
         let groceryName = groceryItems[indexPath.row]
         cell.textCell.text = groceryName
         cell.addButton.addTarget(self, action: #selector(CategoriesViewController.addItemtoShoppingList(_:)), for: .touchUpInside)
@@ -52,10 +50,7 @@ class  ABCViewController : UITableViewController{
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 55
-    }
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         self.addItem(indexPath as NSIndexPath)

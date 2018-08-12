@@ -45,10 +45,6 @@ class HomeViewController : UITableViewController {
     }
     
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let shoppingLists = shoppingLists {
             return shoppingLists.count + 1

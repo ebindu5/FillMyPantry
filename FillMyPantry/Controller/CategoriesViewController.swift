@@ -22,16 +22,7 @@ class  CategoriesViewController : UITableViewController{
     var shoppingListId : String!
     var groceryCatalog = [[String]]()
     var grocerySection = [String]()
-    var expandData = [NSMutableDictionary]()
-    var myBoolean = [Bool]()
     var tableViewData = [cellData]()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
-        
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -85,7 +76,7 @@ class  CategoriesViewController : UITableViewController{
             cell.textLabel?.text = tableViewData[indexPath.section].title
             return cell
         }else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CategoriesCell", for: indexPath) as! searchResultCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CategoriesCell", for: indexPath) as! SearchResultCell
             let groceryName = tableViewData[indexPath.section].sectionData[indexPath.row - 1]
             cell.textCell.text = groceryName
             
