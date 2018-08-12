@@ -15,7 +15,6 @@ class FirebaseAuthDAO {
     static var db = Constants.dbRef
   
     static func  anonymousUserInstantiation() -> Single<String>{
-        print(Constants.dbRef, Constants.UID,"{}{}{}{}")
         return Single<String>.create { singleObserver in
             Auth.auth().signInAnonymously() { (authResult, error) in
                 guard error == nil else {
@@ -26,7 +25,7 @@ class FirebaseAuthDAO {
                     singleObserver(.error(getErrorFromString("Auth Result is Nil")))
                     return
                 }
-                print("AuthId =  ", authResult.user.uid)
+                debugPrint("AuthId =  ", authResult.user.uid)
                 Constants.UID = authResult.user.uid
                 singleObserver(.success(authResult.user.uid))
             }
@@ -37,7 +36,7 @@ class FirebaseAuthDAO {
     
     private  static func createDocumentInUsersNode(_ uid : String) -> Single<String>{
         return Single<String>.create{ singleObserver in
-            print("UID = ", uid)
+            debugPrint("UID = ", uid)
             db?.collection("Users").document(uid).setData([
                 "shoppingLists": []
             ]) { error in
@@ -71,7 +70,7 @@ class FirebaseAuthDAO {
             do {
                 try firebaseAuth.signOut()
             } catch let signOutError as NSError {
-                print ("Error signing out: %@", signOutError)
+                debugPrint ("Error signing out: %@", signOutError)
             }
         }
     }

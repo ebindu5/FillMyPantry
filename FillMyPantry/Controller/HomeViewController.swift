@@ -16,9 +16,7 @@ class HomeViewController : UITableViewController {
     
     var disposeBag = DisposeBag()
     var shoppingLists : [ShoppingList]!
-    
     var indicator = UIActivityIndicatorView()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +38,6 @@ class HomeViewController : UITableViewController {
                 self.tableView.reloadData()
             }
         }
-        
         GroceryCatalog.getGroceryCatalog().subscribe()
     }
     
@@ -65,7 +62,6 @@ class HomeViewController : UITableViewController {
             
             return cell
         }
-        
     }
     
     
@@ -85,14 +81,12 @@ class HomeViewController : UITableViewController {
                         }
                     }
                 }else{
-                   Reachability.showNetworkUnavailableDialog(self)
+                    Reachability.showNetworkUnavailableDialog(self)
                 }
             }
-            
         } else{
             navigateToShoppingListViewController(shoppingLists[indexPath.row].id)
         }
-        
     }
     
     
@@ -114,32 +108,11 @@ class HomeViewController : UITableViewController {
                     }
                 }
             }else{
-               Reachability.showNetworkUnavailableDialog(self)
+                Reachability.showNetworkUnavailableDialog(self)
             }
-            
         }
     }
     
-    
-    private func activityIndicator() {
-        indicator = UIActivityIndicatorView(frame: CGRect(x:0, y:0, width:80,height: 80))
-        self.indicator.transform = CGAffineTransform(scaleX: 2, y: 2)
-        indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-        indicator.hidesWhenStopped = true
-        indicator.center = self.view.center
-        self.view.addSubview(indicator)
-    }
-    
-    private func navigateToShoppingListViewController(_ id : String){
-        let shoppingListViewController = self.storyboard?.instantiateViewController(withIdentifier: "ShoppingListViewController") as! ShoppingListViewController
-        
-        shoppingListViewController.shoppingListId = id
-        let backItem = UIBarButtonItem()
-        backItem.title = ""
-        navigationItem.backBarButtonItem = backItem
-        navigationItem.backBarButtonItem?.tintColor = Constants.THEME_COLOR
-        self.navigationController?.pushViewController(shoppingListViewController, animated: true)
-    }
-    
-    
 }
+
+

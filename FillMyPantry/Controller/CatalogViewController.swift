@@ -40,21 +40,6 @@ class CatalogViewController : UIViewController {
         
     }
     
-    
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? ABCViewController {
-            ABCviewVontroller = vc
-            ABCviewVontroller?.catalogViewController = self
-        }
-        
-        if let vc = segue.destination as? CategoriesViewController {
-            categoriesViewController = vc
-            categoriesViewController?.catalogViewController = self
-        }
-    }
-    
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GroceryCatalog.getGroceryCatalog().subscribe(){ event in
@@ -62,7 +47,6 @@ class CatalogViewController : UIViewController {
                 self.groceryCatalog = catalog
             }
         }
-        
     }
     
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
@@ -83,7 +67,16 @@ class CatalogViewController : UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? ABCViewController {
+            ABCviewVontroller = vc
+            ABCviewVontroller?.catalogViewController = self
+        }
+        
+        if let vc = segue.destination as? CategoriesViewController {
+            categoriesViewController = vc
+            categoriesViewController?.catalogViewController = self
+        }
+    }
     
 }

@@ -11,16 +11,14 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class SearchResultsTableController : UITableViewController {
+class SearchResultsTableController : UITableViewController, UISearchResultsUpdating  {
     
     var groceryCatalog = [Grocery]()
     var filteredItems = [String]()
     var shoppingListID : String!
     var order : Int!
     var count : Int!
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.backgroundColor = UIColor.clear
@@ -31,30 +29,8 @@ class SearchResultsTableController : UITableViewController {
                 self.groceryCatalog = catalog
             }
         }
-        
     }
-}
-
-extension SearchResultsTableController : UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        
-        if (searchController.searchBar.text?.count)! > 0 {
-            let text =  searchController.searchBar.text
-            filteredItems.removeAll(keepingCapacity: false)
-            
-            filteredItems = SearchDAO.getSearchResults(groceryCatalog, (text?.trimmingCharacters(in: CharacterSet(charactersIn: " ")))!)
-            
-            tableView.reloadData()
-        }
-        else {
-            filteredItems.removeAll(keepingCapacity: false)
-            tableView.reloadData()
-        }
-    }
-}
-
-
-extension SearchResultsTableController {
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredItems.count
     }
@@ -71,17 +47,7 @@ extension SearchResultsTableController {
         cell.onButtonTapped = {
             self.addItemtoShoppingList(indexPath)
         }
-        
         return cell
-    }
-    
-    fileprivate func addItemtoShoppingList(_ indexPath: IndexPath) {
-        FirebaseDAO.addItemToShoppingList(shoppingListID, filteredItems[indexPath.row], order).subscribe(){ event in
-            if event.element != nil {
-                FirebaseDAO.updateShoppingListItemCount(self.shoppingListID, self.count + 1)
-            }
-        }
-        self.dismiss(animated: true, completion: nil)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -89,9 +55,6 @@ extension SearchResultsTableController {
         addItemtoShoppingList(indexPath)
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 55
-    }
-    
 }
+
 

@@ -11,6 +11,11 @@
 		900AF574211E6125002E2378 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900AF573211E6125002E2378 /* Reachability.swift */; };
 		9020FF7920F429C800CEC6B4 /* FirebaseAuthDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9020FF7820F429C800CEC6B4 /* FirebaseAuthDAO.swift */; };
 		902F50ED20E440C000BFDF3D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902F50EC20E440C000BFDF3D /* Constants.swift */; };
+		904969BE211FC63A00416AAE /* HomeViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904969BD211FC63A00416AAE /* HomeViewController+Extension.swift */; };
+		904969C0211FC8C100416AAE /* ShoppingListViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904969BF211FC8C100416AAE /* ShoppingListViewController+Extension.swift */; };
+		904969C2211FCBA100416AAE /* SearchResultsTableController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904969C1211FCBA100416AAE /* SearchResultsTableController+Extension.swift */; };
+		904969C4211FCC9B00416AAE /* CategoriesViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904969C3211FCC9B00416AAE /* CategoriesViewController+Extension.swift */; };
+		904969C6211FCD6B00416AAE /* ABCViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904969C5211FCD6B00416AAE /* ABCViewController+Extension.swift */; };
 		905A559B20E6FCFB001878F6 /* ShoppingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905A559A20E6FCFB001878F6 /* ShoppingCell.swift */; };
 		905A559D20E750CB001878F6 /* FirebaseDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905A559C20E750CB001878F6 /* FirebaseDAO.swift */; };
 		905A559F20E75358001878F6 /* Struct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905A559E20E75358001878F6 /* Struct.swift */; };
@@ -40,6 +45,11 @@
 		900AF573211E6125002E2378 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		9020FF7820F429C800CEC6B4 /* FirebaseAuthDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthDAO.swift; sourceTree = "<group>"; };
 		902F50EC20E440C000BFDF3D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		904969BD211FC63A00416AAE /* HomeViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+Extension.swift"; sourceTree = "<group>"; };
+		904969BF211FC8C100416AAE /* ShoppingListViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShoppingListViewController+Extension.swift"; sourceTree = "<group>"; };
+		904969C1211FCBA100416AAE /* SearchResultsTableController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchResultsTableController+Extension.swift"; sourceTree = "<group>"; };
+		904969C3211FCC9B00416AAE /* CategoriesViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoriesViewController+Extension.swift"; sourceTree = "<group>"; };
+		904969C5211FCD6B00416AAE /* ABCViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ABCViewController+Extension.swift"; sourceTree = "<group>"; };
 		905A559A20E6FCFB001878F6 /* ShoppingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCell.swift; sourceTree = "<group>"; };
 		905A559C20E750CB001878F6 /* FirebaseDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDAO.swift; sourceTree = "<group>"; };
 		905A559E20E75358001878F6 /* Struct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Struct.swift; sourceTree = "<group>"; };
@@ -89,6 +99,11 @@
 				909F833121093CC600A50979 /* CategoriesViewController.swift */,
 				909F833321093F2100A50979 /* ABCViewController.swift */,
 				909F8372210AF5F400A50979 /* CatalogViewController.swift */,
+				904969BD211FC63A00416AAE /* HomeViewController+Extension.swift */,
+				904969BF211FC8C100416AAE /* ShoppingListViewController+Extension.swift */,
+				904969C1211FCBA100416AAE /* SearchResultsTableController+Extension.swift */,
+				904969C3211FCC9B00416AAE /* CategoriesViewController+Extension.swift */,
+				904969C5211FCD6B00416AAE /* ABCViewController+Extension.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -289,10 +304,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				909F833221093CC600A50979 /* CategoriesViewController.swift in Sources */,
+				904969C2211FCBA100416AAE /* SearchResultsTableController+Extension.swift in Sources */,
 				909F833421093F2100A50979 /* ABCViewController.swift in Sources */,
 				909F837D210D2C1E00A50979 /* SearchDAO.swift in Sources */,
 				905A559F20E75358001878F6 /* Struct.swift in Sources */,
 				90FD2CB1210681D80037D56D /* SearchResultsTableController.swift in Sources */,
+				904969C4211FCC9B00416AAE /* CategoriesViewController+Extension.swift in Sources */,
 				907F78DD20E427580060A809 /* AppDelegate.swift in Sources */,
 				905A559B20E6FCFB001878F6 /* ShoppingCell.swift in Sources */,
 				902F50ED20E440C000BFDF3D /* Constants.swift in Sources */,
@@ -303,6 +320,9 @@
 				90FD2CAD210163AD0037D56D /* GroceryCatlog.swift in Sources */,
 				9020FF7920F429C800CEC6B4 /* FirebaseAuthDAO.swift in Sources */,
 				900AF574211E6125002E2378 /* Reachability.swift in Sources */,
+				904969BE211FC63A00416AAE /* HomeViewController+Extension.swift in Sources */,
+				904969C0211FC8C100416AAE /* ShoppingListViewController+Extension.swift in Sources */,
+				904969C6211FCD6B00416AAE /* ABCViewController+Extension.swift in Sources */,
 				9004F45920E59A7B00B5358D /* HomeViewController.swift in Sources */,
 				909F8373210AF5F400A50979 /* CatalogViewController.swift in Sources */,
 				90FD2CAF210194EF0037D56D /* test.swift in Sources */,

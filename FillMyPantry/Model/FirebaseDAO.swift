@@ -56,9 +56,9 @@ class FirebaseDAO {
             "name": text
         ]) { err in
             if let err = err {
-                print("Error updating document: \(err)")
+                debugPrint("Error updating document: \(err)")
             } else {
-                print("Document successfully updated")
+                debugPrint("Document successfully updated")
             }
         }
     }
@@ -68,7 +68,7 @@ class FirebaseDAO {
             return getShoppingListsFromDocRefArray(docRefArray)
             }.subscribe(){ event in
                 if let element = event.element {
-                    print(element,"::::")
+                    debugPrint(element,"::::")
                 }
         }
     }
@@ -290,9 +290,9 @@ class FirebaseDAO {
             
         ]) { err in
             if let err = err {
-                print("Error updating document: \(err)")
+                debugPrint("Error updating document: \(err)")
             } else {
-                print("Document successfully updated")
+                debugPrint("Document successfully updated")
             }
         }
         
@@ -320,9 +320,9 @@ class FirebaseDAO {
         for document in documentRefs {
             document.delete(){ err in
                 if let err = err {
-                    print("Error removing document: \(err)")
+                    debugPrint("Error removing document: \(err)")
                 } else {
-                    print("Document successfully removed!")
+                    debugPrint("Document successfully removed!")
                 }
             }
         }
@@ -335,13 +335,12 @@ class FirebaseDAO {
             "count": count
         ]) { err in
             if let err = err {
-                print("Error updating document: \(err)")
+                debugPrint("Error updating document: \(err)")
             } else {
-                print("Document successfully updated")
+                debugPrint("Document successfully updated")
             }
         }
     }
-    
 }
 
 

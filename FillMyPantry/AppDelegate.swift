@@ -13,20 +13,7 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    
-    func setRootViewController(_ identifier : String){
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let initialViewController = storyboard.instantiateViewController(withIdentifier: identifier)
-        
-        let navigationController = UINavigationController(rootViewController: initialViewController)
-        navigationController.navigationBar.isTranslucent = false
-        self.window?.rootViewController = navigationController
-        self.window?.makeKeyAndVisible()
-        Constants.UID = UserDefaults.standard.object(forKey: "uid") as? String
-        debugPrint(Constants.dbRef, Constants.UID)
-    }
-    
+ 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
@@ -50,7 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaults.standard.synchronize()
             setRootViewController("HomeViewController")
         } else {
-            
             FirebaseAuthDAO.anonymousAuthentication().subscribe{ event in
                 switch event {
                 case .success(let uid) : Constants.UID = uid
@@ -65,7 +51,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
 
-    
+    func setRootViewController(_ identifier : String){
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let initialViewController = storyboard.instantiateViewController(withIdentifier: identifier)
+            
+            let navigationController = UINavigationController(rootViewController: initialViewController)
+            navigationController.navigationBar.isTranslucent = false
+            self.window?.rootViewController = navigationController
+            self.window?.makeKeyAndVisible()
+            Constants.UID = UserDefaults.standard.object(forKey: "uid") as? String
+            debugPrint(Constants.dbRef, Constants.UID)
+    }
     
 }
 
